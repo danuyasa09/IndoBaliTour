@@ -43,6 +43,7 @@ Route::get('/tour/fun_activity', function () {
     return view('tour.fun_activity');
 })->name('fun_activity');
 
-Route::get('/tour/blog_event', function () {
-    return view('tour.blog&event');
-})->name('blog_event');
+use App\Http\Controllers\BlogController;
+
+Route::get('/tour/blog_event', [BlogController::class, 'index'])->name('blog_event');
+Route::get('/tour/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');

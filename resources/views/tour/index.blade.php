@@ -24,7 +24,7 @@
             </div>
 
             <!-- Hero Content -->
-            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center pb-24 md:pb-32">
                 <div class="max-w-2xl text-white space-y-6">
                     <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
                         Tulis cerita mu<br>di Bali
@@ -39,6 +39,30 @@
                         <a href="#services" class="px-8 py-3.5 bg-black/35 backdrop-blur-md hover:bg-black/50 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 transform hover:-translate-y-0.5">
                             Explore Tour
                         </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integrated Stats Banner with matching tinted glassmorphism -->
+            <div class="absolute bottom-0 left-0 right-0 bg-brand-red/10 backdrop-blur-md border-t border-brand-red/20 py-8 z-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">12+</div>
+                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Happy Traveler</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">850+</div>
+                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Total Tour Guide</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">150+</div>
+                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Destinations</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">20+</div>
+                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Partner Hotels</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,7 +125,7 @@
 
                     <!-- Service 2 -->
                 <a href="{{ route('package_tour') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-md hover:shadow-xl transition-all duration-300 block">
-                    <img src="https://images.unsplash.com/photo-1505993597083-3bd19f7c839b?auto=format&fit=crop&w=800&q=80" alt="Tour Packages" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80 alt="Tour Packages" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                     
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                     
@@ -342,29 +366,6 @@
             </div>
         </section>
 
-        <!-- STAT BANNER -->
-        <section class="bg-brand-red text-white py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-extrabold mb-1">12+</div>
-                        <div class="text-xs sm:text-sm text-red-100 uppercase tracking-widest">Happy Traveler</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-extrabold mb-1">850+</div>
-                        <div class="text-xs sm:text-sm text-red-100 uppercase tracking-widest">Total Tour Guide</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-extrabold mb-1">150+</div>
-                        <div class="text-xs sm:text-sm text-red-100 uppercase tracking-widest">Destinations</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-extrabold mb-1">20+</div>
-                        <div class="text-xs sm:text-sm text-red-100 uppercase tracking-widest">Partner Hotels</div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- EXPERIENCE GALLERY SECTION -->
         <section id="experiences" class="py-20 bg-white">
@@ -384,7 +385,7 @@
                     <div class="flex flex-col gap-6">
                         <!-- Mt Batur Landscape -->
                         <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group">
-                            <img src="https://images.unsplash.com/photo-1558005530-a79588568467?auto=format&fit=crop&w=800&q=80" alt="Mt Batur Sunrise" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <img src="https://images.unsplash.com/photo-1558005530-a79588568467?auto=format&fit=crop&w=800&q=80     " alt="Mt Batur Sunrise" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <!-- Ubud river rafting Landscape -->
                         <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group">
@@ -410,7 +411,25 @@
                     </div>
                 </div>
             </div>
-            <x-footer />
         </section>
+
+            <div class="max-w-6xl mx-auto px-4 py-12">
+        <div class="bg-[#EAEAEA] rounded-2xl p-10 md:p-14 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Siap Menulis Cerita Anda Sendiri ?</h2>
+            <p class="text-xs md:text-sm text-gray-500 mb-8 max-w-xl mx-auto">
+                Konsultasikan perjalanan impian Anda dengan pakar lokal kami dan buat setiap momen berharga.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#" class="w-full sm:w-auto bg-[#7A0C16] hover:bg-[#5a0810] text-white text-xs font-medium px-6 py-3 rounded transition-colors duration-200">
+                    Mulai petualangan anda
+                </a>
+                <a href="#" class="w-full sm:w-auto bg-[#333333] hover:bg-[#222222] text-white text-xs font-medium px-6 py-3 rounded transition-colors duration-200">
+                    Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </div>
+
+        <x-footer />
     </body>
 </html>

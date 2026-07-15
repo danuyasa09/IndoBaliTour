@@ -24,7 +24,7 @@
             </div>
 
             <!-- Hero Content -->
-            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center pb-24 md:pb-32">
                 <div class="max-w-2xl text-white space-y-6">
                     <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
                         Tulis cerita mu<br>di Bali
@@ -39,6 +39,30 @@
                         <a href="#services" class="px-8 py-3.5 bg-black/35 backdrop-blur-md hover:bg-black/50 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 transform hover:-translate-y-0.5">
                             Explore Tour
                         </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integrated Stats Banner with matching tinted glassmorphism -->
+            <div class="absolute bottom-0 left-0 right-0 bg-brand-red/10 backdrop-blur-md border-t border-brand-red/20 py-8 z-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">12+</div>
+                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Happy Traveler</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">850+</div>
+                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Total Tour Guide</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">150+</div>
+                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Destinations</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">20+</div>
+                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Partner Hotels</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -376,29 +400,6 @@
             </div>
         </section>
 
-        <!-- STAT BANNER -->
-        <section class="bg-brand-red text-white py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-extrabold mb-1">12+</div>
-                        <div class="text-xs sm:text-sm text-red-100 uppercase tracking-widest">Happy Traveler</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-extrabold mb-1">850+</div>
-                        <div class="text-xs sm:text-sm text-red-100 uppercase tracking-widest">Total Tour Guide</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-extrabold mb-1">150+</div>
-                        <div class="text-xs sm:text-sm text-red-100 uppercase tracking-widest">Destinations</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl sm:text-4xl font-extrabold mb-1">20+</div>
-                        <div class="text-xs sm:text-sm text-red-100 uppercase tracking-widest">Partner Hotels</div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- EXPERIENCE GALLERY SECTION -->
         <section id="experiences" class="py-20 bg-white">

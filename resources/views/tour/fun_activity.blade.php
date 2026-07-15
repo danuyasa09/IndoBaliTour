@@ -161,41 +161,6 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="bg-[#151515] text-gray-400 pt-16 pb-6 text-xs">
-            <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-                <div>
-                    <h3 class="text-white font-bold text-lg mb-4">Indo Bali Tour</h3>
-                    <p class="leading-relaxed mb-4 text-gray-400">
-                        Pengalaman perjalanan eksklusif yang dirancang khusus untuk Anda yang menghargai keindahan dan profesionalisme.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-4">Layanan</h4>
-                    <ul class="space-y-2.5">
-                        <li><a href="{{ route('package_tour') }}" class="hover:text-white transition-colors">Paket Tur</a></li>
-                        <li><a href="{{ route('fun_activity') }}" class="hover:text-white transition-colors">Aktivitas Seru</a></li>
-                        <li><a href="{{ route('car_rental') }}" class="hover:text-white transition-colors">Rental Mobil</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-4">Dukungan</h4>
-                    <ul class="space-y-2.5">
-                        <li><a href="#" class="hover:text-white transition-colors">Bantuan</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-4">Hubungi Kami</h4>
-                    <p class="leading-relaxed mb-2 text-gray-400">📍 Jl. Sunset Road No. 888, Seminyak, Kuta, Bali</p>
-                    <p class="leading-relaxed mb-2 text-gray-400">📞 +62 812-3456-7890</p>
-                    <p class="leading-relaxed text-gray-400">✉️ info@indobalitour.com</p>
-                </div>
-            </div>
-            <div class="max-w-7xl mx-auto px-4 pt-8 border-t border-zinc-800 text-center text-gray-500">
-                <p>&copy; {{ date('Y') }} Indo Bali Tour. All rights reserved.</p>
-            </div>
-        </footer>
+         <x-footer />
     </body>
 </html>
