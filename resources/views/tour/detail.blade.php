@@ -5,6 +5,7 @@
 <div class="min-h-screen bg-[#F8F9FA] font-sans antialiased text-gray-800">
     
     <x-navbar />
+          <x-floating_contactUs />
 
     <div class="relative h-[400px] md:h-[500px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
         <div class="absolute inset-0 bg-black/40 flex items-center pl-6 md:pl-24">

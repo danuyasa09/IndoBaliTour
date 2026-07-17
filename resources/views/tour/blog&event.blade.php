@@ -11,6 +11,7 @@
     </head>
     <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
         <x-navbar />
+              <x-floating_contactUs />
 
         <!-- Hero Section -->
         <div class="relative h-[400px] md:h-[550px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">

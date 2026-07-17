@@ -7,11 +7,15 @@
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <style>
+            html { scroll-behavior: smooth; }
+        </style>
     </head>
     <body class="bg-[#F4F5F7] text-slate-900 antialiased font-sans">
 <div class="min-h-screen bg-[#F8F9FA] font-sans antialiased text-gray-800">
     
     <x-navbar />
+          <x-floating_contactUs />
 
     <div class="relative h-[450px] md:h-[600px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
         <div class="absolute inset-0 bg-black/30 flex items-center pl-6 md:pl-24">
@@ -28,14 +32,21 @@
 
     <div class="bg-white py-6 border-b border-gray-100 shadow-sm">
         <div class="flex justify-center space-x-8 text-sm font-medium">
-            <a href="#" class="text-gray-900 border-b-2 border-gray-900 pb-1">Foto</a>
-            <a href="#" class="text-gray-400 hover:text-gray-600 pb-1 transition-colors">Video</a>
+            <a href="#foto" class="text-gray-900 border-b-2 border-gray-900 pb-1">Foto</a>
+            <a href="#video" class="text-gray-400 hover:text-gray-600 pb-1 transition-colors">Video</a>
         </div>
     </div>
 
-    <div class="max-w-6xl mx-auto px-4 py-16">
+    <div id="foto" class="max-w-6xl mx-auto px-4 py-16 scroll-mt-24">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
+            <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#9B1C26] mb-2">Galeri Foto</p>
+                <h2 class="text-2xl font-bold text-gray-900">Koleksi momen terbaik perjalanan Anda</h2>
+            </div>
+            <p class="text-sm text-gray-500 max-w-xl">Lihat sisi visual dari pengalaman penuh warna, budaya, dan petualangan kami.</p>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
             <div class="space-y-6">
                 <div class="overflow-hidden rounded-2xl shadow-sm">
                     <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=600&auto=format&fit=crop" alt="Mount Batur Sunrise" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
@@ -58,7 +69,45 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div id="video" class="max-w-6xl mx-auto px-4 py-16 scroll-mt-24">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
+            <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#9B1C26] mb-2">Galeri Video</p>
+                <h2 class="text-2xl font-bold text-gray-900">Simak keseruan perjalanan dalam bentuk video</h2>
+            </div>
+            <p class="text-sm text-gray-500 max-w-xl">Video pendek ini memberi gambaran suasana, aktivitas, dan detail perjalanan yang bisa Anda rasakan.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop" alt="Video sunrise trek" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <h3 class="font-semibold text-gray-900 mb-2">Sunrise Trekking di Batur</h3>
+                    <p class="text-sm text-gray-500 mb-4">Rasakan momen menakjubkan saat matahari terbit di atas pegunungan.</p>
+                    <a href="#" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Lihat Video</a>
+                </div>
+            </div>
+
+            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop" alt="Video rafting" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <h3 class="font-semibold text-gray-900 mb-2">Adventure Rafting</h3>
+                    <p class="text-sm text-gray-500 mb-4">Petualangan seru di aliran air yang menantang dengan pemandangan alam indah.</p>
+                    <a href="#" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Lihat Video</a>
+                </div>
+            </div>
+
+            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100">
+                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=800&auto=format&fit=crop" alt="Video budaya Bali" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <h3 class="font-semibold text-gray-900 mb-2">Budaya dan Tradisi Bali</h3>
+                    <p class="text-sm text-gray-500 mb-4">Kisah kearifan lokal dan ritual yang membuat perjalanan semakin bermakna.</p>
+                    <a href="#" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Lihat Video</a>
+                </div>
+            </div>
         </div>
     </div>
 

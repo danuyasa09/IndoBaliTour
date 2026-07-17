@@ -13,11 +13,12 @@
     <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
     
     <x-navbar />
+          <x-floating_contactUs />
 
     <div class="relative h-[380px] md:h-[480px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
         <div class="absolute inset-0 bg-black/30 flex items-end pb-16 pl-4 md:pb-24 md:pl-24">
             <div class="max-w-7xl w-full mx-auto">
-                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight">Hotel Transfer</h1>
+                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight">Airport Transfer</h1>
             </div>
         </div>
     </div>

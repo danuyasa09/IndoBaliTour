@@ -68,7 +68,7 @@
                             <span class="text-sm font-bold text-[#7A0C16]">RP 2.500.000</span>
                         </div>
                         
-                        <a href="#" class="flex items-center space-x-1 text-[11px] font-bold text-[#7A0C16] hover:text-[#5A0810] transition-colors pb-0.5">
+                        <a href="{{ route('detail') }}" class="flex items-center space-x-1 text-[11px] font-bold text-[#7A0C16] hover:text-[#5A0810] transition-colors pb-0.5">
                             <span class="uppercase tracking-wider">Lihat Detail</span>
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>

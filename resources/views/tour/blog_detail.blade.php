@@ -13,6 +13,7 @@
     </head>
     <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
         <x-navbar />
+        <x-floating_contactUs />    
 
         <!-- Blog Hero Section -->
         <div class="relative h-[350px] md:h-[480px] w-full bg-cover bg-center" style="background-image: url('{{ $blog['image'] }}');">

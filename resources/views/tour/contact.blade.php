@@ -7,10 +7,25 @@
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+        <style>
+        /* Sedikit tweak agar tinggi minimal editor pas dengan desain Tailwind-mu */
+        .note-editor.note-frame {
+            border: 1px solid #cbd5e1 !important; /* warna border slate-300 */
+            border-radius: 1rem !important; /* rounded-2xl */
+            overflow: hidden;
+        }
+        
+    </style>
     </head>
     <body class="bg-[#F4F5F7] text-slate-900 antialiased font-sans">
 
         <x-navbar />
+              <x-floating_contactUs />
 
         <section class="relative h-[440px] overflow-hidden">
             <div class="absolute inset-0">
@@ -39,7 +54,7 @@
                             </p>
                         </div>
 
-                        <div class="grid gap-4">
+                        <div class="grid gap-2">
                             <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200">
                                 <div class="flex items-start gap-4">
                                     <div class="mt-1 flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-900 text-white">
@@ -90,8 +105,8 @@
                         </div>
                     </div>
 
-                    <div class="rounded-[2rem] bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)] border border-gray-200">
-                        <form class="space-y-6">
+                    <div class="rounded-[1.5rem] bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)] border border-gray-200">
+                        <form class="space-y-10">
                             <div class="grid gap-4 sm:grid-cols-2">
                                 <label class="block">
                                     <span class="text-sm font-semibold text-slate-900">Nama Lengkap</span>
@@ -133,5 +148,22 @@
         </section>
 
         <x-footer />
+        <script>
+        $(document).ready(function() {
+            $('#pesan-editor').summernote({
+                placeholder: 'Ceritakan detail rencana perjalanan anda...',
+                tabsize: 2,
+                height: 200, // Menyesuaikan tinggi dengan rows="6" milikmu sebelumnya
+                width: '100%',
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link', 'picture']],
+                    ['view', ['fullscreen', 'codeview']]
+                ]
+            });
+        });
+    </script>
     </body>
 </html>
