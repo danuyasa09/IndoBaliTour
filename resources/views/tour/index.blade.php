@@ -17,19 +17,37 @@
     
 
         <!-- HERO SECTION -->
-        <section class="relative h-[650px] md:h-[700px] overflow-hidden">
-            <!-- Background Image -->
-            <div class="absolute inset-0">
-                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=80" alt="Bali Temple Sunset" class="w-full h-full object-cover">
-                <!-- Dark Overlay to Match Sunset Mood and Ensure Text Contrast -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-            </div>
+        <section class="relative h-screen overflow-hidden"
+                 x-data="{ 
+                     activeSlide: 0, 
+                     slides: [
+                         'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=80',
+                         'https://images.unsplash.com/photo-1518548419070-ad8e5fd552b6?auto=format&fit=crop&w=1920&q=80',
+                         'https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=1920&q=80'
+                     ],
+                     init() {
+                         setInterval(() => {
+                             this.activeSlide = (this.activeSlide === this.slides.length - 1) ? 0 : this.activeSlide + 1;
+                         }, 5000);
+                     }
+                 }">
+            
+            <template x-for="(slide, index) in slides" :key="index">
+                <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+                     :class="{ 'opacity-100 z-10': activeSlide === index, 'opacity-0 z-0': activeSlide !== index }">
+                    <img :src="slide" alt="Bali Destination" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                </div>
+            </template>
 
-            <!-- Hero Content -->
-            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center pb-24 md:pb-32">
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center pb-[220px] md:pb-32">
                 <div class="max-w-2xl text-white space-y-6">
+                    <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider uppercase mb-2">
+                        ✨ The Best Travel Partner in Bali
+                    </span>
+                    
                     <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
-                        Tulis cerita mu<br>di Bali
+                        Jelajahi Bali, <br>Ciptakan Kenangan Abadi
                     </h1>
                     <p class="text-lg sm:text-xl text-gray-200 font-light">
                         Jelajahi keindahan budaya, petualangan eksotis, dan pantai surga bersama pemandu lokal terbaik kami.
@@ -45,26 +63,111 @@
                 </div>
             </div>
 
-            <!-- Integrated Stats Banner with matching tinted glassmorphism -->
-            <div class="absolute bottom-0 left-0 right-0 bg-brand-red/10 backdrop-blur-md border-t border-brand-red/20 py-8 z-10">
+            <div class="absolute z-20 bottom-[170px] md:bottom-[140px] left-0 right-0 flex justify-center space-x-2">
+                <template x-for="(slide, index) in slides" :key="index">
+                    <button @click="activeSlide = index" 
+                            class="h-2 rounded-full transition-all duration-300 focus:outline-none"
+                            :class="{ 'bg-brand-red w-8': activeSlide === index, 'bg-white/50 hover:bg-white w-2': activeSlide !== index }">
+                    </button>
+                </template>
+            </div>
+
+            <div class="absolute bottom-0 left-0 right-0 border-t border-brand-red/20 py-8 z-20">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">12+</div>
-                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Happy Traveler</div>
+
+                    <div x-data="{ 
+                        openModal: false, 
+                        activeGallery: [], 
+                        galleries: {
+                            travelers: [
+                                'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=600&q=80',
+                                'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=600&q=80',
+                            ],
+                            guides: [
+                                'https://images.unsplash.com/photo-1517486808906-6a1b4acabab8?w=600&q=80',
+                                'https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=600&q=80',
+                            ],
+                            destinations: [
+                                'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80',
+                                'https://images.unsplash.com/photo-1518548419070-ad8e5fd552b6?w=600&q=80',
+                            ],
+                            hotels: [
+                                'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80',
+                                'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80',
+                            ]
+                        },
+                        openGallery(type) {
+                            this.activeGallery = this.galleries[type];
+                            this.openModal = true;
+                            document.body.style.overflow = 'hidden'; // Mencegah scroll saat modal terbuka
+                        },
+                        closeGallery() {
+                            this.openModal = false;
+                            document.body.style.overflow = 'auto'; // Mengembalikan scroll
+                        }
+                    }">
+                                
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                            <div @click="openGallery('travelers')" class="cursor-pointer group hover:scale-105 transition-transform duration-300">
+                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 group-hover:text-brand-red">12K+</div>
+                                <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold group-hover:text-white">Happy Traveler</div>
+                            </div>
+
+                            <div @click="openGallery('guides')" class="cursor-pointer group hover:scale-105 transition-transform duration-300">
+                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 group-hover:text-brand-red">850+</div>
+                                <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold group-hover:text-white">Total Tour Guide</div>
+                            </div>
+
+                            <div @click="openGallery('destinations')" class="cursor-pointer group hover:scale-105 transition-transform duration-300">
+                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 group-hover:text-brand-red">150+</div>
+                                <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold group-hover:text-white">Destinations</div>
+                            </div>
+
+                            <div @click="openGallery('hotels')" class="cursor-pointer group hover:scale-105 transition-transform duration-300">
+                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 group-hover:text-brand-red">20+</div>
+                                <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold group-hover:text-white">Partner Hotels</div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">850+</div>
-                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Total Tour Guide</div>
+
+                        <!-- Gallery Modal -->
+                        <div x-show="openModal" 
+                             class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-200"
+                             x-transition:leave-start="opacity-100 scale-100"
+                             x-transition:leave-end="opacity-0 scale-95"
+                             @keydown.escape.window="closeGallery()"
+                             x-cloak>
+                            
+                            <div class="relative max-w-4xl w-full bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+                                 @click.away="closeGallery()">
+                                
+                                <!-- Close Button -->
+                                <button @click="closeGallery()" class="absolute top-4 right-4 text-white hover:text-brand-red bg-black/50 hover:bg-black/80 p-2 rounded-full transition-colors z-10">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </button>
+
+                                <!-- Gallery Content -->
+                                <div class="p-6 md:p-8 space-y-6">
+                                    <h3 class="text-xl font-bold text-white capitalize border-b border-white/10 pb-4">
+                                        Gallery
+                                    </h3>
+                                    
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto pr-2">
+                                        <template x-for="(img, idx) in activeGallery" :key="idx">
+                                            <div class="relative group rounded-xl overflow-hidden aspect-video bg-neutral-800 border border-white/5 shadow-md">
+                                                <img :src="img" alt="Gallery Image" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">150+</div>
-                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Destinations</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">20+</div>
-                            <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold">Partner Hotels</div>
-                        </div>
+
                     </div>
                 </div>
             </div>

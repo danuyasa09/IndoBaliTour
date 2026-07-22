@@ -15,8 +15,9 @@
 
         <!-- Hero Section -->
         <div class="relative h-[400px] md:h-[550px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=1200&auto=format&fit=crop');">
-            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-wide">Fun Activities</h1>
+            <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center px-4 text-center">
+                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-wide mb-4">Fun Activities</h1>
+                <p class="text-gray-200 text-sm md:text-base max-w-2xl mb-8">Temukan petualangan tak terlupakan di Bali. Dari rafting mendebarkan hingga menikmati indahnya pantai.</p>
             </div>
         </div>
 

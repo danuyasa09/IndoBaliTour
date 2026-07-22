@@ -16,19 +16,42 @@
     
     <x-navbar />
           <x-floating_contactUs />
-
-    <div class="relative h-[450px] md:h-[600px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
-        <div class="absolute inset-0 bg-black/30 flex items-center pl-6 md:pl-24">
-            <div class="max-w-3xl">
-                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
-                    Pengalaman Tak<br>Terlupakan
-                </h1>
-                <a href="#" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-sm font-semibold px-6 py-3 rounded transition-colors duration-200">
-                    Book Your Tour
+<div class="relative h-[500px] md:h-[700px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
+    
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+    
+    <div class="absolute inset-0 flex items-center justify-center px-4 text-center">
+        <div class="max-w-4xl relative z-10 flex flex-col items-center">
+            
+            <span class="inline-block py-1 px-4 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-semibold tracking-wider uppercase mb-5 border border-white/30">
+                Eksplorasi Keindahan Pulau Dewata
+            </span>
+            
+            <h1 class="text-white text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-[1.2]">
+                Ciptakan Pengalaman<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">Tak Terlupakan</span>
+            </h1>
+            
+            <p class="text-gray-200 text-sm md:text-lg mb-10 max-w-2xl leading-relaxed">
+                Jelajahi budaya autentik, alam yang menakjubkan, dan petualangan seru di Bali bersama pemandu lokal berpengalaman kami.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center w-full">
+                <a href="#" class="inline-flex justify-center items-center gap-2 bg-[#9B1C26] hover:bg-[#7A151D] text-white text-sm md:text-base font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                    Mulai Petualangan
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+                <a href="#video" class="inline-flex justify-center items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-sm md:text-base font-semibold px-8 py-3.5 rounded-full border border-white/30 transition-all duration-300">
+                    Lihat Video
                 </a>
             </div>
+
         </div>
     </div>
+</div>
 
     <div class="bg-white py-6 border-b border-gray-100 shadow-sm">
         <div class="flex justify-center space-x-8 text-sm font-medium">

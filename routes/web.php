@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HotelTransferController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,11 +20,10 @@ Route::get('/tour/contact', function () {
     return view('tour.contact');
 })->name('contact');
 
-Route::get('/tour/hotel_transfer', function () {
-    return view('tour.hotel_transfer');
-})->name('hotel_transfer');
 
-Route::get('/tour/airport_transfer', function () {
+Route::get('/tour/hotel_transfer', [HotelTransferController::class, 'index'])->name('hotel_transfer');
+
+Route::get('/tour/airport_transfer',    function () {
     return view('tour.airport_transfer');
 })->name('airport_transfer');
 
@@ -47,3 +47,13 @@ use App\Http\Controllers\BlogController;
 
 Route::get('/tour/blog_event', [BlogController::class, 'index'])->name('blog_event');
 Route::get('/tour/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/components', function () {
+    return view('components.testimoni');
+});
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['id', 'en'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('lang.switch');

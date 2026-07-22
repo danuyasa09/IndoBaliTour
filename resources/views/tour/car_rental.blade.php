@@ -9,12 +9,12 @@
         <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
-    <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans"></body>
+    <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
 
 <div class="min-h-screen bg-white font-sans antialiased">
     
     <x-navbar />
-          <x-floating_contactUs />
+    <x-floating_contactUs />
 
     <div class="relative h-[400px] md:h-[550px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1200&auto=format&fit=crop');">
         <div class="absolute inset-0 bg-black/40 flex items-center justify-center">

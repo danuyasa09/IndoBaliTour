@@ -6,26 +6,15 @@
         <title>Indo Bali Tour | Hubungi Kami</title>
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-        <style>
-        /* Sedikit tweak agar tinggi minimal editor pas dengan desain Tailwind-mu */
-        .note-editor.note-frame {
-            border: 1px solid #cbd5e1 !important; /* warna border slate-300 */
-            border-radius: 1rem !important; /* rounded-2xl */
-            overflow: hidden;
-        }
         
-    </style>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     </head>
     <body class="bg-[#F4F5F7] text-slate-900 antialiased font-sans">
 
         <x-navbar />
-              <x-floating_contactUs />
+        <x-floating_contactUs />
 
         <section class="relative h-[440px] overflow-hidden">
             <div class="absolute inset-0">
@@ -43,9 +32,10 @@
         <section class="py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] items-start">
+                    
                     <div class="space-y-8">
                         <div class="space-y-4">
-                            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-brand-red">Mari saling terhubung</p>
+                            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#7A0C16]">Mari saling terhubung</p>
                             <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">
                                 Indo Bali Tour: Your Quality Travel Partner
                             </h2>
@@ -54,116 +44,133 @@
                             </p>
                         </div>
 
-                        <div class="grid gap-2">
-                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200">
+                        <div class="grid gap-4">
+                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow">
                                 <div class="flex items-start gap-4">
-                                    <div class="mt-1 flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-900 text-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    <div class="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-3xl bg-slate-900 text-white">
+                                        <i class="fa-solid fa-location-dot text-lg"></i>
                                     </div>
                                     <div>
                                         <p class="text-sm font-semibold text-slate-900">Location</p>
-                                        <p class="mt-2 text-sm leading-6 text-slate-500">Jl. Ganetri IV No.4, Tonja, Kec. Denpasar Utara, Kota Denpasar, Bali 80237</p>
+                                        <p class="mt-1 text-sm leading-6 text-slate-500">Jl. Ganetri IV No.4, Tonja, Kec. Denpasar Utara, Kota Denpasar, Bali 80237</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200">
+                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow">
                                 <div class="flex items-start gap-4">
-                                    <div class="mt-1 flex h-12 w-12 items-center justify-center rounded-3xl bg-[#25D366] text-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5a11.68 11.68 0 00-10.8 6.5A11.68 11.68 0 006 16.5l-1.2 4.5 4.5-1.2a11.68 11.68 0 005.5 1.3h.2A11.68 11.68 0 0020.5 7.5a11.68 11.68 0 00-4-4z"/><path d="M15 10.5a2.5 2.5 0 01-3.5 2.5l-1-.5a1 1 0 00-1.3.3l-.8 1.1"/></svg>
+                                    <div class="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-3xl bg-[#25D366] text-white">
+                                        <i class="fa-brands fa-whatsapp text-xl"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm font-semibold text-slate-900">Whatsapps</p>
-                                        <p class="mt-2 text-sm leading-6 text-slate-500">+62 812-3456-7890</p>
+                                        <p class="text-sm font-semibold text-slate-900">WhatsApp</p>
+                                        <p class="mt-1 text-sm leading-6 text-slate-500">+62 812-3456-7890</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200">
+                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow">
                                 <div class="flex items-start gap-4">
-                                    <div class="mt-1 flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-900 text-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+                                    <div class="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-3xl bg-slate-900 text-white">
+                                        <i class="fa-solid fa-envelope text-lg"></i>
                                     </div>
                                     <div>
                                         <p class="text-sm font-semibold text-slate-900">Email</p>
-                                        <p class="mt-2 text-sm leading-6 text-slate-500">info@indobalitour.com</p>
+                                        <p class="mt-1 text-sm leading-6 text-slate-500">info@indobalitour.com</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200">
+                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow">
                                 <div class="flex items-start gap-4">
-                                    <div class="mt-1 flex h-12 w-12 items-center justify-center rounded-3xl bg-brand-red text-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                    <div class="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-3xl bg-[#7A0C16] text-white">
+                                        <i class="fa-solid fa-clock text-lg"></i>
                                     </div>
                                     <div>
                                         <p class="text-sm font-semibold text-slate-900">Jam Operasional</p>
-                                        <p class="mt-2 text-sm leading-6 text-slate-500">Senin - Minggu, 08:00 - 20:00 WITA</p>
+                                        <p class="mt-1 text-sm leading-6 text-slate-500">Senin - Minggu, 08:00 - 20:00 WITA</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="rounded-[1.5rem] bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)] border border-gray-200">
-                        <form class="space-y-10">
-                            <div class="grid gap-4 sm:grid-cols-2">
+                    <div class="space-y-6">
+                        <div class="rounded-[1.5rem] bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)] border border-gray-200">
+                            <form action="#" method="POST" class="space-y-8">
+                                @csrf
+                                
+                                <div class="grid gap-4 sm:grid-cols-2">
+                                    <label class="block">
+                                        <span class="text-sm font-semibold text-slate-900">Nama Lengkap</span>
+                                        <input type="text" name="name" required placeholder="Masukkan nama anda" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#7A0C16] focus:ring-2 focus:ring-[#7A0C16]/10" />
+                                    </label>
+                                    <label class="block">
+                                        <span class="text-sm font-semibold text-slate-900">Alamat Email</span>
+                                        <input type="email" name="email" required placeholder="email@gmail.com" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#7A0C16] focus:ring-2 focus:ring-[#7A0C16]/10" />
+                                    </label>
+                                </div>
+
+                                <div class="grid gap-4 sm:grid-cols-2">
+                                    <label class="block">
+                                        <span class="text-sm font-semibold text-slate-900">Nomor Telepon</span>
+                                        <input type="tel" name="phone" required placeholder="+62....." class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#7A0C16] focus:ring-2 focus:ring-[#7A0C16]/10" />
+                                    </label>
+                                    <label class="block">
+                                        <span class="text-sm font-semibold text-slate-900">Subjek</span>
+                                        <input type="text" name="subject" required placeholder="Reservasi tur" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#7A0C16] focus:ring-2 focus:ring-[#7A0C16]/10" />
+                                    </label>
+                                </div>
+
                                 <label class="block">
-                                    <span class="text-sm font-semibold text-slate-900">Nama Lengkap</span>
-                                    <input type="text" placeholder="Masukkan nama anda" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-red focus:ring-2 focus:ring-brand-red/10" />
+                                    <span class="text-sm font-semibold text-slate-900">Pesan Anda</span>
+                                    <textarea name="message" required rows="5" placeholder="Ceritakan detail rencana perjalanan anda..." class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-4 text-sm text-slate-900 outline-none transition focus:border-[#7A0C16] focus:ring-2 focus:ring-[#7A0C16]/10 resize-none"></textarea>
                                 </label>
-                                <label class="block">
-                                    <span class="text-sm font-semibold text-slate-900">Alamat email</span>
-                                    <input type="email" placeholder="email@gmail.com" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-red focus:ring-2 focus:ring-brand-red/10" />
-                                </label>
+
+                                <button type="submit" class="w-full rounded-xl bg-[#7A0C16] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#5a0810] shadow-md hover:shadow-lg">
+                                    Kirim Pesan
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="rounded-[1.5rem] bg-gradient-to-br from-slate-900 to-slate-800 p-6 md:p-8 shadow-xl border border-zinc-800 relative overflow-hidden group">
+                            <div class="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-red/20 blur-2xl transition-all group-hover:bg-[#7A0C16]/40"></div>
+                            
+                            <div class="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                                <div>
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div class="flex text-yellow-400 text-sm">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Guestbook</span>
+                                    </div>
+                                    <h3 class="text-lg md:text-xl font-bold text-white mb-1">Pernah liburan bersama kami?</h3>
+                                    <p class="text-sm text-slate-400 max-w-sm">
+                                        Bantu traveler lain merencanakan liburan impian mereka di Bali.
+                                    </p>
+                                </div>
+                                <button onclick="openTestimoniModal()" type="button" class="flex-shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-[#7A0C16] px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[#5a0810] hover:-translate-y-1">
+                                    <i class="fa-solid fa-pen-nib"></i> Tulis Cerita Anda
+                                </button>
                             </div>
-
-                            <div class="grid gap-4 sm:grid-cols-2">
-                                <label class="block">
-                                    <span class="text-sm font-semibold text-slate-900">Nomor Telepon</span>
-                                    <input type="tel" placeholder="+62....." class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-red focus:ring-2 focus:ring-brand-red/10" />
-                                </label>
-                                <label class="block">
-                                    <span class="text-sm font-semibold text-slate-900">Subjek</span>
-                                    <input type="text" placeholder="Reservasi tur" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-red focus:ring-2 focus:ring-brand-red/10" />
-                                </label>
-                            </div>
-
-                            <label class="block">
-                                <span class="text-sm font-semibold text-slate-900">Pesan Anda</span>
-                                <textarea rows="6" placeholder="Ceritakan detail rencana perjalanan anda" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-sm text-slate-900 outline-none transition focus:border-brand-red focus:ring-2 focus:ring-brand-red/10"></textarea>
-                            </label>
-
-                            <button type="submit" class="w-full rounded-2xl bg-brand-red px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#7a0c16]">
-                                Book Your Tour
-                            </button>
-                        </form>
+                        </div>
+                        
                     </div>
                 </div>
 
                 <div class="mt-16 overflow-hidden rounded-[2rem] border border-gray-200 shadow-sm">
-                    <iframe class="h-[420px] w-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.840113463601!2d115.21680827423931!3d-8.648083193360208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd240b87f0e5b49%3A0x87b9050190b20f04!2sDenpasar%2C%20Bali%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1715294216270!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.5936746813476!2d115.2289!3d-8.6359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23f6c8d76b1b5%3A0x6b6e4e0b5b1a6a5!2sJl.%20Ganetri%20IV%20No.4%2C%20Tonja%2C%20Kec.%20Denpasar%20Utara%2C%20Kota%20Denpasar%2C%20Bali%2080237!5e0!3m2!1sen!2sid!4v1682390000000!5m2!1sen!2sid" 
+                        class="h-[420px] w-full border-0 grayscale hover:grayscale-0 transition-all duration-500" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
         </section>
 
         <x-footer />
-        <script>
-        $(document).ready(function() {
-            $('#pesan-editor').summernote({
-                placeholder: 'Ceritakan detail rencana perjalanan anda...',
-                tabsize: 2,
-                height: 200, // Menyesuaikan tinggi dengan rows="6" milikmu sebelumnya
-                width: '100%',
-                toolbar: [
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['insert', ['link', 'picture']],
-                    ['view', ['fullscreen', 'codeview']]
-                ]
-            });
-        });
-    </script>
+
     </body>
 </html>

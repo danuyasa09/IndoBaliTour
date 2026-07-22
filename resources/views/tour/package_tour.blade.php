@@ -12,16 +12,12 @@
     <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
     <x-navbar />
 
-    <div class="relative h-[450px] md:h-[550px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
-        <div class="absolute inset-0 bg-black/40 flex items-center pl-6 md:pl-24">
-            <div class="max-w-3xl">
-                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
-                    Paket Tour Eksklusif<br>Bali
-                </h1>
-                <a href="#" class="inline-block bg-[#7A0C16] hover:bg-[#5A0810] text-white text-sm font-semibold px-6 py-3 rounded transition-colors duration-200">
-                    Book Your Tour
-                </a>
-            </div>
+    <div class="relative h-[400px] md:h-[550px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
+        <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center px-4 text-center">
+            <h1 class="text-white text-4xl md:text-5xl font-bold tracking-wide mb-4">Paket Tour Eksklusif Bali</h1>
+            
+            <p class="text-gray-200 text-sm md:text-base max-w-2xl mb-8">Tulis ceritamu di Bali dengan pilihan paket liburan tanpa ribet. Nikmati momen terbaik dari wisata budaya hingga alam bersama orang tersayang.</p>
+        
         </div>
     </div>
 
