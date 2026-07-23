@@ -1,6 +1,9 @@
 <head>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+
+        <!-- AOS CSS -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    </head>
 
 <div class="min-h-screen bg-[#F8F9FA] font-sans antialiased text-gray-800">
     
@@ -10,7 +13,7 @@
     <div class="relative h-[400px] md:h-[500px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
         <div class="absolute inset-0 bg-black/40 flex items-center pl-6 md:pl-24">
             <div class="max-w-4xl">
-                <h1 class="text-white text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+                <h1 class="text-white text-3xl md:text-5xl font-bold tracking-tight leading-tight" data-aos="fade-up">
                     Ubud Tour: Cultural &<br>Nature Escape
                 </h1>
             </div>
@@ -23,7 +26,7 @@
             <div class="lg:col-span-2 space-y-12">
                 
                 <div>
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">About this activity</h2>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4" data-aos="fade-up" data-aos-delay="100">About this activity</h2>
                     <div class="text-xs text-gray-500 leading-relaxed space-y-4 text-justify">
                         <p>The Sacred Monkey Forest Sanctuary is a nature reserve and temple complex in Ubud, Bali, Indonesia. It is also known as the Ubud Monkey Forest. The Sanctuary is home to over 1260 long-tailed macaques, who are considered sacred by the local Balinese people. See the amazing view of Tegalalang Rice Terraces. Relax in the refreshing waters with the cool air of Tegenungan Waterfall. Enjoy the coffee plantation of Temen Village north of Ubud.</p>
                         <p>The Sacred Monkey Forest Sanctuary is a nature reserve and temple complex in Ubud, Bali, Indonesia. It is also known as the Ubud Monkey Forest. The Sanctuary is home to over 1260 long-tailed macaques, who are considered sacred by the local Balinese people. See the amazing view of Tegalalang Rice Terraces. Relax in the refreshing waters with the cool air of Tegenungan Waterfall. Enjoy the coffee plantation of Temen Village north of Ubud.</p>
@@ -31,33 +34,33 @@
                 </div>
 
                 <div>
-                    <h2 class="text-xl font-bold text-gray-900 mb-5">Tour Highlights</h2>
+                    <h2 class="text-xl font-bold text-gray-900 mb-5" data-aos="fade-up" data-aos-delay="100">Tour Highlights</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-start space-x-3.5">
+                        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-start space-x-3.5" data-aos="fade-up" data-aos-delay="200">
                             <span class="text-[#7A0C16] text-xl mt-0.5"><i class="fa-solid fa-gopuram"></i></span>
                             <div>
-                                <h3 class="text-sm font-bold text-gray-900 mb-1">Pura Dalem Agung</h3>
+                                <h3 class="text-sm font-bold text-gray-900 mb-1" data-aos="fade-up" data-aos-delay="150">Pura Dalem Agung</h3>
                                 <p class="text-[11px] text-gray-400 leading-relaxed">Jelajahi kuil utama abad ke-14 yang megah di dalam Monkey Forest, tempat di mana arsitektur kuno bertemu dengan alam liar.</p>
                             </div>
                         </div>
-                        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-start space-x-3.5">
+                        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-start space-x-3.5" data-aos="fade-up" data-aos-delay="200">
                             <span class="text-[#7A0C16] text-xl mt-0.5"><i class="fa-solid fa-mountain-sun"></i></span>
                             <div>
-                                <h3 class="text-sm font-bold text-gray-900 mb-1">Panorama Tegalalang</h3>
+                                <h3 class="text-sm font-bold text-gray-900 mb-1" data-aos="fade-up" data-aos-delay="150">Panorama Tegalalang</h3>
                                 <p class="text-[11px] text-gray-400 leading-relaxed">Nikmati pemandangan terasering padi yang ikonik, mahakarya petani lokal yang telah bertahan selama berabad-abad.</p>
                             </div>
                         </div>
-                        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-start space-x-3.5">
+                        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-start space-x-3.5" data-aos="fade-up" data-aos-delay="200">
                             <span class="text-[#7A0C16] text-xl mt-0.5"><i class="fa-solid fa-water"></i></span>
                             <div>
-                                <h3 class="text-sm font-bold text-gray-900 mb-1">Keajaiban Tegenungan</h3>
+                                <h3 class="text-sm font-bold text-gray-900 mb-1" data-aos="fade-up" data-aos-delay="150">Keajaiban Tegenungan</h3>
                                 <p class="text-[11px] text-gray-400 leading-relaxed">Saksikan kekuatan alam di air terjun yang dikelilingi hutan tropis rimbun, tempat sempurna untuk menyegarkan jiwa.</p>
                             </div>
                         </div>
-                        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-start space-x-3.5">
+                        <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-start space-x-3.5" data-aos="fade-up" data-aos-delay="200">
                             <span class="text-[#7A0C16] text-xl mt-0.5"><i class="fa-solid fa-mug-hot"></i></span>
                             <div>
-                                <h3 class="text-sm font-bold text-gray-900 mb-1">Proses Kopi Luwak</h3>
+                                <h3 class="text-sm font-bold text-gray-900 mb-1" data-aos="fade-up" data-aos-delay="150">Proses Kopi Luwak</h3>
                                 <p class="text-[11px] text-gray-400 leading-relaxed">Pelajari metode tradisional pembuatan kopi termahal di dunia, mulai dari pemetikan hingga penyangraian manual.</p>
                             </div>
                         </div>
@@ -66,7 +69,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
                     <div class="md:col-span-3">
-                        <h2 class="text-xl font-bold text-gray-900 mb-6">Itinerary Journey</h2>
+                        <h2 class="text-xl font-bold text-gray-900 mb-6" data-aos="fade-up" data-aos-delay="100">Itinerary Journey</h2>
                         <div class="relative border-l border-gray-200 ml-3.5 space-y-6">
                             <div class="relative pl-7">
                                 <div class="absolute -left-[15px] top-0 bg-[#7A0C16] text-white font-bold text-[10px] w-7 h-7 rounded-full flex items-center justify-center">01</div>
@@ -112,7 +115,7 @@
                     </div>
 
                     <div class="md:col-span-2">
-                        <h2 class="text-xl font-bold text-gray-900 mb-6">Apa yang Termasuk</h2>
+                        <h2 class="text-xl font-bold text-gray-900 mb-6" data-aos="fade-up" data-aos-delay="100">Apa yang Termasuk</h2>
                         <ul class="space-y-3.5 text-xs text-gray-600 font-medium">
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-emerald-500 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
@@ -146,9 +149,9 @@
 
             <div class="space-y-6">
                 
-                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6" data-aos="fade-up" data-aos-delay="200">
                     <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Pricing Table</span>
-                    <h3 class="text-lg font-bold text-[#7A0C16] mt-0.5 mb-5">Tiered Group Rates</h3>
+                    <h3 class="text-lg font-bold text-[#7A0C16] mt-0.5 mb-5" data-aos="fade-up" data-aos-delay="150">Tiered Group Rates</h3>
                     
                     <div class="divide-y divide-gray-100 text-xs font-semibold text-gray-700 mb-6">
                         <div class="py-3 flex justify-between">
@@ -181,8 +184,8 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-                    <h3 class="text-sm font-bold text-gray-900 mb-2">Need Help?</h3>
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-sm font-bold text-gray-900 mb-2" data-aos="fade-up" data-aos-delay="150">Need Help?</h3>
                     <p class="text-[11px] text-gray-400 leading-relaxed mb-4">Do not hesitate to give us a call. We are an expert team and happy to talk to you.</p>
                     
                     <div class="space-y-3 text-xs font-semibold text-gray-700">
@@ -202,7 +205,7 @@
 
         <div class="mt-16 pt-12 border-t border-gray-200">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative">
                         <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=400&auto=format&fit=crop" class="w-full h-44 object-cover" alt="Bedugul">
                         <span class="absolute top-3 left-3 bg-white text-[9px] font-bold text-[#7A0C16] px-2.5 py-1 rounded-full uppercase shadow-sm">Top Seller</span>
@@ -218,7 +221,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative">
                         <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=400&auto=format&fit=crop" class="w-full h-44 object-cover" alt="Uluwatu">
                     </div>
@@ -233,7 +236,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative">
                         <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=400&auto=format&fit=crop" class="w-full h-44 object-cover" alt="Nusa Penida">
                     </div>
@@ -253,3 +256,15 @@
     </div>
       <x-footer />  
 </div>
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                once: true,
+                duration: 800,
+                offset: 100,
+            });
+        </script>
+
+    </body>
+</html>

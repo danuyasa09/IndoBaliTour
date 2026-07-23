@@ -11,30 +11,30 @@
     <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
 
 <header x-data="{ scrolled: false }" 
-        @scroll.window="scrolled = (window.scrollY > 20)" 
-        :class="scrolled ? 'bg-white border-b border-gray-100 shadow-sm text-gray-950' : 'bg-white/40 backdrop-blur-md border-b border-white/20 text-gray-900'" 
-        class="fixed w-full top-0 z-50 transition-all duration-300 skiptranslate">
+        @scroll.window="scrolled = (window.scrollY > 50)" 
+        :class="scrolled ? 'bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-md text-gray-900' : 'bg-transparent border-b border-white/10 text-white pt-2'" 
+        class="fixed w-full top-0 z-50 transition-all duration-500 skiptranslate">
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="h-16 flex justify-between items-center transition-all duration-300">
+        <div class="flex justify-between items-center transition-all duration-500" :class="scrolled ? 'h-16' : 'h-20'">
             
             <div class="flex-shrink-0 flex items-center">
                 <a href="{{ url('/') }}" class="flex items-center space-x-3 group">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10 w-auto group-hover:scale-105 transition-all duration-300" />
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-auto group-hover:scale-105 transition-all duration-500" :class="scrolled ? 'h-10' : 'h-12 brightness-0 invert drop-shadow-md'" />
                 </a>
             </div>
 
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="{{ route('tour.index') }}" 
-                   :class="scrolled ? 'text-gray-600' : 'text-gray-800 font-medium'" 
-                   class="hover:text-brand-red text-sm transition-all duration-200 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
+                   :class="scrolled ? 'text-gray-800' : 'text-white'" 
+                   class="hover:text-brand-red text-sm font-medium transition-all duration-300 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
                    {{ __('Home') }}
                 </a>
                 
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                    <button :class="scrolled ? 'text-gray-600' : 'text-gray-800 font-medium'" class="flex items-center space-x-1 hover:text-brand-red text-sm transition-all duration-200 focus:outline-none py-2">
+                    <button :class="scrolled ? 'text-gray-800' : 'text-white'" class="flex items-center space-x-1 hover:text-brand-red font-medium text-sm transition-all duration-300 focus:outline-none py-2">
                         <span>{{ __('Tour') }}</span>
-                        <svg class="h-3.5 w-3.5 transition-transform duration-200" :class="scrolled ? 'text-gray-400' : 'text-gray-600', { 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-3.5 w-3.5 transition-transform duration-300" :class="scrolled ? 'text-gray-500' : 'text-white/70', { 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
@@ -56,9 +56,9 @@
                 </div>
 
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                    <button :class="scrolled ? 'text-gray-600' : 'text-gray-800 font-medium'" class="flex items-center space-x-1 hover:text-brand-red text-sm transition-all duration-200 focus:outline-none py-2">
+                    <button :class="scrolled ? 'text-gray-800' : 'text-white'" class="flex items-center space-x-1 hover:text-brand-red font-medium text-sm transition-all duration-300 focus:outline-none py-2">
                         <span>{{ __('Transfer') }}</span>
-                        <svg class="h-3.5 w-3.5 transition-transform duration-200" :class="scrolled ? 'text-gray-400' : 'text-gray-600', { 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-3.5 w-3.5 transition-transform duration-300" :class="scrolled ? 'text-gray-500' : 'text-white/70', { 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
@@ -79,20 +79,20 @@
                 </div>
 
                 <a href="{{ route('experience') }}" 
-                   :class="scrolled ? 'text-gray-600' : 'text-gray-800 font-medium'" 
-                   class="hover:text-brand-red text-sm transition-all duration-200 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
+                   :class="scrolled ? 'text-gray-800' : 'text-white'" 
+                   class="hover:text-brand-red text-sm font-medium transition-all duration-300 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
                    {{ __('Experiences') }}
                 </a>
                 
                 <a href="{{ route('blog_event') }}" 
-                   :class="scrolled ? 'text-gray-600' : 'text-gray-800 font-medium'" 
-                   class="hover:text-brand-red text-sm transition-all duration-200 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
+                   :class="scrolled ? 'text-gray-800' : 'text-white'" 
+                   class="hover:text-brand-red text-sm font-medium transition-all duration-300 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
                    {{ __('Blogs & News') }}
                 </a>
                 
                 <a href="{{ route('contact') }}" 
-                   :class="scrolled ? 'text-gray-600' : 'text-gray-800 font-medium'" 
-                   class="hover:text-brand-red text-sm transition-all duration-200 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
+                   :class="scrolled ? 'text-gray-800' : 'text-white'" 
+                   class="hover:text-brand-red text-sm font-medium transition-all duration-300 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
                    {{ __('Contact Us') }}
                 </a>
             </nav>
@@ -100,13 +100,13 @@
             <div class="flex items-center space-x-4">
                 <div class="relative" x-data="{ open: false }">
                     <button @click="open = !open" 
-                            :class="scrolled ? 'border-gray-200 text-gray-700 hover:bg-gray-50' : 'border-gray-300 text-gray-900 hover:bg-black/5'" 
-                            class="flex items-center space-x-2 px-3 py-1.5 border rounded-full text-sm font-medium focus:outline-none transition-all duration-150">
+                            :class="scrolled ? 'border-gray-200 text-gray-700 hover:bg-gray-50' : 'border-white/30 text-white hover:bg-white/10 backdrop-blur-sm'" 
+                            class="flex items-center space-x-2 px-3 py-1.5 border rounded-full text-sm font-medium focus:outline-none transition-all duration-300">
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                         </svg>
                         <span>{{ strtoupper(app()->getLocale()) }}</span>
-                        <svg class="h-3 w-3 transition-transform duration-200" :class="scrolled ? 'text-gray-400' : 'text-gray-500'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-3 w-3 transition-transform duration-300" :class="scrolled ? 'text-gray-400' : 'text-white/70'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
@@ -124,8 +124,8 @@
 
                 <div class="md:hidden" x-data="{ mobileOpen: false }">
                     <button @click="$dispatch('toggle-mobile-menu')" 
-                            :class="scrolled ? 'text-gray-500 hover:text-gray-900 hover:bg-gray-100' : 'text-gray-900 hover:text-black/80 hover:bg-black/5'" 
-                            class="p-2 rounded-md focus:outline-none transition-colors">
+                            :class="scrolled ? 'text-gray-800 hover:bg-gray-100' : 'text-white hover:bg-white/20'" 
+                            class="p-2 rounded-md focus:outline-none transition-colors duration-300">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>

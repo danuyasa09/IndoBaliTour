@@ -9,6 +9,9 @@
         <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+        <!-- AOS CSS -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     </head>
     <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
     
@@ -18,13 +21,13 @@
     <div class="relative h-[380px] md:h-[480px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
         <div class="absolute inset-0 bg-black/30 flex items-end pb-16 pl-4 md:pb-24 md:pl-24">
             <div class="max-w-7xl w-full mx-auto">
-                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight">Airport Transfer</h1>
+                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight" data-aos="fade-up">Airport Transfer</h1>
             </div>
         </div>
     </div>
 
     <div class="max-w-6xl mx-auto px-4 -mt-10 md:-mt-14 relative z-10 pb-20">
-        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
             
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
@@ -39,75 +42,17 @@
                     </thead>
                     
                     <tbody class="divide-y divide-gray-100 text-sm">
+                        @foreach($airports as $airport)
                         <tr class="hover:bg-gray-50/50 transition-colors">
-                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">Nusa Dua</td>
-                            <td class="py-5 px-6 font-bold text-gray-900 text-base">Jimbaran</td>
-                            <td class="py-5 px-6 text-gray-500">~20 Mins</td>
-                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">$10</td>
+                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">{{ $airport->start }}</td>
+                            <td class="py-5 px-6 font-bold text-gray-900 text-base">{{ $airport->destination }}</td>
+                            <td class="py-5 px-6 text-gray-500">Varies</td>
+                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">Rp {{ number_format((float)$airport->price, 0, ',', '.') }}</td>
                             <td class="py-5 px-6 md:px-10 text-center">
-                                <a href="#" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
+                                <a href="https://wa.me/6281234567890?text=Hi,%20I%20want%20to%20book%20an%20airport%20transfer%20from%20{{ $airport->start }}%20to%20{{ $airport->destination }}" target="_blank" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
                             </td>
                         </tr>
-
-                        <tr class="hover:bg-gray-50/50 transition-colors">
-                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">Nusa Dua</td>
-                            <td class="py-5 px-6 font-bold text-gray-900 text-base">Uluwatu</td>
-                            <td class="py-5 px-6 text-gray-500">~40 Mins</td>
-                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">$17</td>
-                            <td class="py-5 px-6 md:px-10 text-center">
-                                <a href="#" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-gray-50/50 transition-colors">
-                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">Nusa Dua</td>
-                            <td class="py-5 px-6 font-bold text-gray-900 text-base">Kuta</td>
-                            <td class="py-5 px-6 text-gray-500">~30 Mins</td>
-                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">$14</td>
-                            <td class="py-5 px-6 md:px-10 text-center">
-                                <a href="#" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-gray-50/50 transition-colors">
-                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">Nusa Dua</td>
-                            <td class="py-5 px-6 font-bold text-gray-900 text-base">Seminyak</td>
-                            <td class="py-5 px-6 text-gray-500">~45 Mins</td>
-                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">$20</td>
-                            <td class="py-5 px-6 md:px-10 text-center">
-                                <a href="#" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-gray-50/50 transition-colors">
-                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">Nusa Dua</td>
-                            <td class="py-5 px-6 font-bold text-gray-900 text-base">Ubud</td>
-                            <td class="py-5 px-6 text-gray-500">~1.5 Hours</td>
-                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">$30</td>
-                            <td class="py-5 px-6 md:px-10 text-center">
-                                <a href="#" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-gray-50/50 transition-colors">
-                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">Nusa Dua</td>
-                            <td class="py-5 px-6 font-bold text-gray-900 text-base">Amed</td>
-                            <td class="py-5 px-6 text-gray-500">~3.5 Hours</td>
-                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">$50</td>
-                            <td class="py-5 px-6 md:px-10 text-center">
-                                <a href="#" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-gray-50/50 transition-colors">
-                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">Nusa Dua</td>
-                            <td class="py-5 px-6 font-bold text-gray-900 text-base">Lovina</td>
-                            <td class="py-5 px-6 text-gray-500">~4 Hours</td>
-                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">$57</td>
-                            <td class="py-5 px-6 md:px-10 text-center">
-                                <a href="#" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -129,3 +74,15 @@
     </div>
  <x-footer />
 </div>
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                once: true,
+                duration: 800,
+                offset: 100,
+            });
+        </script>
+
+    </body>
+</html>

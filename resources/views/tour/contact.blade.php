@@ -10,6 +10,9 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+        <!-- AOS CSS -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     </head>
     <body class="bg-[#F4F5F7] text-slate-900 antialiased font-sans">
 
@@ -24,7 +27,7 @@
 
             <div class="relative flex h-full items-center justify-center px-4 text-center">
                 <div class="max-w-3xl">
-                    <h1 class="text-4xl sm:text-5xl font-bold text-white">Hubungi Kami</h1>
+                    <h1 class="text-4xl sm:text-5xl font-bold text-white" data-aos="fade-up">Hubungi Kami</h1>
                 </div>
             </div>
         </section>
@@ -36,7 +39,7 @@
                     <div class="space-y-8">
                         <div class="space-y-4">
                             <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#7A0C16]">Mari saling terhubung</p>
-                            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900" data-aos="fade-up" data-aos-delay="100">
                                 Indo Bali Tour: Your Quality Travel Partner
                             </h2>
                             <p class="max-w-xl text-base leading-8 text-slate-600">
@@ -45,43 +48,43 @@
                         </div>
 
                         <div class="grid gap-4">
-                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow">
+                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
                                 <div class="flex items-start gap-4">
                                     <div class="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-3xl bg-slate-900 text-white">
                                         <i class="fa-solid fa-location-dot text-lg"></i>
                                     </div>
                                     <div>
                                         <p class="text-sm font-semibold text-slate-900">Location</p>
-                                        <p class="mt-1 text-sm leading-6 text-slate-500">Jl. Ganetri IV No.4, Tonja, Kec. Denpasar Utara, Kota Denpasar, Bali 80237</p>
+                                        <p class="mt-1 text-sm leading-6 text-slate-500">{{ $pengaturan->address }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow">
+                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
                                 <div class="flex items-start gap-4">
                                     <div class="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-3xl bg-[#25D366] text-white">
                                         <i class="fa-brands fa-whatsapp text-xl"></i>
                                     </div>
                                     <div>
                                         <p class="text-sm font-semibold text-slate-900">WhatsApp</p>
-                                        <p class="mt-1 text-sm leading-6 text-slate-500">+62 812-3456-7890</p>
+                                        <p class="mt-1 text-sm leading-6 text-slate-500">{{ $pengaturan->phone }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow">
+                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
                                 <div class="flex items-start gap-4">
                                     <div class="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-3xl bg-slate-900 text-white">
                                         <i class="fa-solid fa-envelope text-lg"></i>
                                     </div>
                                     <div>
                                         <p class="text-sm font-semibold text-slate-900">Email</p>
-                                        <p class="mt-1 text-sm leading-6 text-slate-500">info@indobalitour.com</p>
+                                        <p class="mt-1 text-sm leading-6 text-slate-500">{{ $pengaturan->email }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow">
+                            <div class="rounded-[1.75rem] bg-white p-6 shadow-[0_35px_70px_rgba(15,23,42,0.05)] border border-gray-200 hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
                                 <div class="flex items-start gap-4">
                                     <div class="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-3xl bg-[#7A0C16] text-white">
                                         <i class="fa-solid fa-clock text-lg"></i>
@@ -96,7 +99,7 @@
                     </div>
 
                     <div class="space-y-6">
-                        <div class="rounded-[1.5rem] bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)] border border-gray-200">
+                        <div class="rounded-[1.5rem] bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)] border border-gray-200" data-aos="fade-up" data-aos-delay="200">
                             <form action="#" method="POST" class="space-y-8">
                                 @csrf
                                 
@@ -133,8 +136,8 @@
                             </form>
                         </div>
 
-                        <div class="rounded-[1.5rem] bg-gradient-to-br from-slate-900 to-slate-800 p-6 md:p-8 shadow-xl border border-zinc-800 relative overflow-hidden group">
-                            <div class="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-red/20 blur-2xl transition-all group-hover:bg-[#7A0C16]/40"></div>
+                        <div class="rounded-[1.5rem] bg-white p-6 md:p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)] border border-gray-200 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                            <div class="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#7A0C16]/10 blur-2xl transition-all group-hover:bg-[#7A0C16]/20"></div>
                             
                             <div class="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
                                 <div>
@@ -142,10 +145,10 @@
                                         <div class="flex text-yellow-400 text-sm">
                                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                         </div>
-                                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Guestbook</span>
+                                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Guestbook</span>
                                     </div>
-                                    <h3 class="text-lg md:text-xl font-bold text-white mb-1">Pernah liburan bersama kami?</h3>
-                                    <p class="text-sm text-slate-400 max-w-sm">
+                                    <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-1" data-aos="fade-up" data-aos-delay="150">Pernah liburan bersama kami?</h3>
+                                    <p class="text-sm text-slate-600 max-w-sm">
                                         Bantu traveler lain merencanakan liburan impian mereka di Bali.
                                     </p>
                                 </div>
@@ -158,19 +161,23 @@
                     </div>
                 </div>
 
-                <div class="mt-16 overflow-hidden rounded-[2rem] border border-gray-200 shadow-sm">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.5936746813476!2d115.2289!3d-8.6359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23f6c8d76b1b5%3A0x6b6e4e0b5b1a6a5!2sJl.%20Ganetri%20IV%20No.4%2C%20Tonja%2C%20Kec.%20Denpasar%20Utara%2C%20Kota%20Denpasar%2C%20Bali%2080237!5e0!3m2!1sen!2sid!4v1682390000000!5m2!1sen!2sid" 
-                        class="h-[420px] w-full border-0 grayscale hover:grayscale-0 transition-all duration-500" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+            <div class="mt-16 overflow-hidden rounded-[2rem] border border-gray-200 shadow-sm [&>iframe]:w-full [&>iframe]:h-[420px] [&>iframe]:border-0">
+                {!! $pengaturan->map !!}
+            </div>
             </div>
         </section>
 
         <x-footer />
 
+    
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                once: true,
+                duration: 800,
+                offset: 100,
+            });
+        </script>
     </body>
 </html>

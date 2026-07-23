@@ -8,6 +8,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <!-- AOS CSS -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     </head>
     <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
 
@@ -17,64 +19,158 @@
     
 
         <!-- HERO SECTION -->
-        <section class="relative h-screen overflow-hidden"
+        <section class="relative min-h-[100vh] overflow-hidden bg-black flex flex-col"
                  x-data="{ 
                      activeSlide: 0, 
                      slides: [
                          'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=80',
                          'https://images.unsplash.com/photo-1518548419070-ad8e5fd552b6?auto=format&fit=crop&w=1920&q=80',
-                         'https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=1920&q=80'
+                         'https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=1920&q=80',
+                         'https://images.unsplash.com/photo-1558005530-a79588568467?auto=format&fit=crop&w=1920&q=80'
                      ],
                      init() {
                          setInterval(() => {
                              this.activeSlide = (this.activeSlide === this.slides.length - 1) ? 0 : this.activeSlide + 1;
-                         }, 5000);
+                         }, 6000);
                      }
                  }">
             
+            <!-- Ken Burns Slider -->
             <template x-for="(slide, index) in slides" :key="index">
                 <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
                      :class="{ 'opacity-100 z-10': activeSlide === index, 'opacity-0 z-0': activeSlide !== index }">
-                    <img :src="slide" alt="Bali Destination" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    <img :src="slide" alt="Bali Destination" 
+                         class="w-full h-full object-cover transition-transform duration-[10000ms] ease-out origin-center"
+                         :class="{ 'scale-110': activeSlide === index, 'scale-100': activeSlide !== index }">
+                    <!-- Premium Gradient Overlays -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
                 </div>
             </template>
 
-            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center pb-[220px] md:pb-32">
-                <div class="max-w-2xl text-white space-y-6">
-                    <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider uppercase mb-2">
-                        ✨ The Best Travel Partner in Bali
-                    </span>
-                    
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
-                        Jelajahi Bali, <br>Ciptakan Kenangan Abadi
-                    </h1>
-                    <p class="text-lg sm:text-xl text-gray-200 font-light">
-                        Jelajahi keindahan budaya, petualangan eksotis, dan pantai surga bersama pemandu lokal terbaik kami.
-                    </p>
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="#tours" class="px-8 py-3.5 bg-brand-red hover:bg-brand-dark-red text-white font-semibold rounded-lg shadow-lg hover:shadow-brand-red/30 transition-all duration-300 transform hover:-translate-y-0.5">
-                            Book Your Tour
-                        </a>
-                        <a href="#services" class="px-8 py-3.5 bg-black/35 backdrop-blur-md hover:bg-black/50 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 transform hover:-translate-y-0.5">
-                            Explore Tour
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="absolute z-20 bottom-[170px] md:bottom-[140px] left-0 right-0 flex justify-center space-x-2">
+            <!-- Slide Indicators (Right Side) -->
+            <div class="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 hidden sm:flex flex-col gap-3 md:gap-4">
                 <template x-for="(slide, index) in slides" :key="index">
                     <button @click="activeSlide = index" 
-                            class="h-2 rounded-full transition-all duration-300 focus:outline-none"
-                            :class="{ 'bg-brand-red w-8': activeSlide === index, 'bg-white/50 hover:bg-white w-2': activeSlide !== index }">
+                            class="w-1.5 rounded-full transition-all duration-500 focus:outline-none"
+                            :class="{ 'bg-brand-red h-10 md:h-12 shadow-[0_0_10px_rgba(122,12,22,0.8)]': activeSlide === index, 'bg-white/30 hover:bg-white h-3 md:h-4': activeSlide !== index }">
                     </button>
                 </template>
             </div>
 
-            <div class="absolute bottom-0 left-0 right-0 border-t border-brand-red/20 py-8 z-20">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Hero Content -->
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex flex-col justify-center pt-20 sm:pt-24 pb-[380px] sm:pb-[350px] lg:pb-64">
+                <div class="max-w-4xl text-white space-y-5 sm:space-y-6">
+                    <!-- Animated Badge -->
+                    <div data-aos="fade-right" class="inline-flex items-center gap-3 py-2 px-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-red"></span>
+                        </span>
+                        <span class="text-xs font-bold tracking-widest uppercase text-gray-200">
+                            The Best Travel Partner in Bali
+                        </span>
+                    </div>
+                    
+                    <!-- Massive Title -->
+                    <h1 class="text-5xl sm:text-6xl md:text-[5rem] font-extrabold tracking-tight leading-[1.1]" data-aos="fade-up" data-aos-delay="100">
+                        Jelajahi Bali, <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">Ciptakan Kenangan</span> <br>
+                        <span class="relative inline-block text-brand-red italic font-serif pr-4">
+                            Abadi
+                            <svg class="absolute w-full h-4 -bottom-2 left-0 text-brand-red/40" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="transparent"/></svg>
+                        </span>
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl text-gray-300 font-light max-w-xl leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                        Temukan surga tersembunyi, keajaiban budaya, dan petualangan tak terlupakan. Liburan impian Anda bersama pemandu lokal terbaik kami dimulai di sini.
+                    </p>
+                    
+                    <!-- Floating Avatars & Trust -->
+                    <div class="flex flex-wrap items-center gap-4 pt-1 sm:pt-2" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex -space-x-4">
+                            <img class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Traveler">
+                            <img class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="Traveler">
+                            <img class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Traveler">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] bg-brand-red flex items-center justify-center text-[10px] sm:text-xs font-bold text-white shadow-lg">+12K</div>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex text-yellow-400 text-xs sm:text-sm mb-0.5">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="text-gray-300 text-xs sm:text-sm font-medium">Trusted by happy travelers</span>
+                        </div>
+                    </div>
 
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 sm:gap-6 pt-3 sm:pt-4" data-aos="fade-up" data-aos-delay="400">
+                        <a href="#tours" class="group relative px-6 py-3.5 sm:px-8 sm:py-4 bg-brand-red text-white font-bold rounded-xl overflow-hidden shadow-[0_0_30px_rgba(122,12,22,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_50px_rgba(122,12,22,0.6)]">
+                            <div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0"></div>
+                            <span class="relative z-10 flex items-center gap-2 text-sm sm:text-base tracking-wide">
+                                Book Your Tour
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </span>
+                        </a>
+                        
+                        <a href="#experiences" class="group flex items-center gap-3 sm:gap-4 text-white hover:text-brand-red transition-colors duration-300">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-brand-red/20 group-hover:border-brand-red/50 transition-all duration-300 group-hover:scale-110 shadow-lg">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                            <span class="font-semibold tracking-wider uppercase text-xs sm:text-sm">Watch Video</span>
+                        </a>
+                    </div>
+
+                    <!-- Glassmorphism Search Bar -->
+                    <div class="mt-8 sm:mt-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-2 sm:p-3 shadow-[0_15px_30px_rgba(0,0,0,0.4)] max-w-4xl relative z-30" data-aos="fade-up" data-aos-delay="500">
+                        <form action="#" class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-white/20">
+                            
+                            <!-- Destination -->
+                            <div class="flex-1 w-full px-4 py-2 sm:py-0 relative group">
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 group-hover:text-white transition-colors">Location</label>
+                                <div class="flex items-center text-white">
+                                    <svg class="w-5 h-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    <input type="text" placeholder="Where do you want to go?" class="w-full bg-transparent border-none focus:ring-0 text-sm placeholder-gray-300 text-white outline-none p-0">
+                                </div>
+                            </div>
+                            
+                            <!-- Activity -->
+                            <div class="flex-1 w-full px-4 py-2 sm:py-0 relative group">
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 group-hover:text-white transition-colors">Activity</label>
+                                <div class="flex items-center text-white">
+                                    <svg class="w-5 h-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                                    <select class="w-full bg-transparent border-none focus:ring-0 text-sm text-gray-300 outline-none p-0 cursor-pointer appearance-none">
+                                        <option value="" class="text-black">All Activities</option>
+                                        <option value="tour" class="text-black">Tour Packages</option>
+                                        <option value="water" class="text-black">Water Sports</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Date -->
+                            <div class="flex-1 w-full px-4 py-2 sm:py-0 relative group">
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 group-hover:text-white transition-colors">Date</label>
+                                <div class="flex items-center text-white">
+                                    <svg class="w-5 h-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    <input type="date" class="w-full bg-transparent border-none focus:ring-0 text-sm text-gray-300 outline-none p-0 [color-scheme:dark]">
+                                </div>
+                            </div>
+
+                            <!-- Search Button -->
+                            <div class="w-full sm:w-auto px-2 py-2 sm:py-0">
+                                <button type="button" class="w-full sm:w-auto px-6 py-3.5 bg-brand-red hover:bg-red-700 text-white rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(122,12,22,0.5)] hover:shadow-[0_0_25px_rgba(122,12,22,0.8)] flex items-center justify-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                    Search
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Glassmorphism Stats Bar -->
+            <div class="absolute bottom-8 left-0 right-0 z-30 px-4 sm:px-6 lg:px-8" data-aos="fade-up" data-aos-delay="600" data-aos-offset="0">
+                <div class="max-w-6xl mx-auto">
+                    
                     <div x-data="{ 
                         openModal: false, 
                         activeGallery: [], 
@@ -99,74 +195,93 @@
                         openGallery(type) {
                             this.activeGallery = this.galleries[type];
                             this.openModal = true;
-                            document.body.style.overflow = 'hidden'; // Mencegah scroll saat modal terbuka
+                            document.body.style.overflow = 'hidden';
                         },
                         closeGallery() {
                             this.openModal = false;
-                            document.body.style.overflow = 'auto'; // Mengembalikan scroll
+                            document.body.style.overflow = 'auto';
                         }
                     }">
+                    
+                        <div class="bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 rounded-3xl p-6 md:p-8 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transform translate-y-6 hover:translate-y-4 transition-transform duration-500 relative overflow-hidden">
+                            <!-- Premium glass reflection -->
+                            <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10 relative z-10">
                                 
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                            <div @click="openGallery('travelers')" class="cursor-pointer group hover:scale-105 transition-transform duration-300">
-                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 group-hover:text-brand-red">12K+</div>
-                                <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold group-hover:text-white">Happy Traveler</div>
-                            </div>
+                                <div @click="openGallery('travelers')" class="cursor-pointer group relative pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
+                                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-600 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 group-hover:-top-4 transition-all duration-300 z-10">
+                                        <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    </div>
+                                    <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400 mb-2 group-hover:from-brand-red group-hover:to-red-400 transition-all drop-shadow-sm">12K+</div>
+                                    <div class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-[0.2em] font-bold group-hover:text-white flex items-center justify-center gap-1">Happy Traveler</div>
+                                </div>
 
-                            <div @click="openGallery('guides')" class="cursor-pointer group hover:scale-105 transition-transform duration-300">
-                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 group-hover:text-brand-red">850+</div>
-                                <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold group-hover:text-white">Total Tour Guide</div>
-                            </div>
+                                <div @click="openGallery('guides')" class="cursor-pointer group relative pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
+                                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-600 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 group-hover:-top-4 transition-all duration-300 z-10">
+                                        <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400 mb-2 group-hover:from-brand-red group-hover:to-red-400 transition-all drop-shadow-sm">850+</div>
+                                    <div class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-[0.2em] font-bold group-hover:text-white flex items-center justify-center gap-1">Tour Guide</div>
+                                </div>
 
-                            <div @click="openGallery('destinations')" class="cursor-pointer group hover:scale-105 transition-transform duration-300">
-                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 group-hover:text-brand-red">150+</div>
-                                <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold group-hover:text-white">Destinations</div>
-                            </div>
+                                <div @click="openGallery('destinations')" class="cursor-pointer group relative pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
+                                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-600 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 group-hover:-top-4 transition-all duration-300 z-10">
+                                        <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    </div>
+                                    <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400 mb-2 group-hover:from-brand-red group-hover:to-red-400 transition-all drop-shadow-sm">150+</div>
+                                    <div class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-[0.2em] font-bold group-hover:text-white flex items-center justify-center gap-1">Destinations</div>
+                                </div>
 
-                            <div @click="openGallery('hotels')" class="cursor-pointer group hover:scale-105 transition-transform duration-300">
-                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 group-hover:text-brand-red">20+</div>
-                                <div class="text-xs sm:text-sm text-red-200 uppercase tracking-widest font-semibold group-hover:text-white">Partner Hotels</div>
+                                <div @click="openGallery('hotels')" class="cursor-pointer group relative pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
+                                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-600 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 group-hover:-top-4 transition-all duration-300 z-10">
+                                        <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                    </div>
+                                    <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400 mb-2 group-hover:from-brand-red group-hover:to-red-400 transition-all drop-shadow-sm">20+</div>
+                                    <div class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-[0.2em] font-bold group-hover:text-white flex items-center justify-center gap-1">Partner Hotels</div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Gallery Modal -->
-                        <div x-show="openModal" 
-                             class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
-                             x-transition:enter="transition ease-out duration-300"
-                             x-transition:enter-start="opacity-0 scale-95"
-                             x-transition:enter-end="opacity-100 scale-100"
-                             x-transition:leave="transition ease-in duration-200"
-                             x-transition:leave-start="opacity-100 scale-100"
-                             x-transition:leave-end="opacity-0 scale-95"
-                             @keydown.escape.window="closeGallery()"
-                             x-cloak>
-                            
-                            <div class="relative max-w-4xl w-full bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl border border-white/10"
-                                 @click.away="closeGallery()">
+                        <template x-teleport="body">
+                            <div x-show="openModal" 
+                                 class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+                                 x-transition:enter="transition ease-out duration-300"
+                                 x-transition:enter-start="opacity-0 scale-95"
+                                 x-transition:enter-end="opacity-100 scale-100"
+                                 x-transition:leave="transition ease-in duration-200"
+                                 x-transition:leave-start="opacity-100 scale-100"
+                                 x-transition:leave-end="opacity-0 scale-95"
+                                 @keydown.escape.window="closeGallery()"
+                                 x-cloak>
                                 
-                                <!-- Close Button -->
-                                <button @click="closeGallery()" class="absolute top-4 right-4 text-white hover:text-brand-red bg-black/50 hover:bg-black/80 p-2 rounded-full transition-colors z-10">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                    </svg>
-                                </button>
-
-                                <!-- Gallery Content -->
-                                <div class="p-6 md:p-8 space-y-6">
-                                    <h3 class="text-xl font-bold text-white capitalize border-b border-white/10 pb-4">
-                                        Gallery
-                                    </h3>
+                                <div class="relative max-w-5xl w-full bg-[#111] rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+                                     @click.away="closeGallery()">
                                     
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto pr-2">
-                                        <template x-for="(img, idx) in activeGallery" :key="idx">
-                                            <div class="relative group rounded-xl overflow-hidden aspect-video bg-neutral-800 border border-white/5 shadow-md">
-                                                <img :src="img" alt="Gallery Image" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                            </div>
-                                        </template>
+                                    <button @click="closeGallery()" class="absolute top-4 right-4 text-white hover:text-brand-red bg-black/50 hover:bg-black/80 p-2.5 rounded-full transition-colors z-10">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+
+                                    <div class="p-6 md:p-10 space-y-6">
+                                        <h3 class="text-2xl font-bold text-white capitalize border-b border-white/10 pb-4">
+                                            Gallery
+                                        </h3>
+                                        
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-h-[60vh] overflow-y-auto pr-2">
+                                            <template x-for="(img, idx) in activeGallery" :key="idx">
+                                                <div class="relative group rounded-2xl overflow-hidden aspect-video bg-neutral-800 border border-white/5 shadow-md">
+                                                    <img :src="img" alt="Gallery Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300"></div>
+                                                </div>
+                                            </template>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </template>
 
                     </div>
                 </div>
@@ -178,9 +293,9 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
                     
-                    <div class="max-w-2xl space-y-8">
+                    <div class="max-w-2xl space-y-8" data-aos="fade-right">
                         <div class="space-y-6">
-                            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-brand-red">YOUR QUALITY TRAVEL PARTNER</p>
+                            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-brand-red">YOUR QUALITY TRAVEL PARTNER</p>>
                             <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
                                 Indo Bali Tour: Your Quality Travel Partner
                             </h2>
@@ -190,11 +305,12 @@
                             </p>
                         </div>
 
-                        <div class="flex items-center gap-6">
+                        <div class="flex items-center gap-6" data-aos="fade-up" data-aos-delay="100">
                             <img src="{{ asset('images/icon_google-review.png') }}" alt="Google Reviews" class="h-12 w-auto object-contain" />
                             <img src="{{ asset('images/icon_trip_advisor.png') }}" alt="TripAdvisor Reviews" class="h-12 w-auto object-contain" />
                         </div>
-                    </div> <div class="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]">
+                    </div> 
+                    <div class="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]" data-aos="fade-left">
                         <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" alt="Couple enjoying Bali resort" class="w-full h-full min-h-[420px] object-cover transition-transform duration-500 hover:scale-105">
                     </div>
 
@@ -217,50 +333,86 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- Service 1 -->
-                <a href="{{ route('fun_activity') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-md hover:shadow-xl transition-all duration-300 block">
-                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="Tour Activities" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <a href="{{ route('fun_activity') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-lg hover:shadow-2xl transition-all duration-500 block" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&w=800&q=80" alt="Fun Activity" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10 transition-colors duration-500"></div>
                     
-                    <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-center">     
-                        <h3 class="text-xl font-bold">Fun Activity</h3>
-                        <span class="text-xl font-light transform translate-x-0 group-hover:translate-x-2 transition-transform duration-200">&rarr;</span>
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">     
+                        <div class="space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-semibold rounded-full">Watersport & More</span>
+                            <h3 class="text-2xl font-bold text-white leading-tight">Fun Activity</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 h-0 group-hover:h-auto overflow-hidden">
+                                Nikmati berbagai aktivitas seru dan menantang untuk pengalaman liburan di Bali yang tak terlupakan.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 text-brand-red group-hover:text-white transition-colors duration-300">
+                                <span class="text-sm font-semibold uppercase tracking-wider">Explore</span>
+                                <span class="transform group-hover:translate-x-2 transition-transform duration-300">&rarr;</span>
+                            </div>
+                        </div>
                     </div>
                 </a>
 
                     <!-- Service 2 -->
-                <a href="{{ route('package_tour') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-md hover:shadow-xl transition-all duration-300 block">
-                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80 alt="Tour Packages" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <a href="{{ route('package_tour') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-lg hover:shadow-2xl transition-all duration-500 block" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1518548419070-ad8e5fd552b6?auto=format&fit=crop&w=800&q=80" alt="Tour Packages" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10 transition-colors duration-500"></div>
                     
-                    <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-center">     
-                        <h3 class="text-xl font-bold">Tour Packages</h3>
-                        <span class="text-xl font-light transform translate-x-0 group-hover:translate-x-2 transition-transform duration-200">&rarr;</span>
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">     
+                        <div class="space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-semibold rounded-full">Best Deals</span>
+                            <h3 class="text-2xl font-bold text-white leading-tight">Tour Packages</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 h-0 group-hover:h-auto overflow-hidden">
+                                Pilihan paket wisata terlengkap dan terjangkau untuk menjelajahi keindahan alam dan budaya Bali.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 text-brand-red group-hover:text-white transition-colors duration-300">
+                                <span class="text-sm font-semibold uppercase tracking-wider">Explore</span>
+                                <span class="transform group-hover:translate-x-2 transition-transform duration-300">&rarr;</span>
+                            </div>
+                        </div>
                     </div>
                 </a>
 
                     <!-- Service 3 -->
-                 <a href="{{ route('car_rental') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-md hover:shadow-xl transition-all duration-300 block">
-                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="Tour Activities" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                 <a href="{{ route('car_rental') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-lg hover:shadow-2xl transition-all duration-500 block" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80" alt="Car Rental" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10 transition-colors duration-500"></div>
                     
-                    <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-center">     
-                        <h3 class="text-xl font-bold">Car Rental</h3>
-                        <span class="text-xl font-light transform translate-x-0 group-hover:translate-x-2 transition-transform duration-200">&rarr;</span>
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">     
+                        <div class="space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-semibold rounded-full">Comfort & Safe</span>
+                            <h3 class="text-2xl font-bold text-white leading-tight">Car Rental</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 h-0 group-hover:h-auto overflow-hidden">
+                                Sewa mobil dengan supir berpengalaman atau lepas kunci untuk perjalanan yang lebih leluasa dan nyaman.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 text-brand-red group-hover:text-white transition-colors duration-300">
+                                <span class="text-sm font-semibold uppercase tracking-wider">Explore</span>
+                                <span class="transform group-hover:translate-x-2 transition-transform duration-300">&rarr;</span>
+                            </div>
+                        </div>
                     </div>
                 </a>
 
                     <!-- Service 4 -->
-                <a href="{{ route('hotel_transfer') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-md hover:shadow-xl transition-all duration-300 block">
-                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="Tour Activities" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <a href="{{ route('hotel_transfer') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-lg hover:shadow-2xl transition-all duration-500 block" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="Transfer" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10 transition-colors duration-500"></div>
                     
-                    <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-center">     
-                        <h3 class="text-xl font-bold">Transfer</h3>
-                        <span class="text-xl font-light transform translate-x-0 group-hover:translate-x-2 transition-transform duration-200">&rarr;</span>
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">     
+                        <div class="space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-semibold rounded-full">Airport & Hotel</span>
+                            <h3 class="text-2xl font-bold text-white leading-tight">Transfer</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 h-0 group-hover:h-auto overflow-hidden">
+                                Layanan antar jemput bandara dan hotel yang tepat waktu, aman, dan tanpa repot selama di Bali.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 text-brand-red group-hover:text-white transition-colors duration-300">
+                                <span class="text-sm font-semibold uppercase tracking-wider">Explore</span>
+                                <span class="transform group-hover:translate-x-2 transition-transform duration-300">&rarr;</span>
+                            </div>
+                        </div>
                     </div>
                 </a>
                 </div>
@@ -271,7 +423,7 @@
         <section id="tours" class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Section Header -->
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-12">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-12" data-aos="fade-up">
                     <div>
                         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
                             Tempat wisata populer
@@ -287,104 +439,40 @@
 
                 <!-- Destination Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Destination Card 1 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full group">
+                    @foreach($tours as $tour)
+                    <!-- Destination Card -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full group" data-aos="flip-left" data-aos-delay="100">
                         <div class="relative overflow-hidden aspect-[4/3]">
                             <!-- Star Badge -->
                             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-yellow-600 font-bold px-3 py-1 rounded-full text-xs z-10 flex items-center space-x-1 shadow-sm">
                                 <span>⭐️</span>
                                 <span>4.8</span>
                             </div>
-                            <img src="https://images.unsplash.com/photo-1518548419070-ad8e5fd552b6?auto=format&fit=crop&w=800&q=80" alt="Tanah Lot" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <img src="{{ asset('images/' . $tour->img) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="p-6 flex flex-col flex-grow justify-between">
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-brand-red transition-colors">Tanah Lot Temple</h3>
+                                <h3 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-brand-red transition-colors">{{ $tour->title }}</h3>
                                 <div class="flex items-center text-sm text-gray-500 mb-4">
                                     <svg class="h-4 w-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
-                                    Tabanan, Bali
+                                    Bali, Indonesia
                                 </div>
                             </div>
                             <div class="flex items-center justify-between border-t border-gray-100 pt-4 mt-2">
                                 <div>
                                     <span class="text-xs text-gray-400 block uppercase tracking-wider">Start from</span>
-                                    <span class="text-lg font-extrabold text-brand-red">Rp 500k</span>
+                                    <span class="text-lg font-extrabold text-brand-red">Rp {{ number_format((float)$tour->harga, 0, ',', '.') }}</span>
                                 </div>
-                                <a href="#" class="px-4 py-2 bg-gray-100 hover:bg-brand-red text-gray-800 hover:text-white rounded-lg text-sm font-semibold transition-colors duration-200">
+                                <a href="{{ route('detail') }}" class="px-4 py-2 bg-gray-100 hover:bg-brand-red text-gray-800 hover:text-white rounded-lg text-sm font-semibold transition-colors duration-200">
                                     Detail Tour
                                 </a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Destination Card 2 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full group">
-                        <div class="relative overflow-hidden aspect-[4/3]">
-                            <!-- Star Badge -->
-                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-yellow-600 font-bold px-3 py-1 rounded-full text-xs z-10 flex items-center space-x-1 shadow-sm">
-                                <span>⭐️</span>
-                                <span>4.9</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80" alt="Lempuyang Gate" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow justify-between">
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-brand-red transition-colors">Gate of Heaven Lempuyang</h3>
-                                <div class="flex items-center text-sm text-gray-500 mb-4">
-                                    <svg class="h-4 w-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                    Karangasem, Bali
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between border-t border-gray-100 pt-4 mt-2">
-                                <div>
-                                    <span class="text-xs text-gray-400 block uppercase tracking-wider">Start from</span>
-                                    <span class="text-lg font-extrabold text-brand-red">Rp 750k</span>
-                                </div>
-                                <a href="#" class="px-4 py-2 bg-gray-100 hover:bg-brand-red text-gray-800 hover:text-white rounded-lg text-sm font-semibold transition-colors duration-200">
-                                    Detail Tour
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Destination Card 3 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full group">
-                        <div class="relative overflow-hidden aspect-[4/3]">
-                            <!-- Star Badge -->
-                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-yellow-600 font-bold px-3 py-1 rounded-full text-xs z-10 flex items-center space-x-1 shadow-sm">
-                                <span>⭐️</span>
-                                <span>4.7</span>
-                            </div>
-                            <img src="https://images.unsplash.com/photo-1552596880-cd7111867fd3?auto=format&fit=crop&w=800&q=80" alt="Tegallalang" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow justify-between">
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-brand-red transition-colors">Tegallalang Rice Terrace</h3>
-                                <div class="flex items-center text-sm text-gray-500 mb-4">
-                                    <svg class="h-4 w-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                    Gianyar, Bali
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between border-t border-gray-100 pt-4 mt-2">
-                                <div>
-                                    <span class="text-xs text-gray-400 block uppercase tracking-wider">Start from</span>
-                                    <span class="text-lg font-extrabold text-brand-red">Rp 400k</span>
-                                </div>
-                                <a href="#" class="px-4 py-2 bg-gray-100 hover:bg-brand-red text-gray-800 hover:text-white rounded-lg text-sm font-semibold transition-colors duration-200">
-                                    Detail Tour
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -392,7 +480,7 @@
         <!-- TESTIMONIALS SECTION -->
         <section class="py-20 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
                         Cerita mereka yang sudah menjelajah bersama kami
                     </h2>
@@ -403,7 +491,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Testimonial 1 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="100">
                         <div class="space-y-4">
                             <div class="flex text-yellow-500 text-lg">
                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -425,7 +513,7 @@
                     </div>
 
                     <!-- Testimonial 2 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="200">
                         <div class="space-y-4">
                             <div class="flex text-yellow-500 text-lg">
                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -447,7 +535,7 @@
                     </div>
 
                     <!-- Testimonial 3 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="300">
                         <div class="space-y-4">
                             <div class="flex text-yellow-500 text-lg">
                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -489,11 +577,11 @@
                     <!-- Left Column (Stacked landscapes) -->
                     <div class="flex flex-col gap-6">
                         <!-- Mt Batur Landscape -->
-                        <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group">
+                        <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group" data-aos="zoom-in-right">
                             <img src="https://images.unsplash.com/photo-1558005530-a79588568467?auto=format&fit=crop&w=800&q=80     " alt="Mt Batur Sunrise" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <!-- Ubud river rafting Landscape -->
-                        <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group">
+                        <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group" data-aos="zoom-in-right" data-aos-delay="200">
                             <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=800&q=80" alt="Ubud river rafting" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
@@ -501,15 +589,15 @@
                     <!-- Right Column (Infinity pool tall breakfast & smaller bottom grid) -->
                     <div class="grid grid-cols-1 gap-6">
                         <!-- Pool floating breakfast (tall) -->
-                        <div class="rounded-2xl overflow-hidden h-[300px] lg:h-[400px] shadow-md group">
+                        <div class="rounded-2xl overflow-hidden h-[300px] lg:h-[400px] shadow-md group" data-aos="zoom-in-left">
                             <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80" alt="Floating breakfast" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <!-- Bottom row: Balinese dancer & flower offerings side by side -->
                         <div class="grid grid-cols-2 gap-6">
-                            <div class="rounded-2xl overflow-hidden aspect-square shadow-md group">
+                            <div class="rounded-2xl overflow-hidden aspect-square shadow-md group" data-aos="zoom-in-up" data-aos-delay="100">
                                 <img src="https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=800&q=80" alt="Balinese dancer" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <div class="rounded-2xl overflow-hidden aspect-square shadow-md group">
+                            <div class="rounded-2xl overflow-hidden aspect-square shadow-md group" data-aos="zoom-in-up" data-aos-delay="200">
                                 <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80" alt="Canang Sari offering" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                             </div>
                         </div>
@@ -519,7 +607,7 @@
         </section>
 
             <div class="max-w-6xl mx-auto px-4 py-12">
-        <div class="bg-[#EAEAEA] rounded-2xl p-10 md:p-14 text-center">
+        <div class="bg-[#EAEAEA] rounded-2xl p-10 md:p-14 text-center" data-aos="zoom-in-up">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Siap Menulis Cerita Anda Sendiri ?</h2>
             <p class="text-xs md:text-sm text-gray-500 mb-8 max-w-xl mx-auto">
                 Konsultasikan perjalanan impian Anda dengan pakar lokal kami dan buat setiap momen berharga.
@@ -661,5 +749,15 @@
         }
     </script>
         <x-footer />
+        
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                once: true,
+                duration: 800,
+                offset: 100,
+            });
+        </script>
     </body>
 </html>

@@ -10,6 +10,9 @@
         <style>
             html { scroll-behavior: smooth; }
         </style>
+    
+        <!-- AOS CSS -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     </head>
     <body class="bg-[#F4F5F7] text-slate-900 antialiased font-sans">
 <div class="min-h-screen bg-[#F8F9FA] font-sans antialiased text-gray-800">
@@ -28,7 +31,7 @@
                 Eksplorasi Keindahan Pulau Dewata
             </span>
             
-            <h1 class="text-white text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-[1.2]">
+            <h1 class="text-white text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-[1.2]" data-aos="fade-up">
                 Ciptakan Pengalaman<br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">Tak Terlupakan</span>
             </h1>
@@ -53,7 +56,7 @@
     </div>
 </div>
 
-    <div class="bg-white py-6 border-b border-gray-100 shadow-sm">
+    <div class="bg-white py-6 border-b border-gray-100 shadow-sm" data-aos="fade-up" data-aos-delay="200">
         <div class="flex justify-center space-x-8 text-sm font-medium">
             <a href="#foto" class="text-gray-900 border-b-2 border-gray-900 pb-1">Foto</a>
             <a href="#video" class="text-gray-400 hover:text-gray-600 pb-1 transition-colors">Video</a>
@@ -64,7 +67,7 @@
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
             <div>
                 <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#9B1C26] mb-2">Galeri Foto</p>
-                <h2 class="text-2xl font-bold text-gray-900">Koleksi momen terbaik perjalanan Anda</h2>
+                <h2 class="text-2xl font-bold text-gray-900" data-aos="fade-up" data-aos-delay="100">Koleksi momen terbaik perjalanan Anda</h2>
             </div>
             <p class="text-sm text-gray-500 max-w-xl">Lihat sisi visual dari pengalaman penuh warna, budaya, dan petualangan kami.</p>
         </div>
@@ -99,34 +102,34 @@
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
             <div>
                 <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#9B1C26] mb-2">Galeri Video</p>
-                <h2 class="text-2xl font-bold text-gray-900">Simak keseruan perjalanan dalam bentuk video</h2>
+                <h2 class="text-2xl font-bold text-gray-900" data-aos="fade-up" data-aos-delay="100">Simak keseruan perjalanan dalam bentuk video</h2>
             </div>
             <p class="text-sm text-gray-500 max-w-xl">Video pendek ini memberi gambaran suasana, aktivitas, dan detail perjalanan yang bisa Anda rasakan.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100">
+            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
                 <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop" alt="Video sunrise trek" class="w-full h-48 object-cover">
                 <div class="p-5">
-                    <h3 class="font-semibold text-gray-900 mb-2">Sunrise Trekking di Batur</h3>
+                    <h3 class="font-semibold text-gray-900 mb-2" data-aos="fade-up" data-aos-delay="150">Sunrise Trekking di Batur</h3>
                     <p class="text-sm text-gray-500 mb-4">Rasakan momen menakjubkan saat matahari terbit di atas pegunungan.</p>
                     <a href="#" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Lihat Video</a>
                 </div>
             </div>
 
-            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100">
+            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
                 <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop" alt="Video rafting" class="w-full h-48 object-cover">
                 <div class="p-5">
-                    <h3 class="font-semibold text-gray-900 mb-2">Adventure Rafting</h3>
+                    <h3 class="font-semibold text-gray-900 mb-2" data-aos="fade-up" data-aos-delay="150">Adventure Rafting</h3>
                     <p class="text-sm text-gray-500 mb-4">Petualangan seru di aliran air yang menantang dengan pemandangan alam indah.</p>
                     <a href="#" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Lihat Video</a>
                 </div>
             </div>
 
-            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100">
+            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
                 <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=800&auto=format&fit=crop" alt="Video budaya Bali" class="w-full h-48 object-cover">
                 <div class="p-5">
-                    <h3 class="font-semibold text-gray-900 mb-2">Budaya dan Tradisi Bali</h3>
+                    <h3 class="font-semibold text-gray-900 mb-2" data-aos="fade-up" data-aos-delay="150">Budaya dan Tradisi Bali</h3>
                     <p class="text-sm text-gray-500 mb-4">Kisah kearifan lokal dan ritual yang membuat perjalanan semakin bermakna.</p>
                     <a href="#" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Lihat Video</a>
                 </div>
@@ -134,13 +137,13 @@
         </div>
     </div>
 
-    <div class="bg-white py-16 border-t border-gray-100">
+    <div class="bg-white py-16 border-t border-gray-100" data-aos="fade-up" data-aos-delay="200">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-2xl font-bold text-gray-900 mb-10">Apa kata mereka</h2>
+            <h2 class="text-2xl font-bold text-gray-900 mb-10" data-aos="fade-up" data-aos-delay="100">Apa kata mereka</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @for ($i = 0; $i < 3; $i++)
-                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
                     <div>
                         <div class="flex space-x-1 text-amber-400 mb-4 text-xs">
                             <i class="fa-solid fa-star"></i>
@@ -168,7 +171,7 @@
 
     <div class="max-w-6xl mx-auto px-4 py-12">
         <div class="bg-[#EAEAEA] rounded-2xl p-10 md:p-14 text-center">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Siap Menulis Cerita Anda Sendiri ?</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3" data-aos="fade-up" data-aos-delay="100">Siap Menulis Cerita Anda Sendiri ?</h2>
             <p class="text-xs md:text-sm text-gray-500 mb-8 max-w-xl mx-auto">
                 Konsultasikan perjalanan impian Anda dengan pakar lokal kami dan buat setiap momen berharga.
             </p>
@@ -185,3 +188,15 @@
     <x-footer />
 
 </div>
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                once: true,
+                duration: 800,
+                offset: 100,
+            });
+        </script>
+
+    </body>
+</html>

@@ -9,6 +9,9 @@
         <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+        <!-- AOS CSS -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     </head>
     <body x-data="{ isModalOpen: false }" class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
     
@@ -18,13 +21,13 @@
     <div class="relative h-[380px] md:h-[480px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
         <div class="absolute inset-0 bg-black/30 flex items-end pb-16 pl-4 md:pb-24 md:pl-24">
             <div class="max-w-7xl w-full mx-auto">
-                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight">Hotel Transfer</h1>
+                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight" data-aos="fade-up">Hotel Transfer</h1>
             </div>
         </div>
     </div>
 
     <div class="max-w-6xl mx-auto px-4 -mt-10 md:-mt-14 relative z-10 pb-20">
-        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
             
         <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
@@ -85,15 +88,15 @@
             <div x-show="isModalOpen" @click.away="isModalOpen = false"
                  x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
                  x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-                 class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl border border-gray-100">
+                 class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl border border-gray-100" data-aos="fade-up" data-aos-delay="200">
                 
-                <div class="bg-white px-6 py-5 border-b border-gray-100 flex justify-between items-center sticky top-0 z-10">
+                <div class="bg-white px-6 py-5 border-b border-gray-100 flex justify-between items-center sticky top-0 z-10" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center gap-3">
                         <div class="bg-[#9B1C26]/10 p-2.5 rounded-lg text-[#9B1C26]">
                             <i class="fa-solid fa-car-side text-lg"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900" id="modal-title">Hotel Transfer Booking</h3>
+                            <h3 class="text-xl font-bold text-gray-900" id="modal-title" data-aos="fade-up" data-aos-delay="150">Hotel Transfer Booking</h3>
                             <p class="text-xs text-gray-500 mt-0.5">Please fill in your details to secure your ride.</p>
                         </div>
                     </div>
@@ -207,7 +210,7 @@
 
                     </div>
 
-                    <div class="bg-white px-6 py-5 border-t border-gray-100 flex items-center justify-between sticky bottom-0 z-10 rounded-b-2xl">
+                    <div class="bg-white px-6 py-5 border-t border-gray-100 flex items-center justify-between sticky bottom-0 z-10 rounded-b-2xl" data-aos="fade-up" data-aos-delay="200">
                         <div class="hidden sm:flex items-center text-xs text-gray-500">
                             <i class="fa-solid fa-shield-halved mr-1.5 text-green-600"></i> Safe & Secure Booking
                         </div>
@@ -223,3 +226,15 @@
 
  <x-footer />
 </div>
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                once: true,
+                duration: 800,
+                offset: 100,
+            });
+        </script>
+
+    </body>
+</html>

@@ -8,23 +8,27 @@ Route::get('/', function () {
 });
 
 Route::get('/tour', function () {
-    return view('tour.index');
+    $tours = \App\Models\Tour::take(3)->get();
+    return view('tour.index', compact('tours'));
 })->name('tour.index');
 
 
 Route::get('/tour/car_rental', function () {
-    return view('tour.car_rental');
+    $cars = \App\Models\Car::all();
+    return view('tour.car_rental', compact('cars'));
 })->name('car_rental');
 
 Route::get('/tour/contact', function () {
-    return view('tour.contact');
+    $pengaturan = \App\Models\Pengaturan::first();
+    return view('tour.contact', compact('pengaturan'));
 })->name('contact');
 
 
 Route::get('/tour/hotel_transfer', [HotelTransferController::class, 'index'])->name('hotel_transfer');
 
 Route::get('/tour/airport_transfer',    function () {
-    return view('tour.airport_transfer');
+    $airports = \App\Models\Airport::where('status', 'Show')->get();
+    return view('tour.airport_transfer', compact('airports'));
 })->name('airport_transfer');
 
 Route::get('/tour/experience', function () {
@@ -36,11 +40,13 @@ Route::get('/tour/detail', function () {
 })->name('detail');
 
 Route::get('/tour/package_tour', function () {
-    return view('tour.package_tour');
+    $tours = \App\Models\Tour::all();
+    return view('tour.package_tour', compact('tours'));
 })->name('package_tour');
 
 Route::get('/tour/fun_activity', function () {
-    return view('tour.fun_activity');
+    $activities = \App\Models\Funactivity::where('status', 'Show')->get();
+    return view('tour.fun_activity', compact('activities'));
 })->name('fun_activity');
 
 use App\Http\Controllers\BlogController;
