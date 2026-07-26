@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Indo Bali Tour | Tulis Cerita Mu di Bali</title>
+        <title>Indo Bali Tour | Car Rental</title>
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->
@@ -19,14 +19,24 @@
     <x-navbar />
     <x-floating_contactUs />
 
-    <div class="relative h-[400px] md:h-[550px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1200&auto=format&fit=crop');">
-        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <h1 class="text-white text-4xl md:text-5xl font-bold tracking-wide" data-aos="fade-up">Car Rental</h1>
-        </div>
-    </div>
+    <x-page-hero 
+        badge="Car Rental"
+        badgeIcon="fa-car"
+        title="Car"
+        highlight="Rental"
+        subtitle="Explore Bali freely and comfortably. We provide a variety of luxurious and well-maintained fleet options for your journey."
+        bgImage="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1200&auto=format&fit=crop"
+        ctaText="Browse Fleet"
+        ctaLink="#fleet"
+        floatingIcon="fa-car-side"
+        floatingTitle="Starting From"
+        floatingPrice="Rp 300.000"
+        floatingPriceUnit="/day"
+        :floatingFeatures="['Well-Maintained Fleet', 'Driver Included', 'Clean & Comfortable']"
+    />
 
     <div class="max-w-7xl mx-auto px-4 py-16">
-        <h2 class="text-center text-2xl md:text-3xl font-bold text-gray-900 mb-10" data-aos="fade-up" data-aos-delay="100">Armada mewah dan terawat</h2>
+        <h2 class="text-center text-2xl md:text-3xl font-bold text-gray-900 mb-10" data-aos="fade-up" data-aos-delay="100">Luxurious and well-maintained fleet</h2>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @forelse ($cars as $car)
@@ -53,7 +63,7 @@
             </div>
             @empty
             <div class="col-span-full text-center text-gray-500 py-10">
-                Data car rental belum tersedia.
+                Car rental data is not yet available.
             </div>
             @endforelse
         </div>
@@ -61,7 +71,7 @@
 
     <div class="bg-gray-50 py-16 border-t border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-center text-2xl md:text-3xl font-bold text-gray-900 mb-12" data-aos="fade-up" data-aos-delay="100">Mengapa Sewa di Indo Bali Tour?</h2>
+            <h2 class="text-center text-2xl md:text-3xl font-bold text-gray-900 mb-12" data-aos="fade-up" data-aos-delay="100">Why Rent from Indo Bali Tour?</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 @for ($i = 0; $i < 3; $i++)
@@ -69,9 +79,9 @@
                     <div class="w-16 h-16 bg-gray-200 rounded-full mb-5 flex items-center justify-center">
                         <span class="text-gray-400 text-xs">Icon</span>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-3" data-aos="fade-up" data-aos-delay="150">Armada Terawat</h3>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3" data-aos="fade-up" data-aos-delay="150">Well-Maintained Fleet</h3>
                     <p class="text-xs text-gray-500 leading-relaxed max-w-xs">
-                        Setiap kendaraan kami selalu dalam kondisi bersih, wangi, dan melewati servis rutin berkala demi keamanan berkendara.
+                        Every vehicle of ours is always clean, fragrant, and undergoes regular routine service for driving safety.
                     </p>
                 </div>
                 @endfor

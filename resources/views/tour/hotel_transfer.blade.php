@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Indo Bali Tour | Tulis Cerita Mu di Bali</title>
+        <title>Indo Bali Tour | Hotel Transfer</title>
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->
@@ -18,13 +18,21 @@
     <x-navbar />
           <x-floating_contactUs />
 
-    <div class="relative h-[380px] md:h-[480px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
-        <div class="absolute inset-0 bg-black/30 flex items-end pb-16 pl-4 md:pb-24 md:pl-24">
-            <div class="max-w-7xl w-full mx-auto">
-                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight" data-aos="fade-up">Hotel Transfer</h1>
-            </div>
-        </div>
-    </div>
+    <x-page-hero 
+        badge="Hotel Transfer"
+        badgeIcon="fa-hotel"
+        title="Hotel"
+        highlight="Transfer"
+        subtitle="Transfer between hotels or areas in Bali stress-free. We serve inter-destination transfers with maximum comfort."
+        bgImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop"
+        ctaText="Book Transfer"
+        ctaLink="#transfer"
+        floatingIcon="fa-map-pin"
+        floatingTitle="Anywhere in Bali"
+        floatingPrice="Door-to-Door"
+        floatingPriceUnit="Service"
+        :floatingFeatures="['Direct Hotel Transfer', 'Spacious Vehicles', 'Fixed Pricing']"
+    />
 
     <div class="max-w-6xl mx-auto px-4 -mt-10 md:-mt-14 relative z-10 pb-20">
         <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">

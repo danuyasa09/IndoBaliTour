@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta nam   e="viewport" content="width=device-width, initial-scale=1">
-        <title>Indo Bali Tour | Tulis Cerita Mu di Bali</title>
+        <title>Indo Bali Tour | Airport Transfer</title>
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->
@@ -18,13 +18,21 @@
     <x-navbar />
           <x-floating_contactUs />
 
-    <div class="relative h-[380px] md:h-[480px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
-        <div class="absolute inset-0 bg-black/30 flex items-end pb-16 pl-4 md:pb-24 md:pl-24">
-            <div class="max-w-7xl w-full mx-auto">
-                <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight" data-aos="fade-up">Airport Transfer</h1>
-            </div>
-        </div>
-    </div>
+    <x-page-hero 
+        badge="Airport Transfer"
+        badgeIcon="fa-plane-arrival"
+        title="Airport"
+        highlight="Transfer"
+        subtitle="Start your journey in Bali comfortably. On-time airport transfer service with clean fleet and professional drivers."
+        bgImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1200&auto=format&fit=crop"
+        ctaText="Book Transfer"
+        ctaLink="#transfer"
+        floatingIcon="fa-plane"
+        floatingTitle="Reliable Transfer"
+        floatingPrice="On-Time"
+        floatingPriceUnit="Guarantee"
+        :floatingFeatures="['Meet & Greet Service', 'Flight Tracking', 'No Hidden Costs']"
+    />
 
     <div class="max-w-6xl mx-auto px-4 -mt-10 md:-mt-14 relative z-10 pb-20">
         <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">

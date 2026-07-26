@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Indo Bali Tour | Tulis Cerita Mu di Bali</title>
-        @fonts
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </head>
-    <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
-
+<!-- Font Awesome (needed for footer icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
         <footer id="contact" class="bg-[#111111] text-gray-400 py-16 border-t border-zinc-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,23 +8,23 @@
             <div class="space-y-6">
                 <h3 class="text-white text-2xl font-extrabold tracking-tight">Indo Bali Tour</h3>
                 <p class="text-sm leading-relaxed text-gray-500">
-                    Partner perjalanan terpercaya Anda di Bali. Kami siap membantu Anda merangkai memori tak terlupakan di Pulau Dewata.
+                    Your trusted travel partner in Bali. We are ready to help you create unforgettable memories on the Island of Gods.
                 </p>
                 <div class="flex space-x-3 pt-2">
-                    <a href="#" class="h-9 w-9 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-[#7A0C16] transition-colors duration-300">
+                    <a href="https://www.instagram.com/indobalitourcom/" class="h-9 w-9 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-[#7A0C16] transition-colors duration-300">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="#" class="h-9 w-9 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-[#7A0C16] transition-colors duration-300">
+                    <a href="https://www.facebook.com/indobalitour" class="h-9 w-9 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-[#7A0C16] transition-colors duration-300">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="h-9 w-9 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-[#7A0C16] transition-colors duration-300">
+                    <a href="https://www.youtube.com/@indobalitourcom" class="h-9 w-9 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-[#7A0C16] transition-colors duration-300">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
                 </div>
             </div>
 
             <div>
-                <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Layanan Kami</h4>
+                <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Our Services</h4>
                 <ul class="space-y-3 text-sm">
                     <li><a href="#" class="hover:text-white transition-colors duration-200">Tour Packages</a></li>
                     <li><a href="#" class="hover:text-white transition-colors duration-200">Car Rental</a></li>
@@ -46,19 +35,13 @@
             </div>
 
             <div>
-                <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Eksplorasi</h4>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Tentang Kami</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Destinasi Populer</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Galeri Perjalanan</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Syarat & Ketentuan</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Kebijakan Privasi</a></li>
-                </ul>
+                <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Excellent Review From</h4>
+                <img src="{{ asset('images/tripadvisor.png') }}" alt="Excellent Review From - Tripadvisor" class="h-20 sm:h-30 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
             </div>
 
             <div class="space-y-6">
                 <div>
-                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Hubungi Kami</h4>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Contact Us</h4>
                     <ul class="space-y-4 text-sm text-gray-400">
                         <li class="flex items-start space-x-3">
                             <span class="text-[#7A0C16] text-lg mt-0.5"><i class="fa-solid fa-location-dot"></i></span>
@@ -77,7 +60,7 @@
                 
                 <div class="pt-2">
                     <button onclick="openTestimoniModal()" class="group relative inline-flex items-center gap-2 px-5 py-3 bg-[#7A0C16] hover:bg-[#5a0810] text-white text-sm font-semibold rounded-lg shadow-lg transition-all duration-300 w-full justify-center overflow-hidden">
-                        <span class="relative z-10">Bagikan Pengalaman Anda</span>
+                        <span class="relative z-10">Share Your Experience</span>
                         <i class="fa-solid fa-arrow-right relative z-10 group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </div>
@@ -87,7 +70,6 @@
 
         <div class="pt-8 border-t border-zinc-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
             <p>&copy; {{ date('Y') }} Indo Bali Tour. All rights reserved.</p>
-            <p>Designed with <span class="text-[#7A0C16]">❤</span> in Bali</p>
         </div>
     </div>
 </footer>
@@ -144,6 +126,3 @@
                 }
             });
         </script>
-
-    </body>
-</html>

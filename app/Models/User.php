@@ -6,7 +6,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
@@ -18,10 +18,10 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class User extends Model
+class User extends Authenticatable
 {
 	protected $table = 'users';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $hidden = [
@@ -34,4 +34,10 @@ class User extends Model
 		'nama',
 		'level'
 	];
+
+
+    public function getAuthIdentifierName()
+    {
+        return 'username';
+    }
 }

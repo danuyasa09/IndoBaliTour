@@ -17,16 +17,15 @@
               <x-floating_contactUs />
 
         <!-- Hero Section -->
-        <div class="relative h-[400px] md:h-[550px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
-            <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-                <div class="text-center text-white px-4">
-                    <h1 class="text-4xl md:text-5xl font-bold tracking-wide mb-4" data-aos="fade-up">Blogs & News</h1>
-                    <p class="text-sm md:text-base text-gray-200 max-w-md mx-auto">
-                        Temukan tips perjalanan, cerita budaya, dan rekomendasi destinasi terbaik dari pemandu lokal kami.
-                    </p>
-                </div>
-            </div>
-        </div>
+        <x-page-hero 
+            badge="News & Blogs"
+            badgeIcon="fa-newspaper"
+            title="Blogs &"
+            highlight="News"
+            subtitle="Discover travel tips, cultural stories, and the best destination recommendations from our local guides."
+            bgImage="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop"
+            dividerType="hill"
+        />
 
         <!-- Blog Grid -->
         <div class="max-w-7xl mx-auto px-4 py-16">
@@ -53,7 +52,7 @@
                         </div>
                         
                         <a href="{{ route('blog.show', $item->slug) }}" class="inline-flex items-center text-xs font-bold text-[#7A0C16] hover:text-[#5A0810] transition-colors">
-                            Baca Selengkapnya <span class="ml-1">&rarr;</span>
+                            Read More <span class="ml-1">&rarr;</span>
                         </a>
                     </div>
                 </div>
@@ -64,12 +63,12 @@
         <!-- Newsletter Section -->
         <div class="bg-gray-50 py-16 border-t border-b border-gray-100">
             <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up" data-aos-delay="100">Dapatkan Informasi Promosi & Tips Menarik</h2>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up" data-aos-delay="100">Get Promotional Info & Interesting Tips</h2>
                 <p class="text-xs text-gray-500 mb-8 max-w-md mx-auto">
-                    Berlangganan buletin mingguan kami untuk panduan liburan terlengkap ke Bali langsung di email Anda.
+                    Subscribe to our weekly newsletter for the most comprehensive Bali holiday guide delivered straight to your email.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-3">
-                    <input type="email" placeholder="Alamat Email Anda" class="w-full sm:w-80 px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-red">
+                    <input type="email" placeholder="Your Email Address" class="w-full sm:w-80 px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-red">
                     <button class="w-full sm:w-auto bg-[#7A0C16] hover:bg-[#5a0810] text-white py-3 px-6 rounded-lg text-sm font-semibold transition-colors duration-200">
                         Subscribe
                     </button>

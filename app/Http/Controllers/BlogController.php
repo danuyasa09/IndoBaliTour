@@ -16,6 +16,10 @@ class BlogController extends Controller
     {
         $blog = \App\Models\Beritum::where('slug', $slug)->firstOrFail();
         
+        // Increment visitor hit count
+        $blog->hit = $blog->hit + 1;
+        $blog->save();
+        
         $otherBlogs = \App\Models\Beritum::where('status', 'Show')
             ->where('id', '!=', $blog->id)
             ->inRandomOrder()

@@ -8,13 +8,21 @@
         </div>
 
         <div class="bg-white rounded-2xl p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100">
-            <form action="#" method="POST" enctype="multipart/form-data" class="space-y-6">
+            @if(session('success'))
+                <div class="mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md relative" role="alert">
+                    <strong class="font-bold">Berhasil!</strong>
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            @endif
+
+            @auth
+            <form action="{{ route('testimony.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-2">Nama Lengkap / Pasangan</label>
-                        <input type="text" name="name" placeholder="Contoh: Sarah & David" required 
+                        <input type="text" name="name" value="{{ Auth::user()->nama }}" placeholder="Contoh: Sarah & David" required 
                                class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#7A0C16] focus:ring-1 focus:ring-[#7A0C16] placeholder-gray-400 text-sm transition-colors bg-gray-50/50 focus:bg-white">
                     </div>
 
@@ -81,6 +89,18 @@
                     <p class="mt-3 text-xs text-gray-500">Testimoni Anda akan ditinjau oleh tim kami sebelum ditampilkan di website.</p>
                 </div>
             </form>
+            @else
+            <div class="text-center py-10 bg-gray-50 rounded-xl border border-dashed border-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <h3 class="text-lg font-bold text-gray-800">Silakan Login Terlebih Dahulu</h3>
+                <p class="text-sm text-gray-500 mt-1 mb-5">Anda perlu masuk ke akun Anda untuk dapat membagikan cerita liburan dan mengirim testimoni.</p>
+                <a href="{{ route('login') }}" class="inline-flex justify-center items-center px-6 py-2.5 bg-[#7A0C16] hover:bg-[#5a0810] text-white text-sm font-semibold rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+                    Login / Register
+                </a>
+            </div>
+            @endauth
         </div>
     </div>
 </section>

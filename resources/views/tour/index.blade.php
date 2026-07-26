@@ -24,9 +24,9 @@
                      activeSlide: 0, 
                      slides: [
                          'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=80',
-                         'https://images.unsplash.com/photo-1518548419070-ad8e5fd552b6?auto=format&fit=crop&w=1920&q=80',
-                         'https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=1920&q=80',
-                         'https://images.unsplash.com/photo-1558005530-a79588568467?auto=format&fit=crop&w=1920&q=80'
+                         'https://inivie.com/_next/image?url=https%3A%2F%2Fblog.inivie.com%2Fwp-content%2Fuploads%2F2025%2F04%2F4._Pantai-Berawa-1024x683.jpg&w=1920&q=75',
+                         'https://www.water-sport-bali.com/wp-content/uploads/2024/10/gunung-batur-kintamani-bali.webp',
+                         'https://inivie.com/_next/image?url=https%3A%2F%2Fblog.inivie.com%2Fwp-content%2Fuploads%2F2025%2F04%2F11._Ubud-Art-Market-1024x683.jpg&w=1920&q=75'
                      ],
                      init() {
                          setInterval(() => {
@@ -62,28 +62,20 @@
             <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex flex-col justify-center pt-20 sm:pt-24 pb-[380px] sm:pb-[350px] lg:pb-64">
                 <div class="max-w-4xl text-white space-y-5 sm:space-y-6">
                     <!-- Animated Badge -->
-                    <div data-aos="fade-right" class="inline-flex items-center gap-3 py-2 px-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
-                        <span class="relative flex h-2.5 w-2.5">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-red"></span>
-                        </span>
-                        <span class="text-xs font-bold tracking-widest uppercase text-gray-200">
-                            The Best Travel Partner in Bali
-                        </span>
-                    </div>
+
                     
                     <!-- Massive Title -->
                     <h1 class="text-5xl sm:text-6xl md:text-[5rem] font-extrabold tracking-tight leading-[1.1]" data-aos="fade-up" data-aos-delay="100">
-                        Jelajahi Bali, <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">Ciptakan Kenangan</span> <br>
+                        Explore Bali, <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">Create Timeless</span> <br>
                         <span class="relative inline-block text-brand-red italic font-serif pr-4">
-                            Abadi
+                            Memories
                             <svg class="absolute w-full h-4 -bottom-2 left-0 text-brand-red/40" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="transparent"/></svg>
                         </span>
                     </h1>
                     
                     <p class="text-lg sm:text-xl text-gray-300 font-light max-w-xl leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-                        Temukan surga tersembunyi, keajaiban budaya, dan petualangan tak terlupakan. Liburan impian Anda bersama pemandu lokal terbaik kami dimulai di sini.
+                        Discover hidden paradises, cultural wonders, and unforgettable adventures. Your dream vacation with our best local guides starts here.
                     </p>
                     
                     <!-- Floating Avatars & Trust -->
@@ -118,51 +110,6 @@
                             </div>
                             <span class="font-semibold tracking-wider uppercase text-xs sm:text-sm">Watch Video</span>
                         </a>
-                    </div>
-
-                    <!-- Glassmorphism Search Bar -->
-                    <div class="mt-8 sm:mt-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-2 sm:p-3 shadow-[0_15px_30px_rgba(0,0,0,0.4)] max-w-4xl relative z-30" data-aos="fade-up" data-aos-delay="500">
-                        <form action="#" class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-white/20">
-                            
-                            <!-- Destination -->
-                            <div class="flex-1 w-full px-4 py-2 sm:py-0 relative group">
-                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 group-hover:text-white transition-colors">Location</label>
-                                <div class="flex items-center text-white">
-                                    <svg class="w-5 h-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    <input type="text" placeholder="Where do you want to go?" class="w-full bg-transparent border-none focus:ring-0 text-sm placeholder-gray-300 text-white outline-none p-0">
-                                </div>
-                            </div>
-                            
-                            <!-- Activity -->
-                            <div class="flex-1 w-full px-4 py-2 sm:py-0 relative group">
-                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 group-hover:text-white transition-colors">Activity</label>
-                                <div class="flex items-center text-white">
-                                    <svg class="w-5 h-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
-                                    <select class="w-full bg-transparent border-none focus:ring-0 text-sm text-gray-300 outline-none p-0 cursor-pointer appearance-none">
-                                        <option value="" class="text-black">All Activities</option>
-                                        <option value="tour" class="text-black">Tour Packages</option>
-                                        <option value="water" class="text-black">Water Sports</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Date -->
-                            <div class="flex-1 w-full px-4 py-2 sm:py-0 relative group">
-                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 group-hover:text-white transition-colors">Date</label>
-                                <div class="flex items-center text-white">
-                                    <svg class="w-5 h-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                    <input type="date" class="w-full bg-transparent border-none focus:ring-0 text-sm text-gray-300 outline-none p-0 [color-scheme:dark]">
-                                </div>
-                            </div>
-
-                            <!-- Search Button -->
-                            <div class="w-full sm:w-auto px-2 py-2 sm:py-0">
-                                <button type="button" class="w-full sm:w-auto px-6 py-3.5 bg-brand-red hover:bg-red-700 text-white rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(122,12,22,0.5)] hover:shadow-[0_0_25px_rgba(122,12,22,0.8)] flex items-center justify-center gap-2">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                    Search
-                                </button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -324,10 +271,10 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-                        Layanan kami
+                        Our Services
                     </h2>
                     <p class="mt-4 text-lg text-gray-500">
-                        Kami menyediakan layanan wisata komprehensif untuk memastikan kepuasan maksimal Anda.
+                        We provide comprehensive travel services to ensure your maximum satisfaction.
                     </p>
                 </div>
 
@@ -343,7 +290,7 @@
                             <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-semibold rounded-full">Watersport & More</span>
                             <h3 class="text-2xl font-bold text-white leading-tight">Fun Activity</h3>
                             <p class="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 h-0 group-hover:h-auto overflow-hidden">
-                                Nikmati berbagai aktivitas seru dan menantang untuk pengalaman liburan di Bali yang tak terlupakan.
+                                Enjoy various exciting and challenging activities for an unforgettable holiday experience in Bali.
                             </p>
                             <div class="flex items-center gap-2 pt-2 text-brand-red group-hover:text-white transition-colors duration-300">
                                 <span class="text-sm font-semibold uppercase tracking-wider">Explore</span>
@@ -364,7 +311,7 @@
                             <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-semibold rounded-full">Best Deals</span>
                             <h3 class="text-2xl font-bold text-white leading-tight">Tour Packages</h3>
                             <p class="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 h-0 group-hover:h-auto overflow-hidden">
-                                Pilihan paket wisata terlengkap dan terjangkau untuk menjelajahi keindahan alam dan budaya Bali.
+                                The most complete and affordable tour packages to explore the natural beauty and culture of Bali.
                             </p>
                             <div class="flex items-center gap-2 pt-2 text-brand-red group-hover:text-white transition-colors duration-300">
                                 <span class="text-sm font-semibold uppercase tracking-wider">Explore</span>
@@ -385,7 +332,7 @@
                             <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-semibold rounded-full">Comfort & Safe</span>
                             <h3 class="text-2xl font-bold text-white leading-tight">Car Rental</h3>
                             <p class="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 h-0 group-hover:h-auto overflow-hidden">
-                                Sewa mobil dengan supir berpengalaman atau lepas kunci untuk perjalanan yang lebih leluasa dan nyaman.
+                                Rent a car with an experienced driver or self-drive for a more flexible and comfortable journey.
                             </p>
                             <div class="flex items-center gap-2 pt-2 text-brand-red group-hover:text-white transition-colors duration-300">
                                 <span class="text-sm font-semibold uppercase tracking-wider">Explore</span>
@@ -406,7 +353,7 @@
                             <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-semibold rounded-full">Airport & Hotel</span>
                             <h3 class="text-2xl font-bold text-white leading-tight">Transfer</h3>
                             <p class="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 h-0 group-hover:h-auto overflow-hidden">
-                                Layanan antar jemput bandara dan hotel yang tepat waktu, aman, dan tanpa repot selama di Bali.
+                                Timely, safe, and hassle-free airport and hotel transfer services during your stay in Bali.
                             </p>
                             <div class="flex items-center gap-2 pt-2 text-brand-red group-hover:text-white transition-colors duration-300">
                                 <span class="text-sm font-semibold uppercase tracking-wider">Explore</span>
@@ -426,14 +373,14 @@
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-12" data-aos="fade-up">
                     <div>
                         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-                            Tempat wisata populer
+                            Popular Destinations
                         </h2>
                         <p class="mt-4 text-lg text-gray-500 max-w-xl">
-                            Destinasi favorit wisatawan dunia yang wajib dikunjungi saat berlibur di Bali.
+                            Favorite destinations for global travelers that are a must-visit when holidaying in Bali.
                         </p>
                     </div>
                     <a href="#" class="mt-6 sm:mt-0 px-6 py-3 border border-gray-300 text-gray-700 hover:text-white hover:bg-brand-red hover:border-brand-red rounded-lg font-semibold text-sm transition-all duration-300 flex-shrink-0">
-                        Lihat Semua Tour
+                        View All Tours
                     </a>
                 </div>
 
@@ -466,7 +413,7 @@
                                     <span class="text-xs text-gray-400 block uppercase tracking-wider">Start from</span>
                                     <span class="text-lg font-extrabold text-brand-red">Rp {{ number_format((float)$tour->harga, 0, ',', '.') }}</span>
                                 </div>
-                                <a href="{{ route('detail') }}" class="px-4 py-2 bg-gray-100 hover:bg-brand-red text-gray-800 hover:text-white rounded-lg text-sm font-semibold transition-colors duration-200">
+                                <a href="{{ route('detail', $tour->slug) }}" class="px-4 py-2 bg-gray-100 hover:bg-brand-red text-gray-800 hover:text-white rounded-lg text-sm font-semibold transition-colors duration-200">
                                     Detail Tour
                                 </a>
                             </div>
@@ -482,79 +429,117 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-                        Cerita mereka yang sudah menjelajah bersama kami
+                        Stories from those who have explored with us
                     </h2>
                     <p class="mt-4 text-lg text-gray-500">
-                        Kesan jujur dari para pelancong mancanegara yang menikmati keindahan pulau Dewata.
+                        Honest impressions from international travelers who enjoyed the beauty of the Island of Gods.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Testimonial 1 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="100">
-                        <div class="space-y-4">
-                            <div class="flex text-yellow-500 text-lg">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed italic">
-                                "The Bali tour package was amazing. The itinerary was well planned, and we visited all the best places in Nusa Penida. Our driver was extremely friendly and gave us great restaurant recommendations. Recommended!"
-                            </p>
+                <style>
+                    .hide-scroll::-webkit-scrollbar {
+                        display: none;
+                    }
+                </style>
+                <div x-data="{ 
+                        isDown: false, 
+                        startX: 0, 
+                        scrollLeft: 0,
+                        autoScrollInterval: null,
+                        init() {
+                            this.startAutoScroll();
+                        },
+                        startAutoScroll() {
+                            if(this.autoScrollInterval) return;
+                            this.autoScrollInterval = setInterval(() => {
+                                if(!this.isDown && this.$refs.slider) {
+                                    this.$refs.slider.scrollLeft += 1;
+                                    // Seamless loop: if we scroll past half the width, reset to 0
+                                    if (this.$refs.slider.scrollLeft >= this.$refs.slider.scrollWidth / 2) {
+                                        this.$refs.slider.scrollLeft = 0;
+                                    }
+                                }
+                            }, 25);
+                        },
+                        stopAutoScroll() {
+                            clearInterval(this.autoScrollInterval);
+                            this.autoScrollInterval = null;
+                        },
+                        mousedown(e) { 
+                            this.isDown = true; 
+                            this.startX = e.pageX - this.$refs.slider.offsetLeft; 
+                            this.scrollLeft = this.$refs.slider.scrollLeft; 
+                            this.stopAutoScroll();
+                        },
+                        mouseleave() { 
+                            this.isDown = false; 
+                            this.startAutoScroll();
+                        },
+                        mouseenter() {
+                            this.stopAutoScroll();
+                        },
+                        mouseup() { 
+                            this.isDown = false; 
+                            this.startAutoScroll();
+                        },
+                        mousemove(e) { 
+                            if(!this.isDown) return; 
+                            e.preventDefault(); 
+                            const x = e.pageX - this.$refs.slider.offsetLeft; 
+                            const walk = (x - this.startX) * 2; 
+                            this.$refs.slider.scrollLeft = this.scrollLeft - walk; 
+                        }
+                    }" 
+                    class="w-full relative py-4">
+                    @if($testimonies->count() > 0)
+                        <div x-ref="slider"
+                             @mousedown="mousedown"
+                             @mouseleave="mouseleave"
+                             @mouseenter="mouseenter"
+                             @mouseup="mouseup"
+                             @mousemove="mousemove"
+                             class="flex gap-8 overflow-x-auto hide-scroll cursor-grab active:cursor-grabbing w-full px-4 sm:px-0"
+                             style="scrollbar-width: none; -ms-overflow-style: none;">
+                            
+                            <!-- Loop dua kali agar scroll terlihat tanpa batas (seamless) -->
+                            @for($j = 0; $j < 2; $j++)
+                                @foreach($testimonies as $testimony)
+                                <div class="w-[320px] sm:w-[400px] whitespace-normal flex-shrink-0 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow select-none">
+                                    <div class="space-y-4">
+                                        <div class="flex text-yellow-500 text-lg">
+                                            @for($i = 0; $i < $testimony->rating; $i++)
+                                                <span>★</span>
+                                            @endfor
+                                            @for($i = $testimony->rating; $i < 5; $i++)
+                                                <span class="text-gray-300">★</span>
+                                            @endfor
+                                        </div>
+                                        <p class="text-gray-600 text-sm leading-relaxed italic line-clamp-4 pointer-events-none">
+                                            "{{ $testimony->message }}"
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-gray-50 pointer-events-none">
+                                        @if($testimony->photo)
+                                            <img src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}" class="h-10 w-10 rounded-full object-cover">
+                                        @else
+                                            <div class="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-sm uppercase">
+                                                {{ substr($testimony->name, 0, 2) }}
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <h4 class="font-bold text-sm text-gray-900 line-clamp-1">{{ $testimony->name }}</h4>
+                                            <p class="text-xs text-gray-400 line-clamp-1">{{ $testimony->nationality }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            @endfor
                         </div>
-                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-gray-50">
-                            <!-- Avatar -->
-                            <div class="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-sm">
-                                SD
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-sm text-gray-900">Sarah & David</h4>
-                                <p class="text-xs text-gray-400">USA</p>
-                            </div>
+                    @else
+                        <div class="text-center py-10 text-gray-500 w-full">
+                            No testimonials yet. Be the first to leave a review!
                         </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="200">
-                        <div class="space-y-4">
-                            <div class="flex text-yellow-500 text-lg">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed italic">
-                                "Pemandu kami sangat menguasai budaya Bali dan membawa kami ke pura yang indah pada waktu terbaik untuk menghindari keramaian. Kualitas mobilnya luar biasa bersih dan nyaman sepanjang perjalanan kami di Tabanan."
-                            </p>
-                        </div>
-                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-gray-50">
-                            <!-- Avatar -->
-                            <div class="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-sm">
-                                HE
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-sm text-gray-900">Hans & Elsa</h4>
-                                <p class="text-xs text-gray-400">Germany</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="300">
-                        <div class="space-y-4">
-                            <div class="flex text-yellow-500 text-lg">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed italic">
-                                "Wonderful customized tour from Ubud up to Mt. Batur sunset tracking. Highly responsive support team. The floating pool breakfast experience they arranged for us was a magical highlight of our honeymoon!"
-                            </p>
-                        </div>
-                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-gray-50">
-                            <!-- Avatar -->
-                            <div class="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-sm">
-                                YK
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-sm text-gray-900">Yuki & Kenji</h4>
-                                <p class="text-xs text-gray-400">Japan</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </section>
@@ -568,20 +553,20 @@
                         Experience
                     </h2>
                     <p class="mt-4 text-lg text-gray-500">
-                        Intip galeri aktivitas seru dan momen tak terlupakan pelanggan setia Indo Bali Tour.
+                        Watch the excitement and unforgettable moments of Indo Bali Tour's loyal customers.
                     </p>
                 </div>
 
-                <!-- Custom Grid Layout matching the image exactly -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Custom Grid Layout (Photo Gallery) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
                     <!-- Left Column (Stacked landscapes) -->
                     <div class="flex flex-col gap-6">
                         <!-- Mt Batur Landscape -->
-                        <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group" data-aos="zoom-in-right">
-                            <img src="https://images.unsplash.com/photo-1558005530-a79588568467?auto=format&fit=crop&w=800&q=80     " alt="Mt Batur Sunrise" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group">
+                            <img src="https://images.unsplash.com/photo-1558005530-a79588568467?auto=format&fit=crop&w=800&q=80" alt="Mt Batur Sunrise" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <!-- Ubud river rafting Landscape -->
-                        <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group" data-aos="zoom-in-right" data-aos-delay="200">
+                        <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-md group">
                             <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=800&q=80" alt="Ubud river rafting" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
@@ -589,35 +574,103 @@
                     <!-- Right Column (Infinity pool tall breakfast & smaller bottom grid) -->
                     <div class="grid grid-cols-1 gap-6">
                         <!-- Pool floating breakfast (tall) -->
-                        <div class="rounded-2xl overflow-hidden h-[300px] lg:h-[400px] shadow-md group" data-aos="zoom-in-left">
+                        <div class="rounded-2xl overflow-hidden h-[300px] lg:h-[400px] shadow-md group">
                             <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80" alt="Floating breakfast" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <!-- Bottom row: Balinese dancer & flower offerings side by side -->
                         <div class="grid grid-cols-2 gap-6">
-                            <div class="rounded-2xl overflow-hidden aspect-square shadow-md group" data-aos="zoom-in-up" data-aos-delay="100">
+                            <div class="rounded-2xl overflow-hidden aspect-square shadow-md group">
                                 <img src="https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=800&q=80" alt="Balinese dancer" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <div class="rounded-2xl overflow-hidden aspect-square shadow-md group" data-aos="zoom-in-up" data-aos-delay="200">
+                            <div class="rounded-2xl overflow-hidden aspect-square shadow-md group">
                                 <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80" alt="Canang Sari offering" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Video List -->
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Watch Our Videos</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Video 1 -->
+                    <div class="overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100 group relative cursor-pointer" data-aos="fade-up">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop" alt="Video sunrise trek" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-red/90 transition-all duration-300">
+                                    <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-gray-900 mb-2">Mount Batur Sunrise Trekking</h3>
+                            <p class="text-sm text-gray-500 mb-4 line-clamp-2">Experience breathtaking moments as the sun rises over the mountains.</p>
+                            <span class="inline-flex items-center text-sm font-bold text-brand-red group-hover:text-red-700">Watch Video <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></span>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100 group relative cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=800&q=80" alt="Video rafting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-red/90 transition-all duration-300">
+                                    <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-gray-900 mb-2">Ubud Adventure Rafting</h3>
+                            <p class="text-sm text-gray-500 mb-4 line-clamp-2">An exciting adventure on challenging water currents with beautiful natural scenery.</p>
+                            <span class="inline-flex items-center text-sm font-bold text-brand-red group-hover:text-red-700">Watch Video <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></span>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100 group relative cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=800&q=80" alt="Video budaya Bali" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-red/90 transition-all duration-300">
+                                    <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-gray-900 mb-2">Balinese Culture & Tradition</h3>
+                            <p class="text-sm text-gray-500 mb-4 line-clamp-2">The story of local wisdom and rituals that make the journey even more meaningful.</p>
+                            <span class="inline-flex items-center text-sm font-bold text-brand-red group-hover:text-red-700">Watch Video <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-14 text-center" data-aos="fade-up">
+                    <a href="{{ route('experience') }}" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-brand-red hover:bg-red-800 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-[0_10px_20px_rgba(122,12,22,0.3)]">
+                        View All Experiences
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
                 </div>
             </div>
         </section>
 
             <div class="max-w-6xl mx-auto px-4 py-12">
         <div class="bg-[#EAEAEA] rounded-2xl p-10 md:p-14 text-center" data-aos="zoom-in-up">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Siap Menulis Cerita Anda Sendiri ?</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Ready to Write Your Own Story?</h2>
             <p class="text-xs md:text-sm text-gray-500 mb-8 max-w-xl mx-auto">
-                Konsultasikan perjalanan impian Anda dengan pakar lokal kami dan buat setiap momen berharga.
+                Consult your dream trip with our local experts and make every moment count.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="javascript:void(0)" onclick="openBookingModal()" class="w-full sm:w-auto bg-[#7A0C16] hover:bg-[#5a0810] text-white text-xs font-medium px-6 py-3 rounded transition-colors duration-200">
-                    Mulai petualangan anda
+                    Start your adventure
                 </a>
                 <a href="#" class="w-full sm:w-auto bg-[#333333] hover:bg-[#222222] text-white text-xs font-medium px-6 py-3 rounded transition-colors duration-200">
-                    Hubungi Kami
+                    Contact Us
                 </a>
             </div>
         </div>

@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Model;
 class HotelTransfer extends Model
 {
 	protected $table = 'hotel_transfer';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [

@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Model;
 class Airport extends Model
 {
 	protected $table = 'airport';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $fillable = [

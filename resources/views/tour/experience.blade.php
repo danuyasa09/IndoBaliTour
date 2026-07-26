@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Indo Bali Tour | Hubungi Kami</title>
+        <title>Indo Bali Tour | Experiences</title>
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -19,168 +19,214 @@
     
     <x-navbar />
           <x-floating_contactUs />
-<div class="relative h-[500px] md:h-[700px] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop');">
-    
-    <div class="absolute inset-0 bg-black/40"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-    
-    <div class="absolute inset-0 flex items-center justify-center px-4 text-center">
-        <div class="max-w-4xl relative z-10 flex flex-col items-center">
-            
-            <span class="inline-block py-1 px-4 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-semibold tracking-wider uppercase mb-5 border border-white/30">
-                Eksplorasi Keindahan Pulau Dewata
-            </span>
-            
-            <h1 class="text-white text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-[1.2]" data-aos="fade-up">
-                Ciptakan Pengalaman<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">Tak Terlupakan</span>
-            </h1>
-            
-            <p class="text-gray-200 text-sm md:text-lg mb-10 max-w-2xl leading-relaxed">
-                Jelajahi budaya autentik, alam yang menakjubkan, dan petualangan seru di Bali bersama pemandu lokal berpengalaman kami.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center w-full">
-                <a href="#" class="inline-flex justify-center items-center gap-2 bg-[#9B1C26] hover:bg-[#7A151D] text-white text-sm md:text-base font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
-                    Mulai Petualangan
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                </a>
-                <a href="#video" class="inline-flex justify-center items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-sm md:text-base font-semibold px-8 py-3.5 rounded-full border border-white/30 transition-all duration-300">
-                    Lihat Video
-                </a>
-            </div>
+    <x-page-hero 
+        badge="Experience"
+        badgeIcon="fa-compass"
+        title="Experiences"
+        highlight="Unforgettable"
+        subtitle="Explore authentic culture, stunning nature, and exciting adventures in Bali with our experienced local guides."
+        bgImage="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=1200&auto=format&fit=crop"
+        ctaText="Discover More"
+        ctaLink="#experiences"
+        floatingIcon="fa-camera"
+        floatingTitle="Best Experiences"
+        floatingPrice="100+"
+        floatingPriceUnit="Destinations"
+        :floatingFeatures="['Local Guides', 'Authentic Culture', 'Hidden Gems']"
+        dividerType="hill"
+    />
 
-        </div>
-    </div>
-</div>
 
     <div class="bg-white py-6 border-b border-gray-100 shadow-sm" data-aos="fade-up" data-aos-delay="200">
         <div class="flex justify-center space-x-8 text-sm font-medium">
-            <a href="#foto" class="text-gray-900 border-b-2 border-gray-900 pb-1">Foto</a>
-            <a href="#video" class="text-gray-400 hover:text-gray-600 pb-1 transition-colors">Video</a>
+            <a href="#foto" class="text-gray-900 border-b-2 border-gray-900 pb-1">Photos</a>
+            <a href="#video" class="text-gray-400 hover:text-gray-600 pb-1 transition-colors">Videos</a>
         </div>
     </div>
 
     <div id="foto" class="max-w-6xl mx-auto px-4 py-16 scroll-mt-24">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
             <div>
-                <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#9B1C26] mb-2">Galeri Foto</p>
-                <h2 class="text-2xl font-bold text-gray-900" data-aos="fade-up" data-aos-delay="100">Koleksi momen terbaik perjalanan Anda</h2>
+                <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#9B1C26] mb-2">Photo Gallery</p>
+                <h2 class="text-2xl font-bold text-gray-900" data-aos="fade-up" data-aos-delay="100">Collection of your best travel moments</h2>
             </div>
-            <p class="text-sm text-gray-500 max-w-xl">Lihat sisi visual dari pengalaman penuh warna, budaya, dan petualangan kami.</p>
+            <p class="text-sm text-gray-500 max-w-xl">See the visual side of our colorful, cultural, and adventurous experiences.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="space-y-6">
-                <div class="overflow-hidden rounded-2xl shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=600&auto=format&fit=crop" alt="Mount Batur Sunrise" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="overflow-hidden rounded-2xl shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=600&auto=format&fit=crop" alt="Rafting" class="w-full h-[340px] object-cover hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-
-            <div class="space-y-6">
-                <div class="overflow-hidden rounded-2xl shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?q=80&w=600&auto=format&fit=crop" alt="Floating Breakfast" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="overflow-hidden rounded-2xl shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ca1?q=80&w=400&auto=format&fit=crop" alt="Balinese Dancer" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
+        <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+            @forelse($albums as $album)
+                @foreach($album->fotos as $foto)
+                    <div class="overflow-hidden rounded-2xl shadow-sm break-inside-avoid">
+                        <img src="{{ asset('images/' . $foto->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
                     </div>
-                    <div class="overflow-hidden rounded-2xl shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=400&auto=format&fit=crop" alt="Canang Sari" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
-                    </div>
+                @endforeach
+            @empty
+                <div class="text-center py-10 text-gray-500 col-span-full">
+                    Belum ada foto yang ditambahkan.
                 </div>
-            </div>
+            @endforelse
         </div>
     </div>
 
     <div id="video" class="max-w-6xl mx-auto px-4 py-16 scroll-mt-24">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
             <div>
-                <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#9B1C26] mb-2">Galeri Video</p>
-                <h2 class="text-2xl font-bold text-gray-900" data-aos="fade-up" data-aos-delay="100">Simak keseruan perjalanan dalam bentuk video</h2>
+                <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#9B1C26] mb-2">Video Gallery</p>
+                <h2 class="text-2xl font-bold text-gray-900" data-aos="fade-up" data-aos-delay="100">Watch the excitement of the journey in video</h2>
             </div>
-            <p class="text-sm text-gray-500 max-w-xl">Video pendek ini memberi gambaran suasana, aktivitas, dan detail perjalanan yang bisa Anda rasakan.</p>
+            <p class="text-sm text-gray-500 max-w-xl">These short videos give a glimpse of the atmosphere, activities, and travel details you can experience.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop" alt="Video sunrise trek" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <h3 class="font-semibold text-gray-900 mb-2" data-aos="fade-up" data-aos-delay="150">Sunrise Trekking di Batur</h3>
-                    <p class="text-sm text-gray-500 mb-4">Rasakan momen menakjubkan saat matahari terbit di atas pegunungan.</p>
-                    <a href="#" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Lihat Video</a>
+            @forelse($videos as $video)
+                <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                    @if(strlen($video->source) == 11 && !str_contains($video->source, '.'))
+                        <iframe class="w-full h-48 object-cover" src="https://www.youtube.com/embed/{{ $video->source }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    @else
+                        <img src="{{ Str::startsWith($video->source, 'http') ? $video->source : asset('images/' . $video->source) }}" alt="{{ $video->title }}" class="w-full h-48 object-cover">
+                    @endif
+                    <div class="p-5">
+                        <h3 class="font-semibold text-gray-900 mb-2">{{ $video->title }}</h3>
+                        <p class="text-sm text-gray-500 mb-4">{{ Str::limit($video->content, 100) }}</p>
+                        @if(strlen($video->source) == 11 && !str_contains($video->source, '.'))
+                            <a href="https://www.youtube.com/watch?v={{ $video->source }}" target="_blank" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Watch on YouTube</a>
+                        @else
+                            <a href="{{ $video->source }}" target="_blank" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Watch Video</a>
+                        @endif
+                    </div>
                 </div>
-            </div>
-
-            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop" alt="Video rafting" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <h3 class="font-semibold text-gray-900 mb-2" data-aos="fade-up" data-aos-delay="150">Adventure Rafting</h3>
-                    <p class="text-sm text-gray-500 mb-4">Petualangan seru di aliran air yang menantang dengan pemandangan alam indah.</p>
-                    <a href="#" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Lihat Video</a>
+            @empty
+                <div class="col-span-full text-center py-10 text-gray-500">
+                    Belum ada video yang ditambahkan.
                 </div>
-            </div>
-
-            <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=800&auto=format&fit=crop" alt="Video budaya Bali" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <h3 class="font-semibold text-gray-900 mb-2" data-aos="fade-up" data-aos-delay="150">Budaya dan Tradisi Bali</h3>
-                    <p class="text-sm text-gray-500 mb-4">Kisah kearifan lokal dan ritual yang membuat perjalanan semakin bermakna.</p>
-                    <a href="#" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Lihat Video</a>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 
     <div class="bg-white py-16 border-t border-gray-100" data-aos="fade-up" data-aos-delay="200">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-2xl font-bold text-gray-900 mb-10" data-aos="fade-up" data-aos-delay="100">Apa kata mereka</h2>
+            <h2 class="text-2xl font-bold text-gray-900 mb-10" data-aos="fade-up" data-aos-delay="100">What they say</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @for ($i = 0; $i < 3; $i++)
-                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
-                    <div>
-                        <div class="flex space-x-1 text-amber-400 mb-4 text-xs">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-xs text-gray-500 italic leading-relaxed mb-6">
-                            "The cultural depth they provided was amazing. We weren't just tourists, we felt like honored guests. The itinerary was perfectly balanced between activity and relaxation."
-                        </p>
+            <style>
+                .hide-scroll::-webkit-scrollbar {
+                    display: none;
+                }
+            </style>
+            <div x-data="{ 
+                    isDown: false, 
+                    startX: 0, 
+                    scrollLeft: 0,
+                    autoScrollInterval: null,
+                    init() {
+                        this.startAutoScroll();
+                    },
+                    startAutoScroll() {
+                        if(this.autoScrollInterval) return;
+                        this.autoScrollInterval = setInterval(() => {
+                            if(!this.isDown && this.$refs.slider) {
+                                this.$refs.slider.scrollLeft += 1;
+                                // Seamless loop: if we scroll past half the width, reset to 0
+                                if (this.$refs.slider.scrollLeft >= this.$refs.slider.scrollWidth / 2) {
+                                    this.$refs.slider.scrollLeft = 0;
+                                }
+                            }
+                        }, 25);
+                    },
+                    stopAutoScroll() {
+                        clearInterval(this.autoScrollInterval);
+                        this.autoScrollInterval = null;
+                    },
+                    mousedown(e) { 
+                        this.isDown = true; 
+                        this.startX = e.pageX - this.$refs.slider.offsetLeft; 
+                        this.scrollLeft = this.$refs.slider.scrollLeft; 
+                        this.stopAutoScroll();
+                    },
+                    mouseleave() { 
+                        this.isDown = false; 
+                        this.startAutoScroll();
+                    },
+                    mouseenter() {
+                        this.stopAutoScroll();
+                    },
+                    mouseup() { 
+                        this.isDown = false; 
+                        this.startAutoScroll();
+                    },
+                    mousemove(e) { 
+                        if(!this.isDown) return; 
+                        e.preventDefault(); 
+                        const x = e.pageX - this.$refs.slider.offsetLeft; 
+                        const walk = (x - this.startX) * 2; 
+                        this.$refs.slider.scrollLeft = this.scrollLeft - walk; 
+                    }
+                }" 
+                class="w-full relative py-4">
+                @if($testimonies->count() > 0)
+                    <div x-ref="slider"
+                         @mousedown="mousedown"
+                         @mouseleave="mouseleave"
+                         @mouseenter="mouseenter"
+                         @mouseup="mouseup"
+                         @mousemove="mousemove"
+                         class="flex gap-8 overflow-x-auto hide-scroll cursor-grab active:cursor-grabbing w-full px-4 sm:px-0"
+                         style="scrollbar-width: none; -ms-overflow-style: none;">
+                        
+                        <!-- Loop dua kali agar scroll terlihat tanpa batas (seamless) -->
+                        @for($j = 0; $j < 2; $j++)
+                            @foreach($testimonies as $testimony)
+                            <div class="w-[320px] sm:w-[400px] whitespace-normal flex-shrink-0 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow select-none">
+                                <div class="space-y-4">
+                                    <div class="flex space-x-1 text-amber-400 mb-4 text-lg">
+                                        @for($i = 0; $i < $testimony->rating; $i++)
+                                            <span>★</span>
+                                        @endfor
+                                        @for($i = $testimony->rating; $i < 5; $i++)
+                                            <span class="text-gray-300">★</span>
+                                        @endfor
+                                    </div>
+                                    <p class="text-gray-600 text-sm italic leading-relaxed line-clamp-4 pointer-events-none">
+                                        "{{ $testimony->message }}"
+                                    </p>
+                                </div>
+                                <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-gray-50 pointer-events-none">
+                                    @if($testimony->photo)
+                                        <img src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}" class="h-10 w-10 rounded-full object-cover">
+                                    @else
+                                        <div class="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-sm uppercase flex-shrink-0">
+                                            {{ substr($testimony->name, 0, 2) }}
+                                        </div>
+                                    @endif
+                                    <div>
+                                        <h4 class="font-bold text-sm text-gray-900 line-clamp-1">{{ $testimony->name }}</h4>
+                                        <p class="text-xs text-gray-400 line-clamp-1">{{ $testimony->nationality }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        @endfor
                     </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-8 h-8 rounded-full bg-black flex-shrink-0"></div>
-                        <div>
-                            <h4 class="text-xs font-bold text-gray-900">I MADE DANUYASA</h4>
-                            <p class="text-[10px] text-gray-400">Indonesia</p>
-                        </div>
+                @else
+                    <div class="text-center py-10 text-gray-500 w-full">
+                        No testimonials yet.
                     </div>
-                </div>
-                @endfor
+                @endif
             </div>
         </div>
     </div>
 
     <div class="max-w-6xl mx-auto px-4 py-12">
         <div class="bg-[#EAEAEA] rounded-2xl p-10 md:p-14 text-center">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3" data-aos="fade-up" data-aos-delay="100">Siap Menulis Cerita Anda Sendiri ?</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3" data-aos="fade-up" data-aos-delay="100">Ready to Write Your Own Story?</h2>
             <p class="text-xs md:text-sm text-gray-500 mb-8 max-w-xl mx-auto">
-                Konsultasikan perjalanan impian Anda dengan pakar lokal kami dan buat setiap momen berharga.
+                Consult your dream trip with our local experts and make every moment count.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="#" class="w-full sm:w-auto bg-[#7A0C16] hover:bg-[#5a0810] text-white text-xs font-medium px-6 py-3 rounded transition-colors duration-200">
-                    Mulai petualangan anda
+                    Start your adventure
                 </a>
                 <a href="#" class="w-full sm:w-auto bg-[#333333] hover:bg-[#222222] text-white text-xs font-medium px-6 py-3 rounded transition-colors duration-200">
-                    Hubungi Kami
+                    Contact Us
                 </a>
             </div>
         </div>
