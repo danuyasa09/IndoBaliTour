@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -55,10 +55,17 @@
 
         <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             @forelse($albums as $album)
-                @foreach($album->fotos as $foto)
+                @if($album->img && file_exists(public_path('images/' . $album->img)))
                     <div class="overflow-hidden rounded-2xl shadow-sm break-inside-avoid">
-                        <img src="{{ asset('images/' . $foto->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
+                        <img src="{{ asset('images/' . $album->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
                     </div>
+                @endif
+                @foreach($album->fotos as $foto)
+                    @if($foto->img && file_exists(public_path('images/' . $foto->img)))
+                        <div class="overflow-hidden rounded-2xl shadow-sm break-inside-avoid">
+                            <img src="{{ asset('images/' . $foto->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                    @endif
                 @endforeach
             @empty
                 <div class="text-center py-10 text-gray-500 col-span-full">
@@ -74,22 +81,30 @@
                 <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#9B1C26] mb-2">Video Gallery</p>
                 <h2 class="text-2xl font-bold text-gray-900" data-aos="fade-up" data-aos-delay="100">Watch the excitement of the journey in video</h2>
             </div>
-            <p class="text-sm text-gray-500 max-w-xl">These short videos give a glimpse of the atmosphere, activities, and travel details you can experience.</p>
+            <p class="text-sm text-gray-500 max-w-xl">Explore our travel moments through these videos.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($videos as $video)
+                @php
+                    $ytId = '';
+                    if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?|shorts)/|.*[?&]v=)|youtu\.be/)([^"&?/\s]{11})%i', $video->source, $match)) {
+                        $ytId = $match[1];
+                    } elseif (strlen($video->source) == 11 && !str_contains($video->source, '.')) {
+                        $ytId = $video->source;
+                    }
+                @endphp
                 <div class="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
-                    @if(strlen($video->source) == 11 && !str_contains($video->source, '.'))
-                        <iframe class="w-full h-48 object-cover" src="https://www.youtube.com/embed/{{ $video->source }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    @if($ytId)
+                        <iframe class="w-full h-48 object-cover" src="https://www.youtube.com/embed/{{ $ytId }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     @else
                         <img src="{{ Str::startsWith($video->source, 'http') ? $video->source : asset('images/' . $video->source) }}" alt="{{ $video->title }}" class="w-full h-48 object-cover">
                     @endif
                     <div class="p-5">
                         <h3 class="font-semibold text-gray-900 mb-2">{{ $video->title }}</h3>
                         <p class="text-sm text-gray-500 mb-4">{{ Str::limit($video->content, 100) }}</p>
-                        @if(strlen($video->source) == 11 && !str_contains($video->source, '.'))
-                            <a href="https://www.youtube.com/watch?v={{ $video->source }}" target="_blank" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Watch on YouTube</a>
+                        @if($ytId)
+                            <a href="https://www.youtube.com/watch?v={{ $ytId }}" target="_blank" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Watch on YouTube</a>
                         @else
                             <a href="{{ $video->source }}" target="_blank" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Watch Video</a>
                         @endif
@@ -101,6 +116,81 @@
                 </div>
             @endforelse
         </div>
+
+        @if($short_videos->count() > 0)
+        <div class="mt-16 pt-12 border-t border-gray-200">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900" data-aos="fade-up" data-aos-delay="100">Shorts</h3>
+                </div>
+                <p class="text-sm text-gray-500 max-w-xl">Bite-sized vertical videos showcasing the best highlights of our tours.</p>
+            </div>
+    
+            <div x-data="{ 
+                    isDown: false, 
+                    startX: 0, 
+                    scrollLeft: 0,
+                    mousedown(e) { 
+                        this.isDown = true; 
+                        this.startX = e.pageX - this.$refs.slider.offsetLeft; 
+                        this.scrollLeft = this.$refs.slider.scrollLeft; 
+                    },
+                    mouseleave() { 
+                        this.isDown = false; 
+                    },
+                    mouseup() { 
+                        this.isDown = false; 
+                    },
+                    mousemove(e) { 
+                        if(!this.isDown) return; 
+                        e.preventDefault(); 
+                        const x = e.pageX - this.$refs.slider.offsetLeft; 
+                        const walk = (x - this.startX) * 2; 
+                        this.$refs.slider.scrollLeft = this.scrollLeft - walk; 
+                    }
+                }" 
+                class="w-full relative py-4">
+                
+                <div x-ref="slider"
+                     @mousedown="mousedown"
+                     @mouseleave="mouseleave"
+                     @mouseup="mouseup"
+                     @mousemove="mousemove"
+                     class="flex gap-6 overflow-x-auto hide-scroll cursor-grab active:cursor-grabbing w-full pb-4 px-1"
+                     style="scrollbar-width: none; -ms-overflow-style: none;">
+                     
+                    @foreach($short_videos as $video)
+                        @php
+                            $ytId = '';
+                            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?|shorts)/|.*[?&]v=)|youtu\.be/)([^"&?/\s]{11})%i', $video->source, $match)) {
+                                $ytId = $match[1];
+                            } elseif (strlen($video->source) == 11 && !str_contains($video->source, '.')) {
+                                $ytId = $video->source;
+                            }
+                        @endphp
+                        <div class="w-[200px] sm:w-[240px] flex-shrink-0 overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100 flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
+                            @if($ytId)
+                                <iframe class="w-full aspect-[9/16] object-cover bg-black" src="https://www.youtube.com/embed/{{ $ytId }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            @else
+                                <img src="{{ Str::startsWith($video->source, 'http') ? $video->source : asset('images/' . $video->source) }}" alt="{{ $video->title }}" class="w-full aspect-[9/16] object-cover bg-black">
+                            @endif
+                            <div class="p-4 flex flex-col flex-grow justify-between select-none">
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1 line-clamp-1" title="{{ $video->title }}">{{ $video->title }}</h3>
+                                    <p class="text-xs text-gray-500 mb-3 line-clamp-2" title="{{ $video->content }}">{{ $video->content }}</p>
+                                </div>
+                                @if($ytId)
+                                    <a href="https://www.youtube.com/watch?v={{ $ytId }}" target="_blank" class="inline-flex items-center text-xs font-semibold text-[#9B1C26] hover:text-[#7A151D] mt-auto">Watch on YouTube <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                                @else
+                                    <a href="{{ $video->source }}" target="_blank" class="inline-flex items-center text-xs font-semibold text-[#9B1C26] hover:text-[#7A151D] mt-auto">Watch Video <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 
     <div class="bg-white py-16 border-t border-gray-100" data-aos="fade-up" data-aos-delay="200">
@@ -215,22 +305,7 @@
         </div>
     </div>
 
-    <div class="max-w-6xl mx-auto px-4 py-12">
-        <div class="bg-[#EAEAEA] rounded-2xl p-10 md:p-14 text-center">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3" data-aos="fade-up" data-aos-delay="100">Ready to Write Your Own Story?</h2>
-            <p class="text-xs md:text-sm text-gray-500 mb-8 max-w-xl mx-auto">
-                Consult your dream trip with our local experts and make every moment count.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#" class="w-full sm:w-auto bg-[#7A0C16] hover:bg-[#5a0810] text-white text-xs font-medium px-6 py-3 rounded transition-colors duration-200">
-                    Start your adventure
-                </a>
-                <a href="#" class="w-full sm:w-auto bg-[#333333] hover:bg-[#222222] text-white text-xs font-medium px-6 py-3 rounded transition-colors duration-200">
-                    Contact Us
-                </a>
-            </div>
-        </div>
-    </div>
+    <x-cta adventureLink="{{ route('contact') }}" />
     <x-footer />
 
 </div>

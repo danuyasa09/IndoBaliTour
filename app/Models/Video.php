@@ -35,6 +35,7 @@ class Video extends Model
 	protected $fillable = [
 		'date',
 		'title',
+		'type',
 		'content',
 		'source',
 		'hit',

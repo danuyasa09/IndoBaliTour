@@ -69,18 +69,41 @@
                         <div class="flex -space-x-3">
                             @php
                                 $testimonies = \App\Models\Testimony::where('is_approved', true)
-                                    ->whereNotNull('photo')
                                     ->latest()
                                     ->take(3)
                                     ->get();
+                                $bgColors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-teal-500'];
                             @endphp
 
                             @forelse($testimonies as $testimony)
-                                <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}">
+                                @if($testimony->photo)
+                                    <img class="w-10 h-10 rounded-full border-2 border-white object-cover bg-gray-200" src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}">
+                                @else
+                                    @php
+                                        $initial = substr($testimony->name, 0, 1);
+                                        $colorIndex = abs(crc32($testimony->name)) % count($bgColors);
+                                        $bgColor = $bgColors[$colorIndex];
+                                    @endphp
+                                    <div class="w-10 h-10 rounded-full border-2 border-white {{ $bgColor }} flex items-center justify-center text-white font-bold text-sm uppercase">
+                                        {{ $initial }}
+                                    </div>
+                                @endif
                             @empty
-                                <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="User">
-                                <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="User">
-                                <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="User">
+                                @auth
+                                    @php
+                                        $initial = substr(Auth::user()->nama, 0, 1);
+                                        $colorIndex = abs(crc32(Auth::user()->nama)) % count($bgColors);
+                                        $bgColor = $bgColors[$colorIndex];
+                                    @endphp
+                                    <div class="w-10 h-10 rounded-full border-2 border-white {{ $bgColor }} flex items-center justify-center text-white font-bold text-sm uppercase">
+                                        {{ $initial }}
+                                    </div>
+                                @endauth
+                                @guest
+                                    <div class="w-10 h-10 rounded-full border-2 border-white bg-blue-500 flex items-center justify-center text-white font-bold text-sm uppercase">A</div>
+                                    <div class="w-10 h-10 rounded-full border-2 border-white bg-green-500 flex items-center justify-center text-white font-bold text-sm uppercase">B</div>
+                                    <div class="w-10 h-10 rounded-full border-2 border-white bg-purple-500 flex items-center justify-center text-white font-bold text-sm uppercase">C</div>
+                                @endguest
                             @endforelse
                         </div>
                         <div class="text-sm">

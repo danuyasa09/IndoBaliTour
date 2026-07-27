@@ -8,9 +8,12 @@ use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
+    $tours = \App\Models\Tour::take(3)->get();
     $testimonies = \App\Models\Testimony::where('is_approved', true)->latest()->take(3)->get();
-    return view('welcome', compact('testimonies'));
-});
+    $albums = \App\Models\Album::with('fotos')->where('status', 'Show')->orderBy('date', 'desc')->get();
+    $videos = \App\Models\Video::where('status', 'Show')->orderBy('date', 'desc')->take(3)->get();
+    return view('welcome', compact('tours', 'testimonies', 'albums', 'videos'));
+})->name('tour.index');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -54,10 +57,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 });
 
 Route::get('/tour', function () {
-    $tours = \App\Models\Tour::take(3)->get();
-    $testimonies = \App\Models\Testimony::where('is_approved', true)->latest()->take(3)->get();
-    return view('tour.index', compact('tours', 'testimonies'));
-})->name('tour.index');
+    return redirect()->route('tour.index');
+});
 
 
 Route::get('/tour/car_rental', function () {
@@ -81,8 +82,11 @@ Route::get('/tour/airport_transfer',    function () {
 Route::get('/tour/experience', function () {
     $testimonies = \App\Models\Testimony::where('is_approved', true)->latest()->get();
     $albums = \App\Models\Album::with('fotos')->where('status', 'Show')->orderBy('date', 'desc')->get();
-    $videos = \App\Models\Video::where('status', 'Show')->orderBy('date', 'desc')->get();
-    return view('tour.experience', compact('testimonies', 'albums', 'videos'));
+    $videos = \App\Models\Video::where('status', 'Show')->where(function($q) {
+        $q->where('type', 'Regular')->orWhereNull('type');
+    })->orderBy('date', 'desc')->get();
+    $short_videos = \App\Models\Video::where('status', 'Show')->where('type', 'Short')->orderBy('date', 'desc')->get();
+    return view('tour.experience', compact('testimonies', 'albums', 'videos', 'short_videos'));
 })->name('experience');
 
 Route::get('/tour/detail/{slug}', function ($slug) {

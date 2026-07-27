@@ -69,16 +69,46 @@
                         </div>
                     @endif
 
-                    <div class="space-y-3">
-                        <a href="https://wa.me/6281234567890?text=Halo%20Indo%20Bali%20Tour,%20saya%20ingin%20booking%20{{ urlencode($activity->title) }}" target="_blank" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition-colors">
+                    @php
+                        $pengaturan = \App\Models\Pengaturan::first();
+                        $waPhone = preg_replace('/[^0-9]/', '', $pengaturan->phone ?? '6285858777754');
+                        $displayPhone = $pengaturan->phone ?? '+6285858777754';
+                        $emailAddress = $pengaturan->email ?? 'enjoy@indobalitour.com';
+                    @endphp
+                    <form action="#" method="POST" onsubmit="submitInlineActivityToWhatsApp(event)" class="space-y-4 border-t border-gray-100 pt-5 mt-5">
+                        <h4 class="text-sm font-bold text-gray-900 mb-3">Quick Booking</h4>
+                        
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Full Name</label>
+                            <input type="text" name="full_name" required class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Date</label>
+                                <input type="date" name="activity_date" required class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Total Pax</label>
+                                <input type="number" name="total_person" min="1" required placeholder="e.g. 2" class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Pick-up Location</label>
+                            <input type="text" name="pickup_location" required placeholder="Hotel Name, Address, or Google Maps Link" class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Special Request (Optional)</label>
+                            <textarea id="summernote_activity" name="special_request"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition-colors mt-2">
                             <i class="fa-brands fa-whatsapp text-base"></i>
-                            <span>WhatsApp Booking</span>
-                        </a>
-                        <a href="#" class="w-full bg-white border border-[#7A0C16] text-[#7A0C16] hover:bg-gray-50 text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition-colors">
-                            <i class="fa-regular fa-calendar-days"></i>
-                            <span>Booking Form</span>
-                        </a>
-                    </div>
+                            <span>Book via WhatsApp</span>
+                        </button>
+                    </form>
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6" data-aos="fade-up" data-aos-delay="200">
@@ -88,11 +118,11 @@
                     <div class="space-y-3 text-xs font-semibold text-gray-700">
                         <div class="flex items-center space-x-3">
                             <span class="text-[#7A0C16]"><i class="fa-solid fa-phone"></i></span>
-                            <span>+6282144814593</span>
+                            <span>{{ $displayPhone }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <span class="text-[#7A0C16]"><i class="fa-solid fa-envelope"></i></span>
-                            <span class="text-gray-600">enjoy@indobalitour.com</span>
+                            <span class="text-gray-600">{{ $emailAddress }}</span>
                         </div>
                     </div>
                 </div>
@@ -110,6 +140,11 @@
 
     <x-footer />  
 
+    <!-- jQuery and Summernote JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -118,6 +153,41 @@
             duration: 800,
             offset: 100,
         });
+
+        $(document).ready(function() {
+            $('#summernote_activity').summernote({
+                placeholder: 'Any dietary requirements or specific places to visit?',
+                tabsize: 2,
+                height: 100,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol']],
+                ]
+            });
+        });
+
+        function submitInlineActivityToWhatsApp(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            let message = `Halo Admin, saya ingin memesan fun activity *{{ $activity->title }}*.\nBerikut detail pesanan saya:\n\n`;
+            message += `*Nama:* ${formData.get('full_name')}\n`;
+            message += `*Tanggal:* ${formData.get('activity_date')}\n`;
+            message += `*Jumlah Peserta:* ${formData.get('total_person')}\n`;
+            message += `*Lokasi Jemput:* ${formData.get('pickup_location') || '-'}\n`;
+            
+            let specialReqHtml = formData.get('special_request') || '';
+            let tempDiv = document.createElement("div");
+            tempDiv.innerHTML = specialReqHtml;
+            let specialReqText = tempDiv.textContent || tempDiv.innerText || "-";
+            
+            message += `*Special Request:* ${specialReqText}\n`;
+            
+            const phoneNumber = "{{ preg_replace('/[^0-9]/', '', \App\Models\Pengaturan::first()->phone ?? '6285858777754') }}";
+            const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank');
+        }
     </script>
 </body>
 </html>

@@ -38,6 +38,15 @@
                 @error('status')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
+            <div>
+                <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Tipe Video</label>
+                <select name="type" id="type" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>
+                    <option value="Regular" {{ old('type') == 'Regular' ? 'selected' : '' }}>Regular Video (Horizontal)</option>
+                    <option value="Short" {{ old('type') == 'Short' ? 'selected' : '' }}>Short Video (Vertical 9:16)</option>
+                </select>
+                @error('type')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
             <!-- Source -->
             <div class="md:col-span-2">
                 <label for="source" class="block text-sm font-medium text-gray-700 mb-1">Source / Link Video (contoh: ID Video YouTube atau link Embed)</label>

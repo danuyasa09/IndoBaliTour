@@ -1,9 +1,9 @@
 <!-- Font Awesome (needed for footer icons) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        <footer id="contact" class="bg-[#111111] text-gray-400 py-16 border-t border-zinc-800">
+        <footer id="contact" class="bg-[#111111] text-gray-400 pt-16 pb-8 border-t border-zinc-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-8">
             
             <div class="space-y-6">
                 <h3 class="text-white text-2xl font-extrabold tracking-tight">Indo Bali Tour</h3>
@@ -26,11 +26,11 @@
             <div>
                 <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Our Services</h4>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Tour Packages</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Car Rental</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Custom Tours</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Activity Bookings</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Airport Transfer</a></li>
+                    <li><a href="{{ route('package_tour') }}" class="hover:text-white transition-colors duration-200">Tour Packages</a></li>
+                    <li><a href="{{ route('car_rental') }}" class="hover:text-white transition-colors duration-200">Car Rental</a></li>
+                    <li><a href="{{ route('fun_activity') }}" class="hover:text-white transition-colors duration-200">Fun Activities</a></li>
+                    <li><a href="{{ route('airport_transfer') }}" class="hover:text-white transition-colors duration-200">Airport Transfer</a></li>
+                    <li><a href="{{ route('hotel_transfer') }}" class="hover:text-white transition-colors duration-200">Hotel Transfer</a></li>
                 </ul>
             </div>
 
@@ -45,15 +45,17 @@
                     <ul class="space-y-4 text-sm text-gray-400">
                         <li class="flex items-start space-x-3">
                             <span class="text-[#7A0C16] text-lg mt-0.5"><i class="fa-solid fa-location-dot"></i></span>
-                            <span class="leading-relaxed">Jl. Sunset Road No. 888, Seminyak, Kuta, Bali</span>
+                            <span class="leading-relaxed">Jl. Ganetri IV No.4, Tonja, Kec. Denpasar Utara, Kota Denpasar, Bali 80237</span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <span class="text-[#7A0C16] text-lg"><i class="fa-solid fa-phone"></i></span>
-                            <span>+62 812-3456-7890</span>
+                            <span class="text-[#7A0C16] text-lg"><i class="fa-brands fa-whatsapp"></i></span>
+                            <a href="https://wa.me/6282144814593" target="_blank" class="hover:text-white transition-colors duration-200">+6282144814593
+
+</a>
                         </li>
                         <li class="flex items-center space-x-3">
                             <span class="text-[#7A0C16] text-lg"><i class="fa-solid fa-envelope"></i></span>
-                            <span>info@indobalitour.com</span>
+                            <a href="mailto:enjoy@indobalitour.com" class="hover:text-white transition-colors duration-200">enjoy@indobalitour.com</a>
                         </li>
                     </ul>
                 </div>
@@ -68,7 +70,7 @@
 
         </div>
 
-        <div class="pt-8 border-t border-zinc-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <div class="pt-6 border-t border-zinc-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
             <p>&copy; {{ date('Y') }} Indo Bali Tour. All rights reserved.</p>
         </div>
     </div>

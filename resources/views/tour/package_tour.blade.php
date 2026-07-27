@@ -22,7 +22,7 @@
         highlight="Exclusive"
         titleEnd="Bali"
         subtitle="Write your story in Bali with hassle-free holiday package options. Enjoy the best moments from cultural tourism to nature with your loved ones."
-        bgImage="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1200&auto=format&fit=crop"
+        bgImage="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=1200&auto=format&fit=crop"
         ctaText="Browse Packages"
         ctaLink="#tours"
         floatingIcon="fa-tags"
@@ -32,59 +32,82 @@
         :floatingFeatures="['Private Transport', 'Professional Guide', 'Flexible Itinerary']"
     />
 
-    <div class="max-w-6xl mx-auto px-4 py-16">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            @forelse ($tours as $tour)
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="200">
+    <div id="tours" class="max-w-6xl mx-auto px-4 py-16">
+        @php $tourChunks = $tours->chunk(6); @endphp
+        @if($tourChunks->count() > 0)
+            <div x-data="{ activePage: 0, totalPages: {{ $tourChunks->count() }} }" class="relative overflow-hidden w-full">
+                <div class="flex transition-transform duration-500 ease-in-out w-full" :style="'transform: translateX(-' + (activePage * 100) + '%)'">
+                    @foreach($tourChunks as $chunkIndex => $chunk)
+                    <div class="w-full flex-shrink-0 px-1 pb-4">
+                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                            @foreach($chunk as $tour)
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                                <div class="relative h-48 overflow-hidden">
+                                    <img src="{{ asset('images/' . $tour->img) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=500&auto=format&fit=crop'">
+                                </div>
+
+                                <div class="p-5 flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-1.5 text-gray-400 text-[10px] font-semibold uppercase tracking-wider mb-2">
+                                            <i class="fa-regular fa-clock text-xs"></i>
+                                            <span>{{ $tour->date ?? '3 Days 2 Nights' }}</span>
+                                        </div>
+
+                                        <h3 class="text-base font-bold text-gray-900 mb-2 leading-snug">
+                                            {{ $tour->title }}
+                                        </h3>
+
+                                        <div class="text-[12px] text-gray-500 mb-6 line-clamp-3">
+                                            {!! $tour->short ?? 'An exciting holiday package with a variety of selected tourist destinations in Bali.' !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="border-t border-gray-100 pt-4 flex items-end justify-between">
+                                        <div>
+                                            <span class="block text-[9px] text-gray-400 uppercase font-bold tracking-wider">Start From</span>
+                                            <span class="text-sm font-bold text-[#7A0C16]">
+                                                @if(is_numeric($tour->harga))
+                                                    RP {{ number_format($tour->harga, 0, ',', '.') }}
+                                                @else
+                                                    {{ $tour->harga ?? 'Contact Us' }}
+                                                @endif
+                                            </span>
+                                        </div>
+                                        
+                                        <a href="{{ route('detail', $tour->slug) }}" class="flex items-center space-x-1 text-[11px] font-bold text-[#7A0C16] hover:text-[#5A0810] transition-colors pb-0.5">
+                                            <span class="uppercase tracking-wider">View Details</span>
+                                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
                 
-                <div class="relative h-48 overflow-hidden">
-                    <img src="{{ asset('images/' . $tour->img) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=500&auto=format&fit=crop'">
+                @if($tourChunks->count() > 1)
+                <div class="flex justify-center items-center mt-10 gap-2">
+                    <button @click="activePage = Math.max(0, activePage - 1)" :disabled="activePage === 0" class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+                    
+                    <template x-for="i in totalPages" :key="i">
+                        <button @click="activePage = i - 1" :class="activePage === (i - 1) ? 'bg-[#7A0C16] text-white border-[#7A0C16]' : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'" class="w-10 h-10 rounded-full flex items-center justify-center border text-sm font-medium transition-colors" x-text="i"></button>
+                    </template>
+
+                    <button @click="activePage = Math.min(totalPages - 1, activePage + 1)" :disabled="activePage === totalPages - 1" class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
                 </div>
-
-                <div class="p-5 flex-1 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center space-x-1.5 text-gray-400 text-[10px] font-semibold uppercase tracking-wider mb-2">
-                            <i class="fa-regular fa-clock text-xs"></i>
-                            <span>{{ $tour->date ?? '3 Days 2 Nights' }}</span>
-                        </div>
-
-                        <h3 class="text-base font-bold text-gray-900 mb-2 leading-snug" data-aos="fade-up" data-aos-delay="150">
-                            {{ $tour->title }}
-                        </h3>
-
-                        <div class="text-[12px] text-gray-500 mb-6 line-clamp-3">
-                            {!! $tour->short ?? 'An exciting holiday package with a variety of selected tourist destinations in Bali.' !!}
-                        </div>
-                    </div>
-
-                    <div class="border-t border-gray-100 pt-4 flex items-end justify-between">
-                        <div>
-                            <span class="block text-[9px] text-gray-400 uppercase font-bold tracking-wider">Start From</span>
-                            <span class="text-sm font-bold text-[#7A0C16]">
-                                @if(is_numeric($tour->harga))
-                                    RP {{ number_format($tour->harga, 0, ',', '.') }}
-                                @else
-                                    {{ $tour->harga ?? 'Contact Us' }}
-                                @endif
-                            </span>
-                        </div>
-                        
-                        <a href="{{ route('detail', $tour->slug) }}" class="flex items-center space-x-1 text-[11px] font-bold text-[#7A0C16] hover:text-[#5A0810] transition-colors pb-0.5">
-                            <span class="uppercase tracking-wider">View Details</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
+                @endif
             </div>
-            @empty
-            <div class="col-span-1 sm:col-span-2 lg:col-span-4 text-center py-12 text-gray-500">
+        @else
+            <div class="w-full text-center py-12 text-gray-500">
                 No tour packages available yet.
             </div>
-            @endforelse
-
-        </div>
+        @endif
     </div>
     <x-footer />    
 </div>

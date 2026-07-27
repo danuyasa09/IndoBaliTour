@@ -22,7 +22,7 @@
         title="Fun"
         highlight="Activities"
         subtitle="Find unforgettable adventures in Bali. From thrilling rafting to enjoying the beautiful beaches."
-        bgImage="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1200&auto=format&fit=crop"
+        bgImage="https://images.unsplash.com/photo-1534008897995-27a23e859048?q=80&w=1200&auto=format&fit=crop"
         ctaText="Browse Activities"
         ctaLink="#activities"
         floatingIcon="fa-ticket"
@@ -33,68 +33,68 @@
     />
 
         <!-- Activity Grid -->
-        <div class="max-w-7xl mx-auto px-4 py-16">
+        <div id="activities" class="max-w-7xl mx-auto px-4 py-16">
             <h2 class="text-center text-2xl md:text-3xl font-bold text-gray-900 mb-10" data-aos="fade-up" data-aos-delay="100">Exciting & Challenging Activities in Bali</h2>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                @foreach($activities as $activity)
-                <a href="{{ route('fun_activity.show', $activity->id ?? $activity->slug) }}" class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group block" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('images/' . $activity->img) }}" alt="{{ $activity->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-2 left-2 bg-[#7A0C16] text-white text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-wider">Activity</span>
+            @php $activityChunks = $activities->chunk(6); @endphp
+            @if($activityChunks->count() > 0)
+                <div x-data="{ activePage: 0, totalPages: {{ $activityChunks->count() }} }" class="relative overflow-hidden w-full">
+                    <div class="flex transition-transform duration-500 ease-in-out w-full" :style="'transform: translateX(-' + (activePage * 100) + '%)'">
+                        @foreach($activityChunks as $chunkIndex => $chunk)
+                        <div class="w-full flex-shrink-0 px-1 pb-4">
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                                @foreach($chunk as $activity)
+                                <a href="{{ route('fun_activity.show', $activity->id ?? $activity->slug) }}" class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group block" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                                    <div class="relative overflow-hidden">
+                                        <img src="{{ asset('images/' . $activity->img) }}" alt="{{ $activity->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                        <span class="absolute top-2 left-2 bg-[#7A0C16] text-white text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-wider">Activity</span>
+                                    </div>
+                                    
+                                    <div class="p-5 flex-1 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="text-lg font-bold text-gray-900 group-hover:text-[#7A0C16] transition-colors">{{ $activity->title }}</h3>
+                                            <p class="text-gray-500 text-xs mt-2 mb-4 leading-relaxed">
+                                                {!! \Illuminate\Support\Str::limit(strip_tags($activity->description), 100) !!}
+                                            </p>
+                                        </div>
+                                        
+                                        <div>
+                                            <div class="text-[#7A0C16] font-bold text-lg mb-4">
+                                                Rp {{ number_format((float)$activity->price, 0, ',', '.') }} <span class="text-gray-400 text-xs font-normal">/pax</span>
+                                            </div>
+                                            <span class="w-full bg-[#7A0C16] hover:bg-[#5a0810] text-white py-2 px-4 rounded text-sm font-medium transition-colors duration-200 inline-block text-center">
+                                                View Details
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                     
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-900 group-hover:text-[#7A0C16] transition-colors" data-aos="fade-up" data-aos-delay="150">{{ $activity->title }}</h3>
-                            <p class="text-gray-500 text-xs mt-2 mb-4 leading-relaxed">
-                                {!! \Illuminate\Support\Str::limit(strip_tags($activity->description), 100) !!}
-                            </p>
-                        </div>
+                    @if($activityChunks->count() > 1)
+                    <div class="flex justify-center items-center mt-10 gap-2">
+                        <button @click="activePage = Math.max(0, activePage - 1)" :disabled="activePage === 0" class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </button>
                         
-                        <div>
-                            <div class="text-[#7A0C16] font-bold text-lg mb-4">
-                                Rp {{ number_format((float)$activity->price, 0, ',', '.') }} <span class="text-gray-400 text-xs font-normal">/pax</span>
-                            </div>
-                            <span class="w-full bg-[#7A0C16] hover:bg-[#5a0810] text-white py-2 px-4 rounded text-sm font-medium transition-colors duration-200 inline-block text-center">
-                                View Details
-                            </span>
-                        </div>
-                    </div>
-                </a>
-                @endforeach
-            </div>
-        </div>
+                        <template x-for="i in totalPages" :key="i">
+                            <button @click="activePage = i - 1" :class="activePage === (i - 1) ? 'bg-[#7A0C16] text-white border-[#7A0C16]' : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'" class="w-10 h-10 rounded-full flex items-center justify-center border text-sm font-medium transition-colors" x-text="i"></button>
+                        </template>
 
-        <!-- FAQ Section -->
-        <div class="bg-gray-50 py-16 border-t border-b border-gray-100">
-            <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-center text-2xl md:text-3xl font-bold text-gray-900 mb-12" data-aos="fade-up" data-aos-delay="100">Terms & Facilities</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
-                        <div class="w-16 h-16 bg-red-50 rounded-full mb-5 flex items-center justify-center text-brand-red font-bold text-xl">🛡️</div>
-                        <h3 class="text-lg font-bold text-gray-800 mb-3" data-aos="fade-up" data-aos-delay="150">Full Insurance</h3>
-                        <p class="text-xs text-gray-500 leading-relaxed max-w-xs">
-                            All activities are equipped with full safety insurance coverage for the comfort of your adventure.
-                        </p>
+                        <button @click="activePage = Math.min(totalPages - 1, activePage + 1)" :disabled="activePage === totalPages - 1" class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </button>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
-                        <div class="w-16 h-16 bg-red-50 rounded-full mb-5 flex items-center justify-center text-brand-red font-bold text-xl">🍽️</div>
-                        <h3 class="text-lg font-bold text-gray-800 mb-3" data-aos="fade-up" data-aos-delay="150">Lunch</h3>
-                        <p class="text-xs text-gray-500 leading-relaxed max-w-xs">
-                            Most of our activity packages include a delicious and hygienic buffet lunch.
-                        </p>
-                    </div>
-                    <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
-                        <div class="w-16 h-16 bg-red-50 rounded-full mb-5 flex items-center justify-center text-brand-red font-bold text-xl">🚗</div>
-                        <h3 class="text-lg font-bold text-gray-800 mb-3" data-aos="fade-up" data-aos-delay="150">Hotel Transfer</h3>
-                        <p class="text-xs text-gray-500 leading-relaxed max-w-xs">
-                            Transfer service to and from your hotel with our comfortable car fleet.
-                        </p>
-                    </div>
+                    @endif
                 </div>
-            </div>
+            @else
+                <div class="w-full text-center py-12 text-gray-500">
+                    No fun activities available yet.
+                </div>
+            @endif
         </div>
 
          <x-footer />

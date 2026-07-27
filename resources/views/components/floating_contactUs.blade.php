@@ -1,3 +1,9 @@
+@php
+    $pengaturan = \App\Models\Pengaturan::first();
+    $waPhone = preg_replace('/[^0-9]/', '', $pengaturan->phone ?? '6285858777754');
+    $callPhone = preg_replace('/[^0-9+]/', '', $pengaturan->phone ?? '+6285858777754');
+    $emailAddress = $pengaturan->email ?? 'info@indobalitour.com';
+@endphp
 <!-- Floating Contact Button & Menu -->
 <div class="fixed bottom-6 right-6 z-50 flex flex-col-reverse items-end gap-3 group">
     
@@ -28,7 +34,7 @@
             <span class="bg-white text-gray-800 px-3 py-2 rounded-xl shadow-md text-xs font-bold border border-gray-100 whitespace-nowrap">
                 Call Us
             </span>
-            <a href="tel:+6281234567890" class="w-12 h-12 bg-[#007AFF] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#0062cc] transition-transform duration-200 hover:scale-110" title="Telepon">
+            <a href="tel:{{ $callPhone }}" class="w-12 h-12 bg-[#007AFF] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#0062cc] transition-transform duration-200 hover:scale-110" title="Telepon">
                 <i class="fa-solid fa-phone text-lg"></i>
             </a>
         </div>
@@ -38,7 +44,7 @@
             <span class="bg-white text-gray-800 px-3 py-2 rounded-xl shadow-md text-xs font-bold border border-gray-100 whitespace-nowrap">
                 Email Us
             </span>
-            <a href="mailto:kamu@example.com" class="w-12 h-12 bg-[#EA4335] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#d63426] transition-transform duration-200 hover:scale-110" title="Gmail">
+            <a href="mailto:{{ $emailAddress }}" class="w-12 h-12 bg-[#EA4335] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#d63426] transition-transform duration-200 hover:scale-110" title="Email">
                 <i class="fa-solid fa-envelope text-lg"></i>
             </a>
         </div>
@@ -57,7 +63,7 @@
                 </span>
             </div>
             <!-- Button -->
-            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-[#25D366] text-white rounded-full shadow-[0_8px_20px_-4px_rgba(37,211,102,0.5)] flex items-center justify-center hover:bg-[#20ba59] transition-transform duration-200 transform hover:scale-110 z-10" title="WhatsApp">
+            <a href="https://wa.me/{{ $waPhone }}" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-[#25D366] text-white rounded-full shadow-[0_8px_20px_-4px_rgba(37,211,102,0.5)] flex items-center justify-center hover:bg-[#20ba59] transition-transform duration-200 transform hover:scale-110 z-10" title="WhatsApp">
                 <i class="fa-brands fa-whatsapp text-3xl"></i>
             </a>
         </div>
@@ -124,7 +130,7 @@
             <!-- Close Button (Desktop) -->
             <button type="button" onclick="closeBookingModal()" class="hidden md:flex absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-800 bg-white shadow-sm hover:bg-gray-100 rounded-full w-8 h-8 items-center justify-center focus:outline-none transition-colors"><i class="fa-solid fa-xmark"></i></button>
 
-            <form action="#" method="POST" class="p-6 md:p-8 max-h-[85vh] overflow-y-auto space-y-6 text-left">
+            <form action="#" method="POST" onsubmit="submitTourToWhatsApp(event)" class="p-6 md:p-8 max-h-[85vh] overflow-y-auto space-y-6 text-left">
                 @csrf
                 
                 <!-- Personal Info -->
@@ -160,14 +166,23 @@
                         <h2>Tour Details</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
+                        <div class="md:col-span-2">
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Tour Package</label>
                             <select name="tour_package" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-gray-700 text-sm transition-shadow bg-white appearance-none">
                                 <option value="" disabled selected>Select a package</option>
-                                <option value="ubud">Ubud Cultural Tour</option>
-                                <option value="uluwatu">Uluwatu Sunset Tour</option>
-                                <option value="nusa-penida">Nusa Penida Adventure</option>
+                                @php $all_tours = \App\Models\Tour::all(); @endphp
+                                @foreach($all_tours as $t)
+                                    <option value="{{ $t->title }}">{{ $t->title }}</option>
+                                @endforeach
                             </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Pick-up Location</label>
+                            <input type="text" name="current_hotel" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="https://maps.app.goo.gl/... or Hotel Name">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Drop-off Location</label>
+                            <input type="text" name="to_hotel" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="https://maps.app.goo.gl/... or Hotel Name">
                         </div>
                         <div>
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Date of Tour</label>
@@ -177,14 +192,10 @@
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Total Person</label>
                             <input type="number" name="total_person" placeholder="2" min="1" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-gray-700 text-sm transition-shadow">
                         </div>
-                        <div>
-                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Hotel Name in Bali</label>
-                            <input type="text" name="hotel_name" placeholder="e.g. Alila Villas" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-gray-700 text-sm transition-shadow">
-                        </div>
                     </div>
                     <div class="mt-4">
                         <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Special Request (Optional)</label>
-                        <textarea name="special_request" rows="3" placeholder="Any dietary requirements or specific places to visit?" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-gray-700 text-sm transition-shadow resize-none"></textarea>
+                        <textarea id="summernote_tour" name="special_request"></textarea>
                     </div>
                 </div>
 
@@ -200,7 +211,26 @@
     </div>
 </div>
 
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 <script>
+    // Initialize summernote for tour booking
+    $(document).ready(function() {
+        if($('#summernote_tour').length) {
+            $('#summernote_tour').summernote({
+                placeholder: 'Any dietary requirements or specific places to visit?',
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol']],
+                ]
+            });
+        }
+    });
+
     function toggleContactMenu() {
         const menu = document.getElementById('contactMenu');
         const openIcon = document.getElementById('openIcon');
@@ -289,4 +319,31 @@
             closeBookingModal();
         }
     });
+
+    function submitTourToWhatsApp(event) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        
+        let message = `Halo Admin, saya ingin memesan paket tour *${formData.get('tour_package') || '-'}*.\nBerikut detail pesanan saya:\n\n`;
+        message += `*Nama:* ${formData.get('full_name')}\n`;
+        message += `*Email:* ${formData.get('email')}\n`;
+        message += `*Telepon/WA:* ${formData.get('phone')}\n`;
+        message += `*Kewarganegaraan:* ${formData.get('nationality')}\n`;
+        message += `*Tanggal Tour:* ${formData.get('tour_date')}\n`;
+        message += `*Jumlah Peserta:* ${formData.get('total_person')}\n`;
+        message += `*Lokasi Jemput:* ${formData.get('current_hotel') || '-'}\n`;
+        message += `*Lokasi Antar:* ${formData.get('to_hotel') || '-'}\n`;
+        
+        let specialReqHtml = formData.get('special_request') || '';
+        let tempDiv = document.createElement("div");
+        tempDiv.innerHTML = specialReqHtml;
+        let specialReqText = tempDiv.textContent || tempDiv.innerText || "-";
+        
+        message += `*Special Request:* ${specialReqText}\n`;
+
+        const phoneNumber = "{{ $waPhone }}";
+        const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, '_blank');
+    }
 </script>

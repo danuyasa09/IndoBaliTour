@@ -3,7 +3,26 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Primary Meta Tags -->
         <title>Indo Bali Tour | Contact Us</title>
+        <meta name="title" content="Indo Bali Tour | Contact Us">
+        <meta name="description" content="Contact Indo Bali Tour to plan your dream vacation in Bali. We are ready to help you with tour packages, hotel transfers, and customized itineraries.">
+        <meta name="keywords" content="Contact Indo Bali Tour, Bali tour agency, book Bali tour, Bali travel agent">
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:title" content="Indo Bali Tour | Contact Us">
+        <meta property="og:description" content="Contact Indo Bali Tour to plan your dream vacation in Bali. We are ready to help you with tour packages, hotel transfers, and customized itineraries.">
+        <meta property="og:image" content="{{ asset('images/logo.png') }}">
+        
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url()->current() }}">
+        <meta property="twitter:title" content="Indo Bali Tour | Contact Us">
+        <meta property="twitter:description" content="Contact Indo Bali Tour to plan your dream vacation in Bali. We are ready to help you with tour packages, hotel transfers, and customized itineraries.">
+        <meta property="twitter:image" content="{{ asset('images/logo.png') }}">
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
@@ -97,7 +116,7 @@
 
                     <div class="space-y-6">
                         <div class="rounded-[1.5rem] bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)] border border-gray-200" data-aos="fade-up" data-aos-delay="200">
-                            <form action="#" method="POST" class="space-y-8">
+                            <form action="#" method="POST" class="space-y-8" onsubmit="submitContactToWhatsApp(event)">
                                 @csrf
                                 
                                 <div class="grid gap-4 sm:grid-cols-2">
@@ -175,6 +194,23 @@
                 duration: 800,
                 offset: 100,
             });
+
+            function submitContactToWhatsApp(event) {
+                event.preventDefault();
+                const form = event.target;
+                const formData = new FormData(form);
+                
+                let message = `*New Contact Message*\n\n`;
+                message += `*Name:* ${formData.get('name')}\n`;
+                message += `*Email:* ${formData.get('email')}\n`;
+                message += `*Phone:* ${formData.get('phone')}\n`;
+                message += `*Subject:* ${formData.get('subject')}\n\n`;
+                message += `*Message:*\n${formData.get('message')}\n`;
+
+                const phoneNumber = "{{ preg_replace('/[^0-9]/', '', \App\Models\Pengaturan::first()->phone ?? '6285858777754') }}";
+                const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(waUrl, '_blank');
+            }
         </script>
     </body>
 </html>

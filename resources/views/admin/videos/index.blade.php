@@ -33,7 +33,14 @@
                                     </div>
                                 </div>
                                 <div class="ml-4">
-                                    <div class="text-sm font-bold text-gray-900">{{ Str::limit($video->title, 40) }}</div>
+                                    <div class="text-sm font-bold text-gray-900 flex items-center gap-2">
+                                        {{ Str::limit($video->title, 40) }}
+                                        @if($video->type === 'Short')
+                                            <span class="px-2 py-0.5 inline-flex text-[10px] leading-4 font-semibold rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200">
+                                                Short
+                                            </span>
+                                        @endif
+                                    </div>
                                     <div class="text-xs text-gray-500">Source: {{ Str::limit($video->source, 30) }}</div>
                                 </div>
                             </div>

@@ -10,13 +10,13 @@
     </head>
     <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
 
-<header x-data="{ scrolled: false }" 
+<header x-data="{ scrolled: false, mobileMenuOpen: false }" 
         @scroll.window="scrolled = (window.scrollY > 50)" 
-        :class="scrolled ? 'bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-md text-gray-900' : 'bg-transparent border-b border-white/10 text-white pt-2'" 
-        class="fixed w-full top-0 z-50 transition-all duration-500 skiptranslate">
+        :class="(scrolled || mobileMenuOpen) ? 'bg-white border-b border-gray-100 shadow-sm text-gray-900' : 'bg-transparent border-b border-white/10 text-white pt-2'" 
+        class="fixed w-full top-0 z-50 transition-all duration-300 skiptranslate">
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center transition-all duration-500" :class="scrolled ? 'h-16' : 'h-20'">
+        <div class="flex justify-between items-center transition-all duration-300" :class="(scrolled || mobileMenuOpen) ? 'h-16' : 'h-20'">
             
             <div class="flex-shrink-0 flex items-center">
                 <a href="{{ url('/') }}" class="flex items-center space-x-3 group">
@@ -131,12 +131,12 @@
                 @endguest
 
                 <div class="relative flex items-center" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                    <button :class="scrolled ? 'border-gray-200 text-gray-700 bg-white hover:bg-gray-50' : 'border-white/30 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm'" class="flex items-center space-x-2 pl-3 pr-3 py-1.5 border rounded-full text-sm font-medium focus:outline-none transition-all duration-300 cursor-pointer">
-                        <svg class="h-4 w-4" :class="scrolled ? 'text-gray-500' : 'text-white/80'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button :class="(scrolled || mobileMenuOpen) ? 'border-gray-200 text-gray-700 bg-white hover:bg-gray-50' : 'border-white/30 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm'" class="flex items-center space-x-2 pl-3 pr-3 py-1.5 border rounded-full text-sm font-medium focus:outline-none transition-all duration-300 cursor-pointer">
+                        <svg class="h-4 w-4" :class="(scrolled || mobileMenuOpen) ? 'text-gray-500' : 'text-white/80'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                         </svg>
                         <span id="desktop-current-lang" class="truncate max-w-[100px]">English</span>
-                        <svg class="h-3 w-3 transition-transform duration-300" :class="scrolled ? 'text-gray-500' : 'text-white/70', { 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-3 w-3 transition-transform duration-300" :class="(scrolled || mobileMenuOpen) ? 'text-gray-500' : 'text-white/70', { 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
@@ -158,9 +158,9 @@
                 </div>
 
 
-                <div class="md:hidden" x-data="{ mobileOpen: false }">
-                    <button @click="$dispatch('toggle-mobile-menu')" 
-                            :class="scrolled ? 'text-gray-800 hover:bg-gray-100' : 'text-white hover:bg-white/20'" 
+                <div class="md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                            :class="(scrolled || mobileMenuOpen) ? 'text-gray-800 hover:bg-gray-100' : 'text-white hover:bg-white/20'" 
                             class="p-2 rounded-md focus:outline-none transition-colors duration-300">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -171,12 +171,39 @@
         </div>
     </div>
 
-   <div x-data="{ isOpen: false }" 
-         @toggle-mobile-menu.window="isOpen = !isOpen" 
-         x-show="isOpen" 
-         x-transition 
-         class="md:hidden absolute left-0 top-full w-full bg-white border-t border-gray-100 py-4 px-6 space-y-4 text-gray-900 shadow-xl max-h-[calc(100vh-4rem)] overflow-y-auto" 
+   <!-- Mobile Menu Background Overlay -->
+   <div x-show="mobileMenuOpen" 
+        x-transition:enter="transition-opacity ease-linear duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition-opacity ease-linear duration-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-black/50 z-40 md:hidden" 
+        @click="mobileMenuOpen = false"
+        style="display: none;"></div>
+
+   <!-- Mobile Sidebar Panel -->
+   <div x-show="mobileMenuOpen" 
+         x-transition:enter="transition ease-out duration-300 transform" 
+         x-transition:enter-start="translate-x-full" 
+         x-transition:enter-end="translate-x-0"
+         x-transition:leave="transition ease-in duration-300 transform" 
+         x-transition:leave-start="translate-x-0" 
+         x-transition:leave-end="translate-x-full"
+         class="md:hidden fixed right-0 top-0 w-[80%] max-w-sm h-full bg-white z-50 shadow-2xl flex flex-col" 
          style="display: none;">
+         
+         <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 h-16">
+             <span class="font-bold text-gray-900 text-lg">Menu</span>
+             <button @click="mobileMenuOpen = false" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                 </svg>
+             </button>
+         </div>
+
+         <div class="flex-1 overflow-y-auto py-4 px-6 space-y-4 text-gray-900">
          
         <a href="{{ route('tour.index') }}" class="block text-gray-700 hover:text-brand-red font-medium text-base py-1 no-underline">{{ __('Home') }}</a>
         
@@ -215,9 +242,16 @@
             @guest
                 <a href="{{ route('login') }}" class="block text-center w-full bg-brand-red text-white font-medium text-sm py-2 rounded-lg no-underline hover:bg-red-700">Login / Register</a>
             @else
-                <div class="px-2 py-2 mb-2 bg-gray-50 rounded-lg">
-                    <p class="text-sm font-bold text-gray-900 truncate">{{ Auth::user()->nama }}</p>
-                    <p class="text-xs text-brand-red truncate mb-2">{{ Auth::user()->level }}</p>
+                <div class="px-3 py-3 mb-2 bg-gray-50 rounded-lg flex items-center gap-3">
+                    <div class="bg-brand-red text-white w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-sm flex-shrink-0 text-lg">
+                        {{ substr(Auth::user()->nama, 0, 1) }}
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-bold text-gray-900 truncate">{{ Auth::user()->nama }}</p>
+                        <p class="text-xs text-brand-red truncate mb-2">{{ Auth::user()->level }}</p>
+                    </div>
+                </div>
+                <div class="px-2">
                     @if(strtolower(Auth::user()->level) === 'admin' || strtolower(Auth::user()->level) === 'super admin')
                         <a href="{{ url('/admin') }}" class="block text-sm text-brand-red hover:text-red-700 font-medium no-underline mb-2">Admin Panel</a>
                     @endif
@@ -254,6 +288,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </header>
 
@@ -312,7 +347,9 @@
         if(mobileLabel) mobileLabel.innerText = label;
     }
 
-    function doGTranslate(lang) {
+    function doGTranslate(lang, label) {
+        if (label) updateLangLabel(label);
+
         if (lang === 'en') {
             // Reset translation
             var domain = window.location.hostname.replace(/^www\./, '');
@@ -367,7 +404,7 @@
                 var desktopDropdown = document.getElementById('desktop-lang-dropdown');
                 var mobileDropdown = document.getElementById('mobile-lang-dropdown');
                 
-                var optionsHtml = '<button onclick="doGTranslate(\'en\')" class="w-full text-left px-4 py-2.5 text-sm hover:bg-red-50 hover:text-brand-red font-medium transition-colors">English (Original)</button>';
+                var optionsHtml = '<button onclick="doGTranslate(\'en\', \'English (Original)\')" class="w-full text-left px-4 py-2.5 text-sm hover:bg-red-50 hover:text-brand-red font-medium transition-colors">English (Original)</button>';
                 
                 var langMap = { 'en': 'English' };
                 
@@ -375,7 +412,7 @@
                     var opt = teCombo.options[i];
                     if(opt.value && opt.value !== 'en') {
                         langMap[opt.value] = opt.innerHTML;
-                        optionsHtml += '<button onclick="doGTranslate(\'' + opt.value + '\')" class="w-full text-left px-4 py-2.5 text-sm hover:bg-red-50 hover:text-brand-red font-medium transition-colors">' + opt.innerHTML + '</button>';
+                        optionsHtml += '<button onclick="doGTranslate(\'' + opt.value + '\', \'' + opt.innerHTML.replace(/'/g, "\\'") + '\')" class="w-full text-left px-4 py-2.5 text-sm hover:bg-red-50 hover:text-brand-red font-medium transition-colors">' + opt.innerHTML + '</button>';
                     }
                 }
 
