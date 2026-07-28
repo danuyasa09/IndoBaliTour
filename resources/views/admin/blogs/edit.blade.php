@@ -58,7 +58,7 @@
                 <label for="img" class="block text-sm font-medium text-gray-700 mb-1">Foto / Gambar Cover</label>
                 @if($blog->img)
                     <div class="mb-3">
-                        <img src="{{ asset('images/' . $blog->img) }}" alt="Foto" class="h-32 rounded-lg object-cover">
+                        <img src="{{ asset('images/blogs/' . $blog->img) }}" alt="Foto" class="h-32 rounded-lg object-cover">
                     </div>
                 @endif
                 <input type="file" name="img" id="img" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-brand-red file:text-white hover:file:bg-red-700 transition-colors">

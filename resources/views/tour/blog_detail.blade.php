@@ -68,7 +68,7 @@
             title=""
             highlight="{{ $blog->title }}"
             subtitle="Published on {{ \Carbon\Carbon::parse($blog->date)->format('d M Y') }} • Read {{ $blog->hit ?? 0 }} times"
-            bgImage="{{ asset('images/' . $blog->img) }}"
+            bgImage="{{ asset('images/blogs/' . $blog->img) }}"
             dividerType="hill"
         />
 
@@ -176,7 +176,7 @@
                             <a href="{{ route('blog.show', $otherItem->slug) }}" class="group flex gap-4 items-center">
                                 <div class="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 shadow-sm relative">
                                     <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10"></div>
-                                    <img src="{{ asset('images/' . $otherItem->img) }}" alt="{{ $otherItem->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                    <img src="{{ asset('images/blogs/' . $otherItem->img) }}" alt="{{ $otherItem->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                 </div>
                                 <div class="flex-1">
                                     <span class="text-[10px] font-bold text-[#7A0C16] uppercase tracking-wider mb-1 block">

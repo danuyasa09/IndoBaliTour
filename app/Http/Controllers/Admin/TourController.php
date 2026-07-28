@@ -40,7 +40,7 @@ class TourController extends Controller
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
-            $request->img->move(public_path('images'), $imageName);
+            $request->img->move(public_path('images/tours'), $imageName);
             $data['img'] = $imageName;
         }
 
@@ -76,7 +76,7 @@ class TourController extends Controller
         if ($request->hasFile('img')) {
             // Optional: delete old image if stored in public/images/tour
             $imageName = time() . '.' . $request->img->extension();  
-            $request->img->move(public_path('images'), $imageName);
+            $request->img->move(public_path('images/tours'), $imageName);
             $data['img'] = $imageName;
         } else {
             $data['img'] = $tour->img;

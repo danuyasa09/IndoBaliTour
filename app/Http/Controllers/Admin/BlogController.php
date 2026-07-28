@@ -38,7 +38,7 @@ class BlogController extends Controller
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
-            $request->img->move(public_path('images'), $imageName);
+            $request->img->move(public_path('images/blogs'), $imageName);
             $data['img'] = $imageName;
         }
 
@@ -70,7 +70,7 @@ class BlogController extends Controller
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
-            $request->img->move(public_path('images'), $imageName);
+            $request->img->move(public_path('images/blogs'), $imageName);
             $data['img'] = $imageName;
         } else {
             $data['img'] = $blog->img;

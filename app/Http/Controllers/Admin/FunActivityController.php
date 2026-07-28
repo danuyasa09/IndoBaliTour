@@ -38,7 +38,7 @@ class FunActivityController extends Controller
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
-            $request->img->move(public_path('images'), $imageName);
+            $request->img->move(public_path('images/fun_activities'), $imageName);
             $data['img'] = $imageName;
         }
 
@@ -71,7 +71,7 @@ class FunActivityController extends Controller
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
-            $request->img->move(public_path('images'), $imageName);
+            $request->img->move(public_path('images/fun_activities'), $imageName);
             $data['img'] = $imageName;
         } else {
             $data['img'] = $activity->img;

@@ -27,7 +27,7 @@
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-12 w-16">
                                     @if($car->img)
-                                        <img class="h-12 w-16 rounded-md object-cover" src="{{ asset('images/' . $car->img) }}" alt="">
+                                        <img class="h-12 w-16 rounded-md object-cover" src="{{ asset('images/cars/' . $car->img) }}" alt="">
                                     @else
                                         <div class="h-12 w-16 rounded-md bg-gray-200 flex items-center justify-center text-gray-500">
                                             <i class="fa-solid fa-car"></i>

@@ -36,7 +36,7 @@
 
             <div>
                 <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Excellent Review From</h4>
-                <img src="{{ asset('images/tripadvisor.png') }}" alt="Excellent Review From - Tripadvisor" class="h-20 sm:h-30 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <img src="{{ asset('images/icons/tripadvisor.png') }}" alt="Excellent Review From - Tripadvisor" class="h-20 sm:h-30 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
             </div>
 
             <div class="space-y-6">

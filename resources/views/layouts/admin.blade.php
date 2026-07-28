@@ -18,7 +18,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-center h-16 bg-gray-950 px-4">
                 <a href="{{ url('/') }}" class="flex items-center gap-2 text-xl font-bold">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-8 brightness-0 invert" />
+                    <img src="{{ asset('images/logos/logo.png') }}" alt="Logo" class="h-8 brightness-0 invert" />
                     <span>Admin Panel</span>
                 </a>
             </div>

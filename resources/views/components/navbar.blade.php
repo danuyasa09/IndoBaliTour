@@ -20,7 +20,7 @@
             
             <div class="flex-shrink-0 flex items-center">
                 <a href="{{ url('/') }}" class="flex items-center space-x-3 group">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-auto group-hover:scale-105 transition-all duration-500" :class="scrolled ? 'h-10' : 'h-12 brightness-0 invert drop-shadow-md'" />
+                    <img src="{{ asset('images/logos/logo.png') }}" alt="Logo" class="w-auto group-hover:scale-105 transition-all duration-500" :class="scrolled ? 'h-10' : 'h-12 brightness-0 invert drop-shadow-md'" />
                 </a>
             </div>
 

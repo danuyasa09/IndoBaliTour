@@ -43,7 +43,7 @@
                             @foreach($chunk as $tour)
                             <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
                                 <div class="relative h-48 overflow-hidden">
-                                    <img src="{{ asset('images/' . $tour->img) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=500&auto=format&fit=crop'">
+                                    <img src="{{ asset('images/tours/' . $tour->img) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=500&auto=format&fit=crop'">
                                 </div>
 
                                 <div class="p-5 flex-1 flex flex-col justify-between">

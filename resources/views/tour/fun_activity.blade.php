@@ -46,7 +46,7 @@
                                 @foreach($chunk as $activity)
                                 <a href="{{ route('fun_activity.show', $activity->id ?? $activity->slug) }}" class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group block" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
                                     <div class="relative overflow-hidden">
-                                        <img src="{{ asset('images/' . $activity->img) }}" alt="{{ $activity->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                        <img src="{{ asset('images/fun_activities/' . $activity->img) }}" alt="{{ $activity->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                                         <span class="absolute top-2 left-2 bg-[#7A0C16] text-white text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-wider">Activity</span>
                                     </div>
                                     

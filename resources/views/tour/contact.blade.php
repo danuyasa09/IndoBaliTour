@@ -15,14 +15,14 @@
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:title" content="Indo Bali Tour | Contact Us">
         <meta property="og:description" content="Contact Indo Bali Tour to plan your dream vacation in Bali. We are ready to help you with tour packages, hotel transfers, and customized itineraries.">
-        <meta property="og:image" content="{{ asset('images/logo.png') }}">
+        <meta property="og:image" content="{{ asset('images/logos/logo.png') }}">
         
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url()->current() }}">
         <meta property="twitter:title" content="Indo Bali Tour | Contact Us">
         <meta property="twitter:description" content="Contact Indo Bali Tour to plan your dream vacation in Bali. We are ready to help you with tour packages, hotel transfers, and customized itineraries.">
-        <meta property="twitter:image" content="{{ asset('images/logo.png') }}">
+        <meta property="twitter:image" content="{{ asset('images/logos/logo.png') }}">
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         

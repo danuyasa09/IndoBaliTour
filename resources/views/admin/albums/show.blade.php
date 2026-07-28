@@ -35,7 +35,7 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             @foreach($album->fotos as $foto)
                 <div class="relative group rounded-xl overflow-hidden border border-gray-200">
-                    <img src="{{ asset('images/' . $foto->img) }}" alt="Foto" class="w-full h-48 object-cover">
+                    <img src="{{ asset('images/albums/' . $foto->img) }}" alt="Foto" class="w-full h-48 object-cover">
                     
                     <!-- Overlay actions -->
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">

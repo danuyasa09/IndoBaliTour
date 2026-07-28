@@ -36,7 +36,7 @@ class AlbumController extends Controller
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
-            $request->img->move(public_path('images'), $imageName);
+            $request->img->move(public_path('images/albums'), $imageName);
             $data['img'] = $imageName;
         }
 
@@ -66,7 +66,7 @@ class AlbumController extends Controller
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
-            $request->img->move(public_path('images'), $imageName);
+            $request->img->move(public_path('images/albums'), $imageName);
             $data['img'] = $imageName;
         } else {
             $data['img'] = $album->img;
@@ -100,7 +100,7 @@ class AlbumController extends Controller
 
         if ($request->hasFile('img')) {
             $imageName = time() . '_' . uniqid() . '.' . $request->img->extension();  
-            $request->img->move(public_path('images'), $imageName);
+            $request->img->move(public_path('images/albums'), $imageName);
             
             Foto::create([
                 'id_album' => $album->id,

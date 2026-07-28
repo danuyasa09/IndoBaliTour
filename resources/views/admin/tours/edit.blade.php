@@ -65,7 +65,7 @@
                 <label for="img" class="block text-sm font-medium text-gray-700 mb-1">Foto / Cover Tour</label>
                 @if($tour->img)
                     <div class="mb-3">
-                        <img src="{{ asset('images/' . $tour->img) }}" alt="Cover Tour" class="h-32 rounded-lg object-cover">
+                        <img src="{{ asset('images/tours/' . $tour->img) }}" alt="Cover Tour" class="h-32 rounded-lg object-cover">
                     </div>
                 @endif
                 <input type="file" name="img" id="img" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-brand-red file:text-white hover:file:bg-red-700 transition-colors">

@@ -55,15 +55,15 @@
 
         <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             @forelse($albums as $album)
-                @if($album->img && file_exists(public_path('images/' . $album->img)))
+                @if($album->img && file_exists(public_path('images/albums/' . $album->img)))
                     <div class="overflow-hidden rounded-2xl shadow-sm break-inside-avoid">
-                        <img src="{{ asset('images/' . $album->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
+                        <img src="{{ asset('images/albums/' . $album->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
                     </div>
                 @endif
                 @foreach($album->fotos as $foto)
-                    @if($foto->img && file_exists(public_path('images/' . $foto->img)))
+                    @if($foto->img && file_exists(public_path('images/albums/' . $foto->img)))
                         <div class="overflow-hidden rounded-2xl shadow-sm break-inside-avoid">
-                            <img src="{{ asset('images/' . $foto->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
+                            <img src="{{ asset('images/albums/' . $foto->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
                         </div>
                     @endif
                 @endforeach

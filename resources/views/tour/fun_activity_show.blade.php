@@ -20,7 +20,7 @@
     <x-navbar />
     <x-floating_contactUs />
 
-    <div class="relative h-[400px] md:h-[500px] w-full bg-cover bg-center" style="background-image: url('{{ asset('images/' . $activity->img) }}');">
+    <div class="relative h-[400px] md:h-[500px] w-full bg-cover bg-center" style="background-image: url('{{ asset('images/fun_activities/' . $activity->img) }}');">
         <div class="absolute inset-0 bg-black/40 flex items-center pl-6 md:pl-24">
             <div class="max-w-4xl">
                 <span class="bg-[#7A0C16] text-white text-xs px-3 py-1 rounded font-semibold uppercase tracking-wider mb-4 inline-block" data-aos="fade-up">Fun Activity</span>

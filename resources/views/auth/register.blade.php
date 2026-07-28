@@ -11,7 +11,7 @@
     <div class="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden my-8">
         <div class="bg-brand-red py-6 text-center">
             <a href="{{ url('/') }}" class="inline-block">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-12 brightness-0 invert mx-auto" />
+                <img src="{{ asset('images/logos/logo.png') }}" alt="Logo" class="h-12 brightness-0 invert mx-auto" />
             </a>
             <h2 class="text-white text-xl font-bold mt-4">Create a New Account</h2>
             <p class="text-white/80 text-sm mt-1">Register to provide a testimonial</p>

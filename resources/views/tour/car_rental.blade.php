@@ -49,7 +49,7 @@
                             @foreach($chunk as $car)
                             <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow duration-300" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
                                 <div class="relative">
-                                    <img src="{{ asset('images/' . $car->img) }}" alt="{{ $car->title }}" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=400&auto=format&fit=crop'">
+                                    <img src="{{ asset('images/cars/' . $car->img) }}" alt="{{ $car->title }}" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=400&auto=format&fit=crop'">
                                     <span class="absolute top-2 left-2 bg-[#7A0C16] text-white text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-wider">Premium</span>
                                 </div>
                                 

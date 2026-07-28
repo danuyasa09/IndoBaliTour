@@ -16,14 +16,14 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Indo Bali Tour | Exploring Paradise Together">
     <meta property="og:description" content="Experience the best of Bali with Indo Bali Tour. We offer premium travel packages, airport transfers, and customized tours for an unforgettable holiday.">
-    <meta property="og:image" content="{{ asset('images/logo.png') }}">
+    <meta property="og:image" content="{{ asset('images/logos/logo.png') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="Indo Bali Tour | Exploring Paradise Together">
     <meta property="twitter:description" content="Experience the best of Bali with Indo Bali Tour. We offer premium travel packages, airport transfers, and customized tours for an unforgettable holiday.">
-    <meta property="twitter:image" content="{{ asset('images/logo.png') }}">
+    <meta property="twitter:image" content="{{ asset('images/logos/logo.png') }}">
     @fonts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->
@@ -310,9 +310,9 @@
 
                     <div class="flex items-center gap-6" data-aos="fade-up" data-aos-delay="100">
                         <a href="https://maps.app.goo.gl/ned2Arcj8KZ13WzD8" target="_blank" rel="noopener noreferrer" class="transition-transform duration-300 hover:scale-105">
-                            <img src="{{ asset('images/icon_google-review.png') }}" alt="Google Reviews" class="h-12 w-auto object-contain" />
+                            <img src="{{ asset('images/icons/icon_google-review.png') }}" alt="Google Reviews" class="h-12 w-auto object-contain" />
                         </a>
-                        <img src="{{ asset('images/icon_trip_advisor.png') }}" alt="TripAdvisor Reviews" class="h-12 w-auto object-contain" />
+                        <img src="{{ asset('images/icons/icon_trip_advisor.png') }}" alt="TripAdvisor Reviews" class="h-12 w-auto object-contain" />
                     </div>
                 </div>
                 <div class="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]" data-aos="fade-left">
@@ -453,7 +453,7 @@
                             <span>⭐️</span>
                             <span>4.8</span>
                         </div>
-                        <img src="{{ asset('images/' . $tour->img) }}" alt="{{ $tour->title }}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <img src="{{ asset('images/tours/' . $tour->img) }}" alt="{{ $tour->title }}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-3 md:p-6 flex flex-col flex-grow justify-between">
                         <div>
@@ -555,16 +555,16 @@
             @php
             $galleryImages = [];
             foreach($albums as $album) {
-            if($album->img && file_exists(public_path('images/' . $album->img))) {
+            if($album->img && file_exists(public_path('images/albums/' . $album->img))) {
             $galleryImages[] = [
-            'src' => asset('images/' . $album->img),
+            'src' => asset('images/albums/' . $album->img),
             'alt' => $album->title
             ];
             }
             foreach($album->fotos as $foto) {
-            if($foto->img && file_exists(public_path('images/' . $foto->img))) {
+            if($foto->img && file_exists(public_path('images/albums/' . $foto->img))) {
             $galleryImages[] = [
-            'src' => asset('images/' . $foto->img),
+            'src' => asset('images/albums/' . $foto->img),
             'alt' => $album->title
             ];
             }

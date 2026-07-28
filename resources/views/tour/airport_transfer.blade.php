@@ -15,14 +15,14 @@
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:title" content="Indo Bali Tour | Airport Transfer">
         <meta property="og:description" content="Start your journey in Bali comfortably. On-time airport transfer service with clean fleet and professional drivers.">
-        <meta property="og:image" content="{{ asset('images/logo.png') }}">
+        <meta property="og:image" content="{{ asset('images/logos/logo.png') }}">
         
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url()->current() }}">
         <meta property="twitter:title" content="Indo Bali Tour | Airport Transfer">
         <meta property="twitter:description" content="Start your journey in Bali comfortably. On-time airport transfer service with clean fleet and professional drivers.">
-        <meta property="twitter:image" content="{{ asset('images/logo.png') }}">
+        <meta property="twitter:image" content="{{ asset('images/logos/logo.png') }}">
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->

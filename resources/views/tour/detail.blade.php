@@ -20,7 +20,7 @@
     <x-navbar />
     <x-floating_contactUs />
 
-    <div class="relative h-[400px] md:h-[500px] w-full bg-cover bg-center" style="background-image: url('{{ asset('images/' . $tour->img) }}');">
+    <div class="relative h-[400px] md:h-[500px] w-full bg-cover bg-center" style="background-image: url('{{ asset('images/tours/' . $tour->img) }}');">
         <div class="absolute inset-0 bg-black/40 flex items-center pl-6 md:pl-24">
             <div class="max-w-4xl">
                 <h1 class="text-white text-3xl md:text-5xl font-bold tracking-tight leading-tight" data-aos="fade-up">
@@ -128,7 +128,7 @@
                 @foreach($related_tours as $rt)
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative">
-                        <img src="{{ asset('images/' . $rt->img) }}" class="w-full h-44 object-cover" alt="{{ $rt->title }}" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=400&auto=format&fit=crop'">
+                        <img src="{{ asset('images/tours/' . $rt->img) }}" class="w-full h-44 object-cover" alt="{{ $rt->title }}" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=400&auto=format&fit=crop'">
                     </div>
                     <div class="p-5 flex flex-col justify-between h-full">
                         <div>
