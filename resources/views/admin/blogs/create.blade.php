@@ -38,6 +38,12 @@
                 @error('status')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
+            <div>
+                <label for="hit" class="block text-sm font-medium text-gray-700 mb-1">Total Tayangan (Hit)</label>
+                <input type="number" name="hit" id="hit" value="{{ old('hit', 0) }}" min="0" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>
+                @error('hit')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
             <!-- Caption -->
             <div class="md:col-span-2">
                 <label for="caption" class="block text-sm font-medium text-gray-700 mb-1">Keterangan / Caption Singkat</label>
@@ -45,10 +51,29 @@
                 @error('caption')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
+            <!-- Tags, Keyword, Category -->
+            <div>
+                <label for="tags" class="block text-sm font-medium text-gray-700 mb-1">Tags (pisahkan dengan koma)</label>
+                <input type="text" name="tags" id="tags" value="{{ old('tags') }}" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" placeholder="wisata, bali, pantai">
+                @error('tags')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
+            <div>
+                <label for="keyword" class="block text-sm font-medium text-gray-700 mb-1">Keyword SEO (pisahkan dengan koma)</label>
+                <input type="text" name="keyword" id="keyword" value="{{ old('keyword') }}" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" placeholder="wisata bali murah">
+                @error('keyword')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
+            <div class="md:col-span-2">
+                <label for="id_category" class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
+                <input type="text" name="id_category" id="id_category" value="{{ old('id_category') }}" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" placeholder="Masukkan ID atau nama kategori">
+                @error('id_category')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
             <!-- Content -->
             <div class="md:col-span-2">
                 <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Konten Lengkap (HTML allowed)</label>
-                <textarea name="content" id="content" rows="10" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content') }}</textarea>
+                <textarea name="content" id="content" rows="10" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content') }}</textarea>
                 @error('content')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
             

@@ -39,6 +39,12 @@
                 @error('status')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
+            <div>
+                <label for="hit" class="block text-sm font-medium text-gray-700 mb-1">Total Tayangan (Hit)</label>
+                <input type="number" name="hit" id="hit" value="{{ old('hit', $album->hit ?? 0) }}" min="0" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>
+                @error('hit')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
             <!-- Photo -->
             <div class="md:col-span-2">
                 <label for="img" class="block text-sm font-medium text-gray-700 mb-1">Cover Album</label>

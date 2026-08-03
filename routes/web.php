@@ -23,7 +23,7 @@ Route::middleware('guest')->group(function () {
 });
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::post('/testimony', [TestimonyController::class, 'store'])->name('testimony.store')->middleware('auth');
+Route::post('/testimony', [TestimonyController::class, 'store'])->name('testimony.store');
 
 // Custom Admin Panel Routes
 use App\Http\Controllers\Admin\DashboardController;
@@ -82,11 +82,8 @@ Route::get('/tour/airport_transfer',    function () {
 Route::get('/tour/experience', function () {
     $testimonies = \App\Models\Testimony::where('is_approved', true)->latest()->get();
     $albums = \App\Models\Album::with('fotos')->where('status', 'Show')->orderBy('date', 'desc')->get();
-    $videos = \App\Models\Video::where('status', 'Show')->where(function($q) {
-        $q->where('type', 'Regular')->orWhereNull('type');
-    })->orderBy('date', 'desc')->get();
-    $short_videos = \App\Models\Video::where('status', 'Show')->where('type', 'Short')->orderBy('date', 'desc')->get();
-    return view('tour.experience', compact('testimonies', 'albums', 'videos', 'short_videos'));
+    $videos = \App\Models\Video::where('status', 'Show')->orderBy('date', 'desc')->get();
+    return view('tour.experience', compact('testimonies', 'albums', 'videos'));
 })->name('experience');
 
 Route::get('/tour/detail/{slug}', function ($slug) {

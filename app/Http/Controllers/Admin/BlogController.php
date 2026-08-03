@@ -30,11 +30,14 @@ class BlogController extends Controller
             'img' => 'nullable|image|max:2048',
             'date' => 'required|date',
             'caption' => 'nullable|string|max:255',
+            'tags' => 'nullable|string|max:255',
+            'keyword' => 'nullable|string|max:255',
+            'id_category' => 'nullable|string|max:255',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
-        $data['hit'] = 0;
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
@@ -63,6 +66,10 @@ class BlogController extends Controller
             'img' => 'nullable|image|max:2048',
             'date' => 'required|date',
             'caption' => 'nullable|string|max:255',
+            'tags' => 'nullable|string|max:255',
+            'keyword' => 'nullable|string|max:255',
+            'id_category' => 'nullable|string|max:255',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $data = $request->all();

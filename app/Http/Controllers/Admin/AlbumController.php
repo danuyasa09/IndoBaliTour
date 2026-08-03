@@ -28,11 +28,11 @@ class AlbumController extends Controller
             'status' => 'required|string',
             'date' => 'required|date',
             'img' => 'nullable|image|max:2048',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
-        $data['hit'] = 0;
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
@@ -59,6 +59,7 @@ class AlbumController extends Controller
             'status' => 'required|string',
             'date' => 'required|date',
             'img' => 'nullable|image|max:2048',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $data = $request->all();

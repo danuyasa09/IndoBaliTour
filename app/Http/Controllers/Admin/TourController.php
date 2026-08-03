@@ -32,11 +32,11 @@ class TourController extends Controller
             'harga_detail' => 'nullable|string',
             'pricelist' => 'nullable|string',
             'short' => 'nullable|string',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
-        $data['hit'] = 0; // default value
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
@@ -68,6 +68,7 @@ class TourController extends Controller
             'harga_detail' => 'nullable|string',
             'pricelist' => 'nullable|string',
             'short' => 'nullable|string',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $data = $request->all();

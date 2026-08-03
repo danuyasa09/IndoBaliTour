@@ -38,13 +38,12 @@
                 @error('status')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
+
+
             <div>
-                <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Tipe Video</label>
-                <select name="type" id="type" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>
-                    <option value="Regular" {{ old('type') == 'Regular' ? 'selected' : '' }}>Regular Video (Horizontal)</option>
-                    <option value="Short" {{ old('type') == 'Short' ? 'selected' : '' }}>Short Video (Vertical 9:16)</option>
-                </select>
-                @error('type')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                <label for="hit" class="block text-sm font-medium text-gray-700 mb-1">Total Tayangan (Hit)</label>
+                <input type="number" name="hit" id="hit" value="{{ old('hit', 0) }}" min="0" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>
+                @error('hit')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
             <!-- Source -->
@@ -58,7 +57,7 @@
             <!-- Content -->
             <div class="md:col-span-2">
                 <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi / Konten</label>
-                <textarea name="content" id="content" rows="4" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content') }}</textarea>
+                <textarea name="content" id="content" rows="4" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content') }}</textarea>
                 @error('content')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
         </div>

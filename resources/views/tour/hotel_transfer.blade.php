@@ -325,6 +325,5 @@
                 window.open(waUrl, '_blank');
             }
         </script>
-
     </body>
 </html>

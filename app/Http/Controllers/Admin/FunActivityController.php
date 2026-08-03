@@ -30,11 +30,11 @@ class FunActivityController extends Controller
             'price' => 'nullable|string',
             'pricelist' => 'nullable|string',
             'description' => 'nullable|string',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
-        $data['hit'] = 0;
 
         if ($request->hasFile('img')) {
             $imageName = time() . '.' . $request->img->extension();  
@@ -64,6 +64,7 @@ class FunActivityController extends Controller
             'price' => 'nullable|string',
             'pricelist' => 'nullable|string',
             'description' => 'nullable|string',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $data = $request->all();

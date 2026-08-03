@@ -37,7 +37,7 @@
             <!-- Content -->
             <div class="md:col-span-2">
                 <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi / Detail (HTML allowed)</label>
-                <textarea name="content" id="content" rows="6" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content') }}</textarea>
+                <textarea name="content" id="content" rows="6" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content') }}</textarea>
                 @error('content')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 

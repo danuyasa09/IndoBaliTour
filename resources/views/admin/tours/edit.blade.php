@@ -26,7 +26,7 @@
             <!-- Short Description -->
             <div class="md:col-span-2">
                 <label for="short" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Singkat</label>
-                <textarea name="short" id="short" rows="2" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red">{{ old('short', $tour->short) }}</textarea>
+                <textarea name="short" id="short" rows="2" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red">{{ old('short', $tour->short) }}</textarea>
                 @error('short')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
@@ -38,6 +38,18 @@
             </div>
 
             <div>
+                <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
+                <input type="date" name="date" id="date" value="{{ old('date', $tour->date) }}" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red">
+                @error('date')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
+            <div>
+                <label for="harga_detail" class="block text-sm font-medium text-gray-700 mb-1">Detail Harga Singkat (Teks)</label>
+                <input type="text" name="harga_detail" id="harga_detail" value="{{ old('harga_detail', $tour->harga_detail) }}" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" placeholder="e.g. / pax">
+                @error('harga_detail')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
+            <div>
                 <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
                 <select name="status" id="status" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>
                     <option value="Show" {{ old('status', $tour->status) == 'Show' ? 'selected' : '' }}>Tampilkan (Show)</option>
@@ -46,17 +58,23 @@
                 @error('status')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
+            <div>
+                <label for="hit" class="block text-sm font-medium text-gray-700 mb-1">Total Tayangan (Hit)</label>
+                <input type="number" name="hit" id="hit" value="{{ old('hit', $tour->hit ?? 0) }}" min="0" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>
+                @error('hit')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
             <!-- Content -->
             <div class="md:col-span-2">
                 <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Konten Lengkap / Itinerary (HTML allowed)</label>
-                <textarea name="content" id="content" rows="6" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content', $tour->content) }}</textarea>
+                <textarea name="content" id="content" rows="6" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content', $tour->content) }}</textarea>
                 @error('content')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
             
             <!-- Pricelist -->
             <div class="md:col-span-2">
                 <label for="pricelist" class="block text-sm font-medium text-gray-700 mb-1">Detail Pricelist (HTML allowed)</label>
-                <textarea name="pricelist" id="pricelist" rows="4" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red">{{ old('pricelist', $tour->pricelist) }}</textarea>
+                <textarea name="pricelist" id="pricelist" rows="4" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red">{{ old('pricelist', $tour->pricelist) }}</textarea>
                 @error('pricelist')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 

@@ -25,7 +25,7 @@
             <!-- Short Description -->
             <div class="md:col-span-2">
                 <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Singkat</label>
-                <textarea name="description" id="description" rows="2" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red">{{ old('description') }}</textarea>
+                <textarea name="description" id="description" rows="2" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red">{{ old('description') }}</textarea>
                 @error('description')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
@@ -45,17 +45,23 @@
                 @error('status')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 
+            <div>
+                <label for="hit" class="block text-sm font-medium text-gray-700 mb-1">Total Tayangan (Hit)</label>
+                <input type="number" name="hit" id="hit" value="{{ old('hit', 0) }}" min="0" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>
+                @error('hit')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+            </div>
+
             <!-- Content -->
             <div class="md:col-span-2">
                 <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Konten Lengkap (HTML allowed)</label>
-                <textarea name="content" id="content" rows="6" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content') }}</textarea>
+                <textarea name="content" id="content" rows="6" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content') }}</textarea>
                 @error('content')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
             
             <!-- Pricelist -->
             <div class="md:col-span-2">
                 <label for="pricelist" class="block text-sm font-medium text-gray-700 mb-1">Detail Pricelist Tambahan (HTML allowed)</label>
-                <textarea name="pricelist" id="pricelist" rows="4" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red">{{ old('pricelist') }}</textarea>
+                <textarea name="pricelist" id="pricelist" rows="4" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red">{{ old('pricelist') }}</textarea>
                 @error('pricelist')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
 

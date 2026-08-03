@@ -23,15 +23,14 @@ class VideoController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'type' => 'required|string|in:Regular,Short',
             'content' => 'required|string',
             'source' => 'required|string',
             'status' => 'required|string',
             'date' => 'required|date',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $data = $request->all();
-        $data['hit'] = 0;
 
         Video::create($data);
 
@@ -49,11 +48,11 @@ class VideoController extends Controller
         $video = Video::findOrFail($id);
         $request->validate([
             'title' => 'required|string|max:255',
-            'type' => 'required|string|in:Regular,Short',
             'content' => 'required|string',
             'source' => 'required|string',
             'status' => 'required|string',
             'date' => 'required|date',
+            'hit' => 'required|integer|min:0',
         ]);
 
         $video->update($request->all());
