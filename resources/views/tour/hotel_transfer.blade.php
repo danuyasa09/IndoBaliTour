@@ -56,7 +56,7 @@
     />
 
     <div id="transfer" class="max-w-6xl mx-auto px-4 -mt-10 md:-mt-14 relative z-30 pb-20">
-        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200" x-data="{ activePage: 0, itemsPerPage: 10, totalItems: {{ $transfers->count() }}, get totalPages() { return Math.ceil(this.totalItems / this.itemsPerPage) } }">
             
             <div class="overflow-x-auto hidden md:block">
                 <table class="w-full text-left border-collapse">
@@ -70,8 +70,8 @@
                     </thead>
                     
                     <tbody class="divide-y divide-gray-100 text-sm">
-                        @forelse($transfers as $transfer)
-                        <tr class="hover:bg-gray-50/50 transition-colors">
+                        @forelse($transfers as $index => $transfer)
+                        <tr class="hover:bg-gray-50/50 transition-colors" x-show="Math.floor({{ $index }} / itemsPerPage) === activePage">
                             <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">{{ $transfer->start }}</td>
                             <td class="py-5 px-6 font-bold text-gray-900 text-base">{{ $transfer->destination }}</td>
                             <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">${{ number_format($transfer->price, 0) }}</td>
@@ -90,8 +90,8 @@
 
             <!-- Mobile Card View -->
             <div class="grid grid-cols-1 gap-4 p-4 bg-gray-50 md:hidden">
-                @forelse($transfers as $transfer)
-                <div class="bg-white border border-gray-100 rounded-xl shadow-sm p-5 flex flex-col gap-3 relative">
+                @forelse($transfers as $index => $transfer)
+                <div class="bg-white border border-gray-100 rounded-xl shadow-sm p-5 flex flex-col gap-3 relative" x-show="Math.floor({{ $index }} / itemsPerPage) === activePage">
                     <div class="flex justify-between items-start gap-4">
                         <div class="flex-1">
                             <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">From</p>
@@ -130,6 +130,20 @@
                     <span class="bg-white border border-gray-200 px-2.5 py-1 rounded-full">Luxury SUV +$15</span>
                     <span class="bg-white border border-gray-200 px-2.5 py-1 rounded-full">Mini Van +$25</span>
                 </div>
+            </div>
+
+            <div class="px-6 py-4 border-t border-gray-100 bg-white flex justify-center items-center gap-2">
+                <button @click="activePage = Math.max(0, activePage - 1)" :disabled="activePage === 0" class="w-8 h-8 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                </button>
+                
+                <template x-for="i in Math.max(1, totalPages)" :key="i">
+                    <button @click="activePage = i - 1" :class="activePage === (i - 1) ? 'bg-[#7A0C16] text-white border-[#7A0C16]' : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'" class="w-8 h-8 rounded-full flex items-center justify-center border text-xs font-medium transition-colors" x-text="i"></button>
+                </template>
+
+                <button @click="activePage = Math.min(Math.max(0, totalPages - 1), activePage + 1)" :disabled="activePage >= Math.max(0, totalPages - 1)" class="w-8 h-8 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
             </div>
 
         </div>

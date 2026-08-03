@@ -312,7 +312,9 @@
                         <a href="https://maps.app.goo.gl/ned2Arcj8KZ13WzD8" target="_blank" rel="noopener noreferrer" class="transition-transform duration-300 hover:scale-105">
                             <img src="{{ asset('images/icons/icon_google-review.png') }}" alt="Google Reviews" class="h-12 w-auto object-contain" />
                         </a>
-                        <img src="{{ asset('images/icons/icon_trip_advisor.png') }}" alt="TripAdvisor Reviews" class="h-12 w-auto object-contain" />
+                        <a href="https://www.tripadvisor.co.id/Attraction_Review-g12997472-d28485128-Reviews-Nanta_Bali_Tour-South_Kuta_Badung_Regency_Bali.html">
+                            <img src="{{ asset('images/icons/icon_trip_advisor.png') }}" alt="TripAdvisor Reviews" class="h-12 w-auto object-contain" />
+                        </a>
                     </div>
                 </div>
                 <div class="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]" data-aos="fade-left">

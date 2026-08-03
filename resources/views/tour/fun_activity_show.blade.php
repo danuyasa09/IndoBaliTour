@@ -3,7 +3,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>{{ $activity->title }} | Indo Bali Tour</title>
+    
+    <!-- Google / Bing / Yandex SEO Meta Tags -->
+    <meta name="description" content="{{ $activity->meta_description ?? ($activity->description ? strip_tags(substr($activity->description, 0, 160)) : 'Booking tour & activity in Bali with best price.') }}">
+    <meta name="keywords" content="{{ $activity->meta_keywords ?? ('Bali tour, ' . $activity->title . ', adventure, ' . str_replace(' ', ', ', $activity->title)) }}">
+    <meta name="author" content="Indo Bali Tour">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $activity->title }} | Indo Bali Tour">
+    <meta property="og:description" content="{{ $activity->meta_description ?? ($activity->description ? strip_tags(substr($activity->description, 0, 160)) : 'Booking tour & activity in Bali with best price.') }}">
+    <meta property="og:image" content="{{ $activity->img ? asset('images/fun_activities/' . $activity->img) : asset('images/logo/logo-google.png') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="{{ $activity->title }} | Indo Bali Tour">
+    <meta property="twitter:description" content="{{ $activity->meta_description ?? ($activity->description ? strip_tags(substr($activity->description, 0, 160)) : 'Booking tour & activity in Bali with best price.') }}">
+    <meta property="twitter:image" content="{{ $activity->img ? asset('images/fun_activities/' . $activity->img) : asset('images/logo/logo-google.png') }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

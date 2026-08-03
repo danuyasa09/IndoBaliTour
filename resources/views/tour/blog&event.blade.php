@@ -33,7 +33,7 @@
                 @foreach ($blogs as $item)
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative overflow-hidden h-48">
-                        <img src="{{ asset('images/blogs/' . $item->img) }}" alt="{{ $item->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <img src="{{ $item->img ? asset('images/blogs/' . $item->img) : 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=600&auto=format&fit=crop' }}" alt="{{ $item->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                     </div>
                     
                     <div class="p-6 flex-1 flex flex-col justify-between">

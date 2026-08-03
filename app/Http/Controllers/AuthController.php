@@ -51,10 +51,7 @@ class AuthController extends Controller
             'level' => 'Member', // Default level for public registrants
         ]);
 
-        Auth::login($user);
-        $request->session()->regenerate();
-
-        return redirect()->route('tour.index');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil, silakan login dengan akun Anda.');
     }
 
     public function logout(Request $request)
