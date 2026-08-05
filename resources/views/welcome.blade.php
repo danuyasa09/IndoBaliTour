@@ -708,15 +708,18 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.testimonial-swiper .swiper-slide');
+            const slideCount = slides.length;
+            
             const swiper = new Swiper('.testimonial-swiper', {
                 slidesPerView: 'auto',
                 spaceBetween: 32,
-                loop: true,
-                grabCursor: true,
-                autoplay: {
+                loop: slideCount > 3, // Hanya loop jika lebih dari 3 testimoni
+                grabCursor: slideCount > 1,
+                autoplay: slideCount > 1 ? {
                     delay: 3000,
                     disableOnInteraction: false,
-                },
+                } : false,
                 speed: 800,
             });
         });
