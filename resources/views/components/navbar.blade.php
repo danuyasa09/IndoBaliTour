@@ -98,11 +98,7 @@
             </nav>
 
             <div class="flex items-center space-x-4">
-                @guest
-                    <a href="{{ route('login') }}" class="px-4 py-1.5 text-sm font-medium rounded-full bg-brand-red text-white hover:bg-red-700 transition-colors hidden md:block">
-                        Login
-                    </a>
-                @else
+                @auth
                     <div class="relative hidden md:block" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                         <button class="flex items-center space-x-2 font-medium text-sm focus:outline-none py-2">
                             <span class="bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shadow-sm">{{ substr(Auth::user()->nama, 0, 1) }}</span>
@@ -128,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                @endguest
+                @endauth
 
                 <div class="relative flex items-center" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button :class="(scrolled || mobileMenuOpen) ? 'border-gray-200 text-gray-700 bg-white hover:bg-gray-50' : 'border-white/30 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm'" class="flex items-center space-x-2 pl-3 pr-3 py-1.5 border rounded-full text-sm font-medium focus:outline-none transition-all duration-300 cursor-pointer">
@@ -239,9 +235,7 @@
         <a href="{{ route('contact') }}" class="block text-gray-700 hover:text-brand-red font-medium text-base py-1 no-underline">{{ __('Contact Us') }}</a>
 
         <div class="border-t border-gray-100 pt-4 mt-4">
-            @guest
-                <a href="{{ route('login') }}" class="block text-center w-full bg-brand-red text-white font-medium text-sm py-2 rounded-lg no-underline hover:bg-red-700">Login / Register</a>
-            @else
+            @auth
                 <div class="px-3 py-3 mb-2 bg-gray-50 rounded-lg flex items-center gap-3">
                     <div class="bg-brand-red text-white w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-sm flex-shrink-0 text-lg">
                         {{ substr(Auth::user()->nama, 0, 1) }}
@@ -260,7 +254,7 @@
                         <button type="submit" class="text-sm text-red-500 hover:text-red-700 font-medium">Logout</button>
                     </form>
                 </div>
-            @endguest
+            @endauth
         </div>
 
         <div class="border-t border-gray-100 pt-4 mt-4 pb-6" x-data="{ langOpen: false }">

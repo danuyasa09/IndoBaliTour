@@ -31,28 +31,7 @@ class AuthController extends Controller
         ])->onlyInput('username');
     }
 
-    public function register()
-    {
-        return view('auth.register');
-    }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nama' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
-
-        $user = User::create([
-            'nama' => $validated['nama'],
-            'username' => $validated['username'],
-            'password' => Hash::make($validated['password']),
-            'level' => 'Member', // Default level for public registrants
-        ]);
-
-        return redirect()->route('login')->with('success', 'Registrasi berhasil, silakan login dengan akun Anda.');
-    }
 
     public function logout(Request $request)
     {

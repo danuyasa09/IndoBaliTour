@@ -13,7 +13,7 @@
             <a href="{{ url('/') }}" class="inline-block">
                 <img src="{{ asset('images/logos/logo.png') }}" alt="Logo" class="h-12 brightness-0 invert mx-auto" />
             </a>
-            <h2 class="text-white text-xl font-bold mt-4">Welcome Back!</h2>
+            <h2 class="text-white text-xl font-bold mt-4">Admin Login</h2>
             <p class="text-white/80 text-sm mt-1">Please log in to continue</p>
         </div>
 
@@ -63,10 +63,7 @@
                 </button>
             </form>
 
-            <div class="mt-6 text-center text-sm text-gray-500">
-                Don't have an account? 
-                <a href="{{ route('register') }}" class="text-brand-red hover:text-red-700 font-semibold transition-colors">Register now</a>
-            </div>
+
             
             <div class="mt-4 text-center">
                 <a href="{{ url('/') }}" class="text-sm text-gray-400 hover:text-gray-600 transition-colors">
