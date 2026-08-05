@@ -114,9 +114,7 @@
                                     <p class="text-sm font-medium text-gray-900 truncate">{{ Auth::user()->nama }}</p>
                                     <p class="text-xs text-brand-red truncate">{{ Auth::user()->level }}</p>
                                 </div>
-                    @if(strtolower(Auth::user()->level) === 'admin' || strtolower(Auth::user()->level) === 'super admin')
-                                    <a href="{{ url('/admin') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-red">Admin Panel</a>
-                                @endif
+                                <a href="{{ url('/admin') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-red">Admin Panel</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600">Logout</button>
@@ -246,9 +244,7 @@
                     </div>
                 </div>
                 <div class="px-2">
-                    @if(strtolower(Auth::user()->level) === 'admin' || strtolower(Auth::user()->level) === 'super admin')
-                        <a href="{{ url('/admin') }}" class="block text-sm text-brand-red hover:text-red-700 font-medium no-underline mb-2">Admin Panel</a>
-                    @endif
+                    <a href="{{ url('/admin') }}" class="block text-sm text-brand-red hover:text-red-700 font-medium no-underline mb-2">Admin Panel</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="text-sm text-red-500 hover:text-red-700 font-medium">Logout</button>

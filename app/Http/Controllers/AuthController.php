@@ -22,19 +22,6 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            
-            // Periksa apakah user memiliki role admin/super admin
-            if (strtolower($user->level) !== 'admin' && strtolower($user->level) !== 'super admin') {
-                Auth::logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-                
-                return back()->withErrors([
-                    'username' => 'Akses ditolak. Hanya Admin yang dapat login.',
-                ])->onlyInput('username');
-            }
-
             $request->session()->regenerate();
             return redirect()->intended(url('/admin'));
         }
