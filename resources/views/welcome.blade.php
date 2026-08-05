@@ -439,7 +439,7 @@
                         Favorite destinations for global travelers that are a must-visit when holidaying in Bali.
                     </p>
                 </div>
-                <a href="#" class="mt-6 sm:mt-0 px-6 py-3 border border-gray-300 text-gray-700 hover:text-white hover:bg-brand-red hover:border-brand-red rounded-lg font-semibold text-sm transition-all duration-300 flex-shrink-0">
+                <a href="{{ route('package_tour') }}" class="mt-6 sm:mt-0 px-6 py-3 border border-gray-300 text-gray-700 hover:text-white hover:bg-brand-red hover:border-brand-red rounded-lg font-semibold text-sm transition-all duration-300 flex-shrink-0">
                     View All Tours
                 </a>
             </div>
