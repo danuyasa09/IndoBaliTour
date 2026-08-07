@@ -471,7 +471,7 @@
                         <div class="flex flex-col md:flex-row md:items-center justify-between border-t border-gray-100 pt-3 md:pt-4 mt-2 gap-2 md:gap-0">
                             <div>
                                 <span class="text-[10px] md:text-xs text-gray-400 block uppercase tracking-wider">Start from</span>
-                                <span class="text-sm md:text-lg font-extrabold text-brand-red">Rp {{ number_format((float)$tour->harga, 0, ',', '.') }}</span>
+                                <span class="text-sm md:text-lg font-extrabold text-brand-red"><span x-data x-html="$store.currency.format({{ $tour->harga }})">$ {{ number_format((float)$tour->harga, 2) }}</span></span>
                             </div>
                             <a href="{{ route('detail', $tour->slug) }}" class="px-3 py-1.5 md:px-4 md:py-2 bg-gray-100 hover:bg-brand-red text-gray-800 hover:text-white rounded-lg text-[10px] md:text-sm font-semibold transition-colors duration-200 text-center w-full md:w-auto mt-2 md:mt-0">
                                 Detail

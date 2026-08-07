@@ -7,6 +7,9 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
 
 /**
  * Class User
@@ -18,7 +21,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @package App\Models
  */
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasName
 {
 	protected $table = 'users';
 	public $incrementing = true;
@@ -39,5 +42,15 @@ class User extends Authenticatable
     public function getAuthIdentifierName()
     {
         return 'username';
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->level === 'admin' || $this->level === 'superadmin';
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->nama ?? $this->username;
     }
 }

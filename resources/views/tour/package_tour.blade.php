@@ -67,7 +67,7 @@
                                             <span class="block text-[9px] text-gray-400 uppercase font-bold tracking-wider">Start From</span>
                                             <span class="text-sm font-bold text-[#7A0C16]">
                                                 @if(is_numeric($tour->harga))
-                                                    RP {{ number_format($tour->harga, 0, ',', '.') }}
+                                                    <span x-data x-html="$store.currency.format({{ $tour->harga }})">$ {{ number_format($tour->harga, 2) }}</span>
                                                 @else
                                                     {{ $tour->harga ?? 'Contact Us' }}
                                                 @endif

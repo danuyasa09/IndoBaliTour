@@ -60,7 +60,7 @@
                                         
                                         <div>
                                             <div class="text-[#7A0C16] font-bold text-lg mb-4">
-                                                Rp {{ number_format((float)$activity->price, 0, ',', '.') }} <span class="text-gray-400 text-xs font-normal">/pax</span>
+                                                <span x-data x-html="$store.currency.format({{ $activity->price }})">$ {{ number_format((float)$activity->price, 2) }}</span> <span class="text-gray-400 text-xs font-normal">/pax</span>
                                             </div>
                                             <span class="w-full bg-[#7A0C16] hover:bg-[#5a0810] text-white py-2 px-4 rounded text-sm font-medium transition-colors duration-200 inline-block text-center">
                                                 View Details

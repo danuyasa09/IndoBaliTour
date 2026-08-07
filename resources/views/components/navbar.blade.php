@@ -124,6 +124,34 @@
                     </div>
                 @endauth
 
+                <!-- Currency Switcher -->
+                <div class="relative flex items-center" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button :class="(scrolled || mobileMenuOpen) ? 'border-gray-200 text-gray-700 bg-white hover:bg-gray-50' : 'border-white/30 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm'" class="flex items-center space-x-2 pl-3 pr-3 py-1.5 border rounded-full text-sm font-medium focus:outline-none transition-all duration-300 cursor-pointer">
+                        <span x-text="$store.currency.selected" class="font-bold">USD</span>
+                        <svg class="h-3 w-3 transition-transform duration-300" :class="(scrolled || mobileMenuOpen) ? 'text-gray-500' : 'text-white/70', { 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div x-show="open" 
+                         x-transition:enter="transition ease-out duration-150" 
+                         x-transition:enter-start="opacity-0 translate-y-1" 
+                         x-transition:enter-end="opacity-100 translate-y-0" 
+                         x-transition:leave="transition ease-in duration-100" 
+                         x-transition:leave-start="opacity-100 translate-y-0" 
+                         x-transition:leave-end="opacity-0 translate-y-1" 
+                         class="absolute top-full right-0 mt-2 w-32 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] bg-white ring-1 ring-black/5 z-50 overflow-hidden text-gray-900 border border-gray-100" 
+                         style="display: none;">
+                        <div class="py-2">
+                            <template x-for="(symbol, code) in $store.currency.symbols" :key="code">
+                                <button @click="$store.currency.set(code)" class="w-full text-left px-4 py-2 text-sm hover:bg-red-50 hover:text-brand-red font-medium transition-colors flex justify-between">
+                                    <span x-text="code"></span>
+                                    <span x-text="symbol" class="text-gray-400 text-xs"></span>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="relative flex items-center" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button :class="(scrolled || mobileMenuOpen) ? 'border-gray-200 text-gray-700 bg-white hover:bg-gray-50' : 'border-white/30 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm'" class="flex items-center space-x-2 pl-3 pr-3 py-1.5 border rounded-full text-sm font-medium focus:outline-none transition-all duration-300 cursor-pointer">
                         <svg class="h-4 w-4" :class="(scrolled || mobileMenuOpen) ? 'text-gray-500' : 'text-white/80'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -439,3 +467,45 @@
     }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+
+@php
+    $currencyRates = Cache::remember('currency_rates', 86400, function() {
+        try {
+            $json = @file_get_contents('https://open.er-api.com/v6/latest/USD');
+            if ($json) {
+                $data = json_decode($json, true);
+                if (isset($data['rates'])) {
+                    return $data['rates'];
+                }
+            }
+        } catch (\Exception $e) {}
+        return ['USD' => 1, 'IDR' => 15873, 'AUD' => 1.52, 'EUR' => 0.92, 'SGD' => 1.34, 'MYR' => 4.73];
+    });
+@endphp
+<script>
+    document.addEventListener('alpine:init', () => {
+        const rates = {!! json_encode($currencyRates) !!};
+        
+        Alpine.store('currency', {
+            selected: localStorage.getItem('selected_currency') || 'USD',
+            symbols: { 'USD': '$', 'IDR': 'Rp', 'AUD': 'A$', 'EUR': '€', 'SGD': 'S$', 'MYR': 'RM' },
+            set(curr) {
+                this.selected = curr;
+                localStorage.setItem('selected_currency', curr);
+            },
+            format(amountInUsd) {
+                if (this.selected === 'USD') {
+                    return '$ ' + amountInUsd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+                const rate = rates[this.selected] || rates['IDR'];
+                const converted = amountInUsd * rate;
+                
+                // For IDR, we don't want decimal points
+                if (this.selected === 'IDR') {
+                    return 'Rp ' + Math.round(converted).toLocaleString('id-ID');
+                }
+                return this.symbols[this.selected] + ' ' + converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        });
+    });
+</script>

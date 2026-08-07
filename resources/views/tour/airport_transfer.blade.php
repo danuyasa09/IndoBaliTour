@@ -74,7 +74,7 @@
                         <tr class="hover:bg-gray-50/50 transition-colors" x-show="Math.floor({{ $index }} / itemsPerPage) === activePage">
                             <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">{{ $airport->start }}</td>
                             <td class="py-5 px-6 font-bold text-gray-900 text-base">{{ $airport->destination }}</td>
-                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]">Rp {{ number_format((float)$airport->price, 0, ',', '.') }}</td>
+                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]"><span x-data x-html="$store.currency.format({{ $airport->price }})">$ {{ number_format((float)$airport->price, 2) }}</span></td>
                             <td class="py-5 px-6 md:px-10 text-center">
                                 <a href="#" @click.prevent="selectedStart = '{{ $airport->start }}'; selectedDest = '{{ $airport->destination }}'; isModalOpen = true" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
                             </td>
@@ -99,7 +99,7 @@
                         </div>
                         <div class="text-right shrink-0">
                             <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Price</p>
-                            <p class="font-bold text-lg text-[#9B1C26]">Rp {{ number_format((float)$airport->price, 0, ',', '.') }}</p>
+                            <p class="font-bold text-lg text-[#9B1C26]"><span x-data x-html="$store.currency.format({{ $airport->price }})">$ {{ number_format((float)$airport->price, 2) }}</span></p>
                         </div>
                     </div>
                     <div>
