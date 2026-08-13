@@ -44,25 +44,25 @@
                         <div class="w-full flex-shrink-0 px-1 pb-4">
                             <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                                 @foreach($chunk as $activity)
-                                <a href="{{ route('fun_activity.show', $activity->id ?? $activity->slug) }}" class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group block" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                                <a href="{{ route('fun_activity.show', $activity->id ?? $activity->slug) }}" class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group block h-full" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
                                     <div class="relative overflow-hidden">
-                                        <img src="{{ asset('images/fun_activities/' . $activity->img) }}" alt="{{ $activity->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                        <img src="{{ asset('images/fun_activities/' . $activity->img) }}" alt="{{ $activity->title }}" class="w-full h-32 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                                         <span class="absolute top-2 left-2 bg-[#7A0C16] text-white text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-wider">Activity</span>
                                     </div>
                                     
-                                    <div class="p-5 flex-1 flex flex-col justify-between">
+                                    <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between">
                                         <div>
-                                            <h3 class="text-lg font-bold text-gray-900 group-hover:text-[#7A0C16] transition-colors">{{ $activity->title }}</h3>
-                                            <p class="text-gray-500 text-xs mt-2 mb-4 leading-relaxed">
-                                                {!! \Illuminate\Support\Str::limit(strip_tags($activity->description), 100) !!}
+                                            <h3 class="text-sm sm:text-lg font-bold text-gray-900 group-hover:text-[#7A0C16] transition-colors line-clamp-2 sm:line-clamp-none" title="{{ $activity->title }}">{{ $activity->title }}</h3>
+                                            <p class="text-[10px] sm:text-xs text-gray-500 mt-1.5 sm:mt-2 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
+                                                {!! \Illuminate\Support\Str::limit(strip_tags($activity->description), 80) !!}
                                             </p>
                                         </div>
                                         
                                         <div>
-                                            <div class="text-[#7A0C16] font-bold text-lg mb-4">
-                                                <span x-data x-html="$store.currency.format({{ $activity->price }})">$ {{ number_format((float)$activity->price, 2) }}</span> <span class="text-gray-400 text-xs font-normal">/pax</span>
+                                            <div class="text-[#7A0C16] font-bold text-sm sm:text-lg mb-2 sm:mb-4">
+                                                <span x-data x-html="$store.currency.format({{ $activity->price }})">$ {{ number_format((float)$activity->price, 2) }}</span> <span class="text-gray-400 text-[10px] sm:text-xs font-normal">/pax</span>
                                             </div>
-                                            <span class="w-full bg-[#7A0C16] hover:bg-[#5a0810] text-white py-2 px-4 rounded text-sm font-medium transition-colors duration-200 inline-block text-center">
+                                            <span class="w-full bg-[#7A0C16] hover:bg-[#5a0810] text-white py-1.5 sm:py-2 px-2 sm:px-4 rounded text-xs sm:text-sm font-medium transition-colors duration-200 inline-block text-center">
                                                 View Details
                                             </span>
                                         </div>

@@ -47,24 +47,24 @@
                     <div class="w-full flex-shrink-0 px-1 pb-4">
                         <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                             @foreach($chunk as $car)
-                            <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow duration-300" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
-                                <div class="relative">
-                                    <img src="{{ asset('images/cars/' . $car->img) }}" alt="{{ $car->title }}" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=400&auto=format&fit=crop'">
-                                    <span class="absolute top-2 left-2 bg-[#7A0C16] text-white text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-wider">Premium</span>
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow duration-300 h-full" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                                <div class="relative h-32 sm:h-48 bg-gray-50 flex items-center justify-center overflow-hidden">
+                                    <img src="{{ asset('images/cars/' . $car->img) }}" alt="{{ $car->title }}" class="w-full h-full object-contain sm:object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=400&auto=format&fit=crop'">
+                                    <span class="absolute top-2 left-2 bg-[#7A0C16] text-white text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-wider z-10">Premium</span>
                                 </div>
                                 
-                                <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between">
                                     <div>
-                                        <h3 class="text-lg font-bold text-gray-900">{{ $car->title }}</h3>
-                                        <div class="text-gray-500 text-xs mt-1.5 mb-5 line-clamp-3">
+                                        <h3 class="text-sm sm:text-lg font-bold text-gray-900 line-clamp-2 sm:line-clamp-none" title="{{ $car->title }}">{{ $car->title }}</h3>
+                                        <div class="text-gray-500 text-[10px] sm:text-xs mt-1.5 mb-3 sm:mb-5 line-clamp-2 sm:line-clamp-3">
                                             {!! $car->content !!}
                                         </div>
                                     </div>
                                     @php
                                         $waNumber = preg_replace('/[^0-9]/', '', \App\Models\Pengaturan::first()->phone ?? '6285858777754');
                                     @endphp
-                                    <div class="mt-4 pt-4 border-t border-gray-100 flex gap-2">
-                                        <a href="https://wa.me/{{ $waNumber }}?text=Halo%20Indo%20Bali%20Tour,%20saya%20ingin%20sewa%20mobil%20{{ urlencode($car->title) }}" class="w-full block text-center bg-[#7A0C16] hover:bg-[#5a0810] text-white py-2 px-4 rounded text-sm font-medium transition-colors duration-200">
+                                    <div class="mt-2 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100 flex gap-2">
+                                        <a href="https://wa.me/{{ $waNumber }}?text=Halo%20Indo%20Bali%20Tour,%20saya%20ingin%20sewa%20mobil%20{{ urlencode($car->title) }}" class="w-full block text-center bg-[#7A0C16] hover:bg-[#5a0810] text-white py-1.5 sm:py-2 px-2 sm:px-4 rounded text-xs sm:text-sm font-medium transition-colors duration-200">
                                             Booking via WhatsApp
                                         </a>
                                     </div>

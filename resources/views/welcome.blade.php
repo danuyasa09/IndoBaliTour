@@ -82,8 +82,8 @@
         </div>
 
         <!-- Hero Content -->
-        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex flex-col justify-center pt-20 sm:pt-24 pb-[380px] sm:pb-[350px] lg:pb-64">
-            <div class="max-w-4xl text-white space-y-5 sm:space-y-6">
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex flex-col justify-center pt-28 sm:pt-24 pb-8 sm:pb-[350px] lg:pb-64">
+            <div class="max-w-4xl text-white space-y-4 sm:space-y-6">
                 <!-- Animated Badge -->
 
 
@@ -99,12 +99,12 @@
                     </span>
                 </h1>
 
-                <p class="text-lg sm:text-xl text-gray-300 font-light max-w-xl leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-base sm:text-xl text-gray-300 font-light max-w-xl leading-relaxed" data-aos="fade-up" data-aos-delay="200">
                     Discover hidden paradises, cultural wonders, and unforgettable adventures. Your dream vacation with our best local guides starts here.
                 </p>
 
                 <!-- Floating Avatars & Trust -->
-                <div class="flex flex-wrap items-center gap-4 pt-1 sm:pt-2" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 sm:pt-2" data-aos="fade-up" data-aos-delay="300">
                     <div class="flex -space-x-4">
                         @php
                         $bgColors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-teal-500'];
@@ -112,37 +112,37 @@
 
                         @forelse($testimonies as $testimony)
                         @if($testimony->photo)
-                        <img class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] object-cover" src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}">
+                        <img class="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] object-cover" src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}">
                         @else
                         @php
                         $initial = substr($testimony->name, 0, 1);
                         $colorIndex = abs(crc32($testimony->name)) % count($bgColors);
                         $bgColor = $bgColors[$colorIndex];
                         @endphp
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] {{ $bgColor }} flex items-center justify-center text-white font-bold text-sm uppercase">
+                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] {{ $bgColor }} flex items-center justify-center text-white font-bold text-xs sm:text-sm uppercase">
                             {{ $initial }}
                         </div>
                         @endif
                         @empty
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] bg-blue-500 flex items-center justify-center text-white font-bold text-sm uppercase">A</div>
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] bg-green-500 flex items-center justify-center text-white font-bold text-sm uppercase">B</div>
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] bg-purple-500 flex items-center justify-center text-white font-bold text-sm uppercase">C</div>
+                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] bg-blue-500 flex items-center justify-center text-white font-bold text-xs sm:text-sm uppercase">A</div>
+                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] bg-green-500 flex items-center justify-center text-white font-bold text-xs sm:text-sm uppercase">B</div>
+                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] bg-purple-500 flex items-center justify-center text-white font-bold text-xs sm:text-sm uppercase">C</div>
                         @endforelse
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] bg-brand-red flex items-center justify-center text-[10px] sm:text-xs font-bold text-white shadow-lg">+2K</div>
+                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-[#1a1a1a] bg-brand-red flex items-center justify-center text-[8px] sm:text-xs font-bold text-white shadow-lg">+2K</div>
                     </div>
                     <div class="flex flex-col">
-                        <div class="flex text-yellow-400 text-xs sm:text-sm mb-0.5">
+                        <div class="flex text-yellow-400 text-[10px] sm:text-sm mb-0.5">
                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                         </div>
-                        <span class="text-gray-300 text-xs sm:text-sm font-medium">Trusted by happy travelers</span>
+                        <span class="text-gray-300 text-[10px] sm:text-sm font-medium">Trusted by happy travelers</span>
                     </div>
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="flex flex-wrap items-center gap-4 sm:gap-6 pt-3 sm:pt-4" data-aos="fade-up" data-aos-delay="400">
-                    <a href="#tours" class="group relative px-6 py-3.5 sm:px-8 sm:py-4 bg-brand-red text-white font-bold rounded-xl overflow-hidden shadow-[0_0_30px_rgba(122,12,22,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_50px_rgba(122,12,22,0.6)]">
+                <div class="flex flex-wrap items-center gap-3 sm:gap-6 pt-2 sm:pt-4" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#tours" class="group relative px-5 py-3 sm:px-8 sm:py-4 bg-brand-red text-white font-bold rounded-xl overflow-hidden shadow-[0_0_30px_rgba(122,12,22,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_50px_rgba(122,12,22,0.6)]">
                         <div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0"></div>
-                        <span class="relative z-10 flex items-center gap-2 text-sm sm:text-base tracking-wide">
+                        <span class="relative z-10 flex items-center gap-2 text-xs sm:text-base tracking-wide">
                             Book Your Tour
                             <svg class="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -150,20 +150,20 @@
                         </span>
                     </a>
 
-                    <a href="#experiences" class="group flex items-center gap-3 sm:gap-4 text-white hover:text-brand-red transition-colors duration-300">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-brand-red/20 group-hover:border-brand-red/50 transition-all duration-300 group-hover:scale-110 shadow-lg">
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <a href="#experiences" class="group flex items-center gap-2 sm:gap-4 text-white hover:text-brand-red transition-colors duration-300">
+                        <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-brand-red/20 group-hover:border-brand-red/50 transition-all duration-300 group-hover:scale-110 shadow-lg">
+                            <svg class="w-3 h-3 sm:w-5 sm:h-5 ml-1" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </div>
-                        <span class="font-semibold tracking-wider uppercase text-xs sm:text-sm">Watch Video</span>
+                        <span class="font-semibold tracking-wider uppercase text-[10px] sm:text-sm">Watch Video</span>
                     </a>
                 </div>
             </div>
         </div>
 
         <!-- Floating Glassmorphism Stats Bar -->
-        <div class="absolute bottom-8 left-0 right-0 z-30 px-4 sm:px-6 lg:px-8" data-aos="fade-up" data-aos-delay="600" data-aos-offset="0">
+        <div class="relative sm:absolute mt-8 sm:mt-0 mb-20 sm:mb-0 bottom-auto sm:bottom-12 lg:bottom-16 left-0 right-0 z-30 px-4 sm:px-6 lg:px-8" data-aos="fade-up" data-aos-delay="600" data-aos-offset="0">
             <div class="max-w-6xl mx-auto">
 
                 <div x-data="{ 
@@ -171,20 +171,33 @@
                         activeGallery: [], 
                         galleries: {
                             travelers: [
-                                'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=600&q=80',
-                                'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=600&q=80',
+                                'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1506461883276-594543eb36b2?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=800&q=80'
                             ],
                             guides: [
-                                'https://images.unsplash.com/photo-1517486808906-6a1b4acabab8?w=600&q=80',
-                                'https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=600&q=80',
+                                'https://images.unsplash.com/photo-1583244673648-52b3fb34b676?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1574516379529-e85d1c5a9390?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1596706927393-8bc6852a3b04?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1604928141064-207cea6f571f?auto=format&fit=crop&w=800&q=80'
                             ],
                             destinations: [
-                                'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80',
-                                'https://images.unsplash.com/photo-1518548419070-ad8e5fd552b6?w=600&q=80',
+                                'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1559628233-eb1b1a45564b?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1554481923-a691d78ba70b?auto=format&fit=crop&w=800&q=80'
                             ],
                             hotels: [
-                                'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80',
-                                'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80',
+                                'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=800&q=80',
+                                'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80'
                             ]
                         },
                         openGallery(type) {
@@ -198,13 +211,13 @@
                         }
                     }">
 
-                    <div class="bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 rounded-3xl p-6 md:p-8 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transform translate-y-6 hover:translate-y-4 transition-transform duration-500 relative overflow-hidden">
+                    <div class="bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)] ring-1 ring-white/5 transform translate-y-6 hover:translate-y-4 transition-transform duration-500 relative overflow-hidden">
                         <!-- Premium glass reflection -->
-                        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
 
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10 relative z-10">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10 relative z-10">
 
-                            <div @click="openGallery('travelers')" class="cursor-pointer group relative pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
+                            <div @click="openGallery('travelers')" class="cursor-pointer group relative pt-3 sm:pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
                                 <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-600 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 group-hover:-top-4 transition-all duration-300 z-10">
                                     <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -214,7 +227,7 @@
                                 <div class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-[0.2em] font-bold group-hover:text-white flex items-center justify-center gap-1">Happy Traveler</div>
                             </div>
 
-                            <div @click="openGallery('guides')" class="cursor-pointer group relative pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
+                            <div @click="openGallery('guides')" class="cursor-pointer group relative pt-3 sm:pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
                                 <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-600 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 group-hover:-top-4 transition-all duration-300 z-10">
                                     <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
@@ -224,7 +237,7 @@
                                 <div class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-[0.2em] font-bold group-hover:text-white flex items-center justify-center gap-1">Tour Guide</div>
                             </div>
 
-                            <div @click="openGallery('destinations')" class="cursor-pointer group relative pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
+                            <div @click="openGallery('destinations')" class="cursor-pointer group relative pt-3 sm:pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
                                 <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-600 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 group-hover:-top-4 transition-all duration-300 z-10">
                                     <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -234,7 +247,7 @@
                                 <div class="text-[10px] sm:text-xs text-gray-300 uppercase tracking-[0.2em] font-bold group-hover:text-white flex items-center justify-center gap-1">Destinations</div>
                             </div>
 
-                            <div @click="openGallery('hotels')" class="cursor-pointer group relative pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
+                            <div @click="openGallery('hotels')" class="cursor-pointer group relative pt-3 sm:pt-4 md:pt-0 md:px-6 text-center transition-all duration-300 hover:-translate-y-2">
                                 <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-600 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 group-hover:-top-4 transition-all duration-300 z-10">
                                     <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
@@ -298,7 +311,7 @@
 
                 <div class="max-w-2xl space-y-8" data-aos="fade-right">
                     <div class="space-y-6">
-                        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-brand-red">YOUR QUALITY TRAVEL PARTNER</p>>
+                        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-brand-red">YOUR QUALITY TRAVEL PARTNER</p>
                         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
                             Indo Bali Tour: Your Quality Travel Partner
                         </h2>
@@ -318,7 +331,7 @@
                     </div>
                 </div>
                 <div class="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_80px_rgba(15,23,42,0.12)]" data-aos="fade-left">
-                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" alt="Couple enjoying Bali resort" loading="lazy" class="w-full h-full min-h-[420px] object-cover transition-transform duration-500 hover:scale-105">
+                    <img src="{{ asset('images/bali_stat_image.png') }}" alt="Beautiful Bali Landscape and Temple Gate" loading="lazy" class="w-full h-full min-h-[420px] object-cover transition-transform duration-500 hover:scale-105">
                 </div>
 
             </div>
@@ -383,7 +396,7 @@
 
                 <!-- Service 3 -->
                 <a href="{{ route('car_rental') }}" class="relative group rounded-2xl overflow-hidden aspect-[3/4] shadow-lg hover:shadow-2xl transition-all duration-500 block" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&q=80" alt="Nusa Penida Adventure" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80" alt="Car Rental Bali" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
 
                     <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10 transition-colors duration-500"></div>
 

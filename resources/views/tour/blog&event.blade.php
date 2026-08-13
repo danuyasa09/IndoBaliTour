@@ -60,22 +60,6 @@
             </div>
         </div>
 
-        <!-- Newsletter Section -->
-        <div class="bg-gray-50 py-16 border-t border-b border-gray-100">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up" data-aos-delay="100">Get Promotional Info & Interesting Tips</h2>
-                <p class="text-xs text-gray-500 mb-8 max-w-md mx-auto">
-                    Subscribe to our weekly newsletter for the most comprehensive Bali holiday guide delivered straight to your email.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-3">
-                    <input type="email" placeholder="Your Email Address" class="w-full sm:w-80 px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-red">
-                    <button class="w-full sm:w-auto bg-[#7A0C16] hover:bg-[#5a0810] text-white py-3 px-6 rounded-lg text-sm font-semibold transition-colors duration-200">
-                        Subscribe
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <x-footer />
     
         <!-- AOS JS -->

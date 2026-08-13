@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Indo Bali Tour | Write Your Story in Bali</title>
-        @fonts
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    </head>
-    <body class="bg-[#FDFDFC] text-gray-900 antialiased font-sans">
+
 
 <header x-data="{ scrolled: false, mobileMenuOpen: false }" 
         @scroll.window="scrolled = (window.scrollY > 50)" 
@@ -124,6 +114,18 @@
                     </div>
                 @endauth
 
+                @php
+                    $showCurrencyBtn = in_array(Route::currentRouteName(), [
+                        'package_tour', 
+                        'fun_activity', 
+                        'fun_activity.show',
+                        'car_rental',
+                        'hotel_transfer',
+                        'airport_transfer',
+                        'detail'
+                    ]);
+                @endphp
+                @if($showCurrencyBtn)
                 <!-- Currency Switcher -->
                 <div class="relative flex items-center" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button :class="(scrolled || mobileMenuOpen) ? 'border-gray-200 text-gray-700 bg-white hover:bg-gray-50' : 'border-white/30 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm'" class="flex items-center space-x-2 pl-3 pr-3 py-1.5 border rounded-full text-sm font-medium focus:outline-none transition-all duration-300 cursor-pointer">
@@ -151,8 +153,9 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
-                <div class="relative flex items-center" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                <div class="relative hidden md:flex items-center" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button :class="(scrolled || mobileMenuOpen) ? 'border-gray-200 text-gray-700 bg-white hover:bg-gray-50' : 'border-white/30 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm'" class="flex items-center space-x-2 pl-3 pr-3 py-1.5 border rounded-full text-sm font-medium focus:outline-none transition-all duration-300 cursor-pointer">
                         <svg class="h-4 w-4" :class="(scrolled || mobileMenuOpen) ? 'text-gray-500' : 'text-white/80'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -479,7 +482,7 @@
                 }
             }
         } catch (\Exception $e) {}
-        return ['USD' => 1, 'IDR' => 15873, 'AUD' => 1.52, 'EUR' => 0.92, 'SGD' => 1.34, 'MYR' => 4.73];
+        return ['USD' => 1, 'IDR' => 15873];
     });
 @endphp
 <script>
@@ -488,7 +491,7 @@
         
         Alpine.store('currency', {
             selected: localStorage.getItem('selected_currency') || 'USD',
-            symbols: { 'USD': '$', 'IDR': 'Rp', 'AUD': 'A$', 'EUR': '€', 'SGD': 'S$', 'MYR': 'RM' },
+            symbols: { 'USD': '$', 'IDR': 'Rp' },
             set(curr) {
                 this.selected = curr;
                 localStorage.setItem('selected_currency', curr);

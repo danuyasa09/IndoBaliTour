@@ -41,31 +41,31 @@
                     <div class="w-full flex-shrink-0 px-1 pb-4">
                         <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                             @foreach($chunk as $tour)
-                            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
-                                <div class="relative h-48 overflow-hidden">
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between group h-full" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                                <div class="relative h-32 sm:h-48 overflow-hidden">
                                     <img src="{{ asset('images/tours/' . $tour->img) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=500&auto=format&fit=crop'">
                                 </div>
 
-                                <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between">
                                     <div>
-                                        <div class="flex items-center space-x-1.5 text-gray-400 text-[10px] font-semibold uppercase tracking-wider mb-2">
+                                        <div class="flex items-center space-x-1.5 text-gray-400 text-[10px] font-semibold uppercase tracking-wider mb-1.5 sm:mb-2">
                                             <i class="fa-regular fa-clock text-xs"></i>
                                             <span>{{ $tour->date ?? '3 Days 2 Nights' }}</span>
                                         </div>
 
-                                        <h3 class="text-base font-bold text-gray-900 mb-2 leading-snug">
+                                        <h3 class="text-sm sm:text-base font-bold text-gray-900 mb-1.5 sm:mb-2 leading-snug line-clamp-2 sm:line-clamp-none" title="{{ $tour->title }}">
                                             {{ $tour->title }}
                                         </h3>
 
-                                        <div class="text-[12px] text-gray-500 mb-6 line-clamp-3">
+                                        <div class="text-[10px] sm:text-[12px] text-gray-500 mb-3 sm:mb-6 line-clamp-2">
                                             {!! $tour->short ?? 'An exciting holiday package with a variety of selected tourist destinations in Bali.' !!}
                                         </div>
                                     </div>
 
-                                    <div class="border-t border-gray-100 pt-4 flex items-end justify-between">
+                                    <div class="border-t border-gray-100 pt-3 sm:pt-4 flex items-end justify-between">
                                         <div>
-                                            <span class="block text-[9px] text-gray-400 uppercase font-bold tracking-wider">Start From</span>
-                                            <span class="text-sm font-bold text-[#7A0C16]">
+                                            <span class="block text-[8px] sm:text-[9px] text-gray-400 uppercase font-bold tracking-wider">Start From</span>
+                                            <span class="text-xs sm:text-sm font-bold text-[#7A0C16]">
                                                 @if(is_numeric($tour->harga))
                                                     <span x-data x-html="$store.currency.format({{ $tour->harga }})">$ {{ number_format($tour->harga, 2) }}</span>
                                                 @else
@@ -74,9 +74,9 @@
                                             </span>
                                         </div>
                                         
-                                        <a href="{{ route('detail', $tour->slug) }}" class="flex items-center space-x-1 text-[11px] font-bold text-[#7A0C16] hover:text-[#5A0810] transition-colors pb-0.5">
-                                            <span class="uppercase tracking-wider">View Details</span>
-                                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                                        <a href="{{ route('detail', $tour->slug) }}" class="flex items-center space-x-1 text-[10px] sm:text-[11px] font-bold text-[#7A0C16] hover:text-[#5A0810] transition-colors pb-0.5">
+                                            <span class="uppercase tracking-wider">Details</span>
+                                            <i class="fa-solid fa-arrow-right text-[10px] sm:text-xs"></i>
                                         </a>
                                     </div>
                                 </div>

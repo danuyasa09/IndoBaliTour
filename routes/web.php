@@ -107,7 +107,8 @@ Route::get('/tour/fun_activity/{id}', function ($id) {
     // If not, maybe use slug. But let's use id for now and fall back to slug if needed.
     // Let's use where('id', $id) or where('slug', $id)
     $activity = \App\Models\Funactivity::where('id', $id)->orWhere('slug', $id)->firstOrFail();
-    return view('tour.fun_activity_show', compact('activity'));
+    $related_activities = \App\Models\Funactivity::where('status', 'Show')->where('id', '!=', $activity->id)->take(3)->get();
+    return view('tour.fun_activity_show', compact('activity', 'related_activities'));
 })->name('fun_activity.show');
 
 use App\Http\Controllers\BlogController;

@@ -32,7 +32,7 @@
 
             <!-- Price -->
             <div>
-                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Harga (Rp)</label>
+                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Harga ($)</label>
                 <input type="number" name="price" id="price" value="{{ old('price', $airport->price) }}" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required min="0">
                 @error('price')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>

@@ -1,70 +1,81 @@
 <!-- Font Awesome (needed for footer icons) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        <footer id="contact" class="bg-[#111111] text-gray-400 pt-16 pb-8 border-t border-zinc-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-8">
+<footer id="contact" class="bg-[#111111] text-gray-400 pt-20 pb-10 border-t border-zinc-800 relative overflow-hidden">
+    <!-- Premium Gradient Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-[#7A0C16]/5 blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-12 lg:gap-12 mb-12">
             
-            <div class="space-y-6">
-                <h3 class="text-white text-2xl font-extrabold tracking-tight">Indo Bali Tour</h3>
-                <p class="text-sm leading-relaxed text-gray-500">
+            <!-- Brand Section -->
+            <div class="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 col-span-2 lg:col-span-1 order-1 lg:order-1">
+                <h3 class="text-white text-3xl font-extrabold tracking-tight">Indo Bali Tour</h3>
+                <p class="text-sm leading-relaxed text-gray-500 max-w-xs">
                     Your trusted travel partner in Bali. We are ready to help you create unforgettable memories on the Island of Gods.
                 </p>
-                <div class="flex space-x-3 pt-2">
-                    <a href="https://www.instagram.com/indobalitourcom/" class="h-9 w-9 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-[#7A0C16] transition-colors duration-300">
-                        <i class="fa-brands fa-instagram"></i>
+                <div class="flex space-x-4 pt-2">
+                    <a href="https://www.instagram.com/indobalitourcom/" class="h-10 w-10 rounded-full bg-zinc-800/80 hover:bg-[#7A0C16] border border-white/5 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(122,12,22,0.5)]">
+                        <i class="fa-brands fa-instagram text-lg"></i>
                     </a>
-                    <a href="https://www.facebook.com/indobalitour" class="h-9 w-9 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-[#7A0C16] transition-colors duration-300">
-                        <i class="fa-brands fa-facebook-f"></i>
+                    <a href="https://www.facebook.com/indobalitour" class="h-10 w-10 rounded-full bg-zinc-800/80 hover:bg-[#7A0C16] border border-white/5 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(122,12,22,0.5)]">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
                     </a>
-                    <a href="https://www.youtube.com/@indobalitourcom" class="h-9 w-9 rounded-full bg-zinc-800 flex items-center justify-center text-white hover:bg-[#7A0C16] transition-colors duration-300">
-                        <i class="fa-brands fa-youtube"></i>
+                    <a href="https://www.youtube.com/@indobalitourcom" class="h-10 w-10 rounded-full bg-zinc-800/80 hover:bg-[#7A0C16] border border-white/5 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(122,12,22,0.5)]">
+                        <i class="fa-brands fa-youtube text-lg"></i>
                     </a>
                 </div>
             </div>
 
-            <div>
-                <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Our Services</h4>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="{{ route('package_tour') }}" class="hover:text-white transition-colors duration-200">Tour Packages</a></li>
-                    <li><a href="{{ route('car_rental') }}" class="hover:text-white transition-colors duration-200">Car Rental</a></li>
-                    <li><a href="{{ route('fun_activity') }}" class="hover:text-white transition-colors duration-200">Fun Activities</a></li>
-                    <li><a href="{{ route('airport_transfer') }}" class="hover:text-white transition-colors duration-200">Airport Transfer</a></li>
-                    <li><a href="{{ route('hotel_transfer') }}" class="hover:text-white transition-colors duration-200">Hotel Transfer</a></li>
+            <!-- Services Section -->
+            <div class="flex flex-col items-center lg:items-start text-center lg:text-left col-span-1 lg:col-span-1 order-2 lg:order-2">
+                <h4 class="text-white font-bold text-sm uppercase tracking-[0.15em] mb-6">Our Services</h4>
+                <ul class="space-y-4 text-sm font-medium">
+                    <li><a href="{{ route('package_tour') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Tour Packages</a></li>
+                    <li><a href="{{ route('car_rental') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Car Rental</a></li>
+                    <li><a href="{{ route('fun_activity') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Fun Activities</a></li>
+                    <li><a href="{{ route('airport_transfer') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Airport Transfer</a></li>
+                    <li><a href="{{ route('hotel_transfer') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Hotel Transfer</a></li>
                 </ul>
             </div>
 
-            <div>
-                <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Excellent Review From</h4>
-                <a href="https://www.tripadvisor.co.id/Attraction_Review-g12997472-d28485128-Reviews-Nanta_Bali_Tour-South_Kuta_Badung_Regency_Bali.html">
-                    <img src="{{ asset('images/icons/tripadvisor.png') }}" alt="Excellent Review From - Tripadvisor" class="h-20 sm:h-30 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
+            <!-- Review Section -->
+            <div class="flex flex-col items-center lg:items-start text-center lg:text-left col-span-2 lg:col-span-1 order-4 lg:order-3">
+                <h4 class="text-white font-bold text-sm uppercase tracking-[0.15em] mb-6">Review From</h4>
+                <a href="https://www.tripadvisor.co.id/Attraction_Review-g12997472-d28485128-Reviews-Nanta_Bali_Tour-South_Kuta_Badung_Regency_Bali.html" class="inline-block hover:scale-105 transition-transform duration-300">
+                    <img src="{{ asset('images/icons/tripadvisor.png') }}" alt="Excellent Review From - Tripadvisor" class="h-28 sm:h-32 lg:h-36 w-auto object-contain drop-shadow-lg mx-auto lg:mx-0">
                 </a>
             </div>
 
-            <div class="space-y-6">
-                <div>
-                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-6">Contact Us</h4>
-                    <ul class="space-y-4 text-sm text-gray-400">
-                        <li class="flex items-start space-x-3">
-                            <span class="text-[#7A0C16] text-lg mt-0.5"><i class="fa-solid fa-location-dot"></i></span>
-                            <span class="leading-relaxed">Jl. Ganetri IV No.4, Tonja, Kec. Denpasar Utara, Kota Denpasar, Bali 80237</span>
+            <!-- Contact Section -->
+            <div class="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 col-span-1 lg:col-span-1 order-3 lg:order-4">
+                <div class="w-full flex flex-col items-center lg:items-start">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-[0.15em] mb-6">Contact Us</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 w-full">
+                        <li class="flex flex-row items-start space-x-3 text-left">
+                            <div class="h-6 w-6 rounded-full bg-[#7A0C16]/20 text-[#7A0C16] flex items-center justify-center text-[10px] shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <span class="leading-relaxed">Jl. Ganetri IV No.4, Tonja, Denpasar Utara, Bali 80237</span>
                         </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-[#7A0C16] text-lg"><i class="fa-brands fa-whatsapp"></i></span>
-                            <a href="https://wa.me/6282144814593" target="_blank" class="hover:text-white transition-colors duration-200">+6282144814593
-
-</a>
+                        <li class="flex flex-row items-start space-x-3 text-left">
+                            <div class="h-6 w-6 rounded-full bg-[#7A0C16]/20 text-[#7A0C16] flex items-center justify-center text-[10px] shrink-0 mt-0.5">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <a href="https://wa.me/6282144814593" target="_blank" class="hover:text-white transition-colors duration-200 font-medium">+6282144814593</a>
                         </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-[#7A0C16] text-lg"><i class="fa-solid fa-envelope"></i></span>
-                            <a href="mailto:enjoy@indobalitour.com" class="hover:text-white transition-colors duration-200">enjoy@indobalitour.com</a>
+                        <li class="flex flex-row items-start space-x-3 text-left">
+                            <div class="h-6 w-6 rounded-full bg-[#7A0C16]/20 text-[#7A0C16] flex items-center justify-center text-[10px] shrink-0 mt-0.5">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <a href="mailto:enjoy@indobalitour.com" class="hover:text-white transition-colors duration-200 font-medium">enjoy@indobalitour.com</a>
                         </li>
                     </ul>
                 </div>
-                
-                <div class="pt-2">
-                    <button onclick="openTestimoniModal()" class="group relative inline-flex items-center gap-2 px-5 py-3 bg-[#7A0C16] hover:bg-[#5a0810] text-white text-sm font-semibold rounded-lg shadow-lg transition-all duration-300 w-full justify-center overflow-hidden">
-                        <span class="relative z-10">Share Your Experience</span>
+                <div class="pt-2 w-full lg:w-auto flex justify-center lg:justify-start">
+                    <button onclick="openTestimoniModal()" class="group relative inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#7A0C16] to-[#5a0810] text-white text-sm font-semibold rounded-xl shadow-[0_5px_15px_rgba(122,12,22,0.4)] transition-all duration-300 w-[280px] sm:w-[320px] justify-center overflow-hidden hover:scale-105">
+                        <span class="relative z-10">Share Experience</span>
                         <i class="fa-solid fa-arrow-right relative z-10 group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </div>
@@ -72,7 +83,8 @@
 
         </div>
 
-        <div class="pt-6 border-t border-zinc-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <!-- Divider & Copyright -->
+        <div class="pt-8 border-t border-zinc-800/80 flex flex-col justify-center items-center gap-4 text-xs text-gray-500 font-medium tracking-wide">
             <p>&copy; {{ date('Y') }} Indo Bali Tour. All rights reserved.</p>
         </div>
     </div>

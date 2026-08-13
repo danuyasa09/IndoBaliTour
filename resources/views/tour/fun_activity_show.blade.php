@@ -242,6 +242,42 @@
 
             </div>
         </div>
+
+        @if(isset($related_activities) && $related_activities->count() > 0)
+        <div class="mt-16 pt-12 border-t border-gray-200">
+            <h2 class="text-xl font-bold text-gray-900 mb-6" data-aos="fade-up">Other Fun Activities</h2>
+            <div class="flex overflow-x-auto gap-4 sm:gap-6 pb-4 snap-x snap-mandatory hide-scrollbar" style="-ms-overflow-style: none; scrollbar-width: none;">
+                <style>
+                    .hide-scrollbar::-webkit-scrollbar {
+                        display: none;
+                    }
+                </style>
+                @foreach($related_activities as $ra)
+                <div class="min-w-[280px] sm:min-w-[320px] max-w-[280px] sm:max-w-[320px] shrink-0 snap-start bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="{{ asset('images/fun_activities/' . $ra->img) }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="{{ $ra->title }}" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=400&auto=format&fit=crop'">
+                    </div>
+                    <div class="p-5 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-900 mb-1 line-clamp-2" title="{{ $ra->title }}">{{ $ra->title }}</h4>
+                            <div class="text-[11px] text-gray-400 leading-relaxed mb-4 line-clamp-2">{!! $ra->short ?? 'Experience an unforgettable fun activity with us.' !!}</div>
+                        </div>
+                        <div class="flex justify-between items-center border-t border-gray-50 pt-3 mt-auto">
+                            <span class="text-xs font-bold text-[#7A0C16]">
+                                @if(is_numeric($ra->harga))
+                                    <span x-data x-html="$store.currency.format({{ $ra->harga }})">$ {{ number_format($ra->harga, 2) }}</span>
+                                @else
+                                    {{ $ra->harga ?? 'Contact Us' }}
+                                @endif
+                            </span>
+                            <a href="{{ route('fun_activity.show', $ra->id ?? $ra->slug) }}" class="text-gray-400 group-hover:text-[#7A0C16] transition-colors"><i class="fa-solid fa-chevron-right text-xs"></i></a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
         
         <div class="mt-12">
             <a href="{{ route('fun_activity') }}" class="inline-flex items-center text-[#7A0C16] text-sm font-bold hover:underline">

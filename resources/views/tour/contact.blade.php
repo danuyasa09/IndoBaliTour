@@ -31,6 +31,11 @@
     
         <!-- AOS CSS -->
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+        <!-- Summernote Lite -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     </head>
     <body class="bg-[#F4F5F7] text-slate-900 antialiased font-sans">
 
@@ -141,8 +146,8 @@
                                 </div>
 
                                 <label class="block">
-                                    <span class="text-sm font-semibold text-slate-900">Your Message</span>
-                                    <textarea name="message" required rows="5" placeholder="Tell us the details of your travel plans..." class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-4 text-sm text-slate-900 outline-none transition focus:border-[#7A0C16] focus:ring-2 focus:ring-[#7A0C16]/10 resize-none"></textarea>
+                                    <span class="text-sm font-semibold text-slate-900 mb-2 block">Your Message</span>
+                                    <textarea id="summernote" name="message" required rows="5" placeholder="Tell us the details of your travel plans..." class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-4 text-sm text-slate-900 outline-none transition focus:border-[#7A0C16] focus:ring-2 focus:ring-[#7A0C16]/10 resize-none"></textarea>
                                 </label>
 
                                 <button type="submit" class="w-full rounded-xl bg-[#7A0C16] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#5a0810] shadow-md hover:shadow-lg">
@@ -194,17 +199,41 @@
                 offset: 100,
             });
 
+            $(document).ready(function() {
+                $('#summernote').summernote({
+                    placeholder: 'Tell us the details of your travel plans...',
+                    tabsize: 2,
+                    height: 200,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['insert', ['link', 'picture']]
+                    ]
+                });
+            });
+
             function submitContactToWhatsApp(event) {
                 event.preventDefault();
                 const form = event.target;
                 const formData = new FormData(form);
+                
+                // Get summernote HTML content
+                let htmlMessage = $('#summernote').summernote('code');
+                
+                // Simple HTML to plain text conversion for WhatsApp
+                let tempDiv = document.createElement("div");
+                tempDiv.innerHTML = htmlMessage.replace(/<br\s*[\/]?>/gi, "\n").replace(/<\/p>/gi, "\n\n");
+                let plainTextMessage = tempDiv.textContent || tempDiv.innerText || "";
+                plainTextMessage = plainTextMessage.trim();
                 
                 let message = `*New Contact Message*\n\n`;
                 message += `*Name:* ${formData.get('name')}\n`;
                 message += `*Email:* ${formData.get('email')}\n`;
                 message += `*Phone:* ${formData.get('phone')}\n`;
                 message += `*Subject:* ${formData.get('subject')}\n\n`;
-                message += `*Message:*\n${formData.get('message')}\n`;
+                message += `*Message:*\n${plainTextMessage}\n`;
 
                 const phoneNumber = "{{ preg_replace('/[^0-9]/', '', \App\Models\Pengaturan::first()->phone ?? '6285858777754') }}";
                 const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

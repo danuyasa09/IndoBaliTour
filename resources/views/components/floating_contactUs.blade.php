@@ -32,7 +32,7 @@
         <!-- Phone -->
         <div class="flex items-center gap-3 translate-x-8 opacity-0 transition-all duration-300" id="menuItem3">
             <span class="bg-white text-gray-800 px-3 py-2 rounded-xl shadow-md text-xs font-bold border border-gray-100 whitespace-nowrap">
-                Call Us
+                {{ $pengaturan->phone ?? '+62 858-5877-7754' }}
             </span>
             <a href="tel:{{ $callPhone }}" class="w-12 h-12 bg-[#007AFF] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#0062cc] transition-transform duration-200 hover:scale-110" title="Telepon">
                 <i class="fa-solid fa-phone text-lg"></i>
@@ -42,7 +42,7 @@
         <!-- Email -->
         <div class="flex items-center gap-3 translate-x-8 opacity-0 transition-all duration-300" id="menuItem2">
             <span class="bg-white text-gray-800 px-3 py-2 rounded-xl shadow-md text-xs font-bold border border-gray-100 whitespace-nowrap">
-                Email Us
+                {{ $emailAddress }}
             </span>
             <a href="mailto:{{ $emailAddress }}" class="w-12 h-12 bg-[#EA4335] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#d63426] transition-transform duration-200 hover:scale-110" title="Email">
                 <i class="fa-solid fa-envelope text-lg"></i>
@@ -54,13 +54,6 @@
             <!-- Label -->
             <div class="bg-white px-4 py-2 rounded-2xl shadow-xl border border-gray-100 flex flex-col items-end">
                 <span class="text-gray-900 text-sm font-bold whitespace-nowrap">Ask Local Expert</span>
-                <span class="text-green-600 text-[10px] font-bold flex items-center gap-1.5 uppercase tracking-wide mt-0.5">
-                    <span class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    Replies in 5 mins
-                </span>
             </div>
             <!-- Button -->
             <a href="https://wa.me/{{ $waPhone }}" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-[#25D366] text-white rounded-full shadow-[0_8px_20px_-4px_rgba(37,211,102,0.5)] flex items-center justify-center hover:bg-[#20ba59] transition-transform duration-200 transform hover:scale-110 z-10" title="WhatsApp">

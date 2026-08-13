@@ -39,8 +39,8 @@
 
     <div class="bg-white py-6 border-b border-gray-100 shadow-sm" data-aos="fade-up" data-aos-delay="200">
         <div class="flex justify-center space-x-8 text-sm font-medium">
-            <a href="#foto" class="text-gray-900 border-b-2 border-gray-900 pb-1">Photos</a>
-            <a href="#video" class="text-gray-400 hover:text-gray-600 pb-1 transition-colors">Videos</a>
+            <a href="#foto" class="text-gray-600 hover:text-gray-900 border-b-2 border-transparent hover:border-gray-900 pb-1 transition-all">Photos</a>
+            <a href="#video" class="text-gray-600 hover:text-gray-900 border-b-2 border-transparent hover:border-gray-900 pb-1 transition-all">Videos</a>
         </div>
     </div>
 

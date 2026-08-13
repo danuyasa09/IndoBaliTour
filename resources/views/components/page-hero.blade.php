@@ -17,11 +17,11 @@
     'dividerType' => 'wave'
 ])
 
-<div class="relative min-h-[500px] md:min-h-[600px] w-full bg-cover bg-center flex items-center" style="background-image: url('{{ $bgImage }}');">
+<div class="relative min-h-[550px] md:min-h-[650px] w-full bg-cover bg-center flex items-center" style="background-image: url('{{ $bgImage }}');">
     <!-- Overlay -->
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
     
-    <div class="max-w-7xl mx-auto px-4 relative z-10 w-full pt-20 pb-12 md:pb-20">
+    <div class="max-w-7xl mx-auto px-4 relative z-10 w-full pt-24 pb-16 md:pb-24">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             <!-- Left Content -->
@@ -120,7 +120,7 @@
         </div>
     </div>
     
-    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-20 pointer-events-none">
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-20 pointer-events-none translate-y-[2px]">
         <style>
             @keyframes waveAnim1 {
                 0% { transform: scaleX(-1) translateX(0); }
