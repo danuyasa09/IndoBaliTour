@@ -15,6 +15,6 @@ class HotelTransferController extends Controller
 
         // 3. Lempar variabelnya ke view menggunakan compact()
         // Pastikan nama di dalam compact sama dengan nama variabel tanpa tanda '$'
-        return view('tour.hotel_transfer', compact('transfers'));
+        return view('tour.transfers.hotel', compact('transfers'));
     }
 }

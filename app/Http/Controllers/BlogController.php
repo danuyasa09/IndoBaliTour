@@ -9,7 +9,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = \App\Models\Beritum::where('status', 'Show')->orderBy('date', 'desc')->get();
-        return view('tour.blog&event', compact('blogs'));
+        return view('tour.blogs.index', compact('blogs'));
     }
 
     public function show($slug)
@@ -26,6 +26,6 @@ class BlogController extends Controller
             ->take(3)
             ->get();
 
-        return view('tour.blog_detail', compact('blog', 'otherBlogs'));
+        return view('tour.blogs.show', compact('blog', 'otherBlogs'));
     }
 }

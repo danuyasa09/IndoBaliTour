@@ -190,9 +190,15 @@
                             </div>
                         </div>
 
-                        <div>
-                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Pick-up Location</label>
-                            <input type="text" name="pickup_location" required placeholder="Hotel Name, Address, or Google Maps Link" class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Pick-up Location</label>
+                                <input type="text" name="pickup_location" required placeholder="Hotel Name / Address" class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Google Maps Link (Optional)</label>
+                                <input type="url" name="pickup_maps_link" placeholder="https://maps.app.goo.gl/..." class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
+                            </div>
                         </div>
 
                         <div>
@@ -309,6 +315,9 @@
             message += `*Tanggal:* ${formData.get('tour_date')}\n`;
             message += `*Jumlah Peserta:* ${formData.get('total_person')}\n`;
             message += `*Lokasi Jemput:* ${formData.get('pickup_location') || '-'}\n`;
+            if (formData.get('pickup_maps_link')) {
+                message += `*Google Maps Link:* ${formData.get('pickup_maps_link')}\n`;
+            }
             
             let specialReqHtml = formData.get('special_request') || '';
             let tempDiv = document.createElement("div");

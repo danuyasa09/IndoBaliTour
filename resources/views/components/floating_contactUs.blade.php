@@ -66,62 +66,13 @@
 
 <!-- Booking Modal -->
 <div id="bookingModal" class="fixed inset-0 z-[100] hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto transition-opacity duration-300 opacity-0">
-    <!-- Modal Container (2 Columns) -->
-    <div class="relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+    <!-- Modal Container -->
+    <div class="relative bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
         
-        <!-- Close Button (Mobile) -->
-        <button type="button" onclick="closeBookingModal()" class="md:hidden absolute top-4 right-4 z-20 text-white bg-black/20 hover:bg-black/40 rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transition-colors">&times;</button>
-        
-        <!-- Left Side: Trust & Visual -->
-        <div class="w-full md:w-2/5 bg-gradient-to-br from-[#7A0C16] to-[#4A050A] text-white p-8 relative overflow-hidden flex flex-col justify-between">
-            <!-- Background Decoration -->
-            <div class="absolute -top-20 -left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-black/20 rounded-full blur-3xl"></div>
-            
-            <div class="relative z-10">
-                <h3 class="text-3xl font-extrabold mb-3">Plan Your<br>Bali Dream</h3>
-                <p class="text-white/80 text-sm mb-8 leading-relaxed">Tell us your preferences and our local experts will craft the perfect itinerary for you without hassle.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid fa-map-location-dot text-lg text-white"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-white">Local Experts</h4>
-                            <p class="text-xs text-white/70 mt-0.5">Born and raised in Bali</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid fa-bolt text-lg text-yellow-400"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-white">Fast Response</h4>
-                            <p class="text-xs text-white/70 mt-0.5">Usually replies in 5 mins</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid fa-shield-check text-lg text-green-400"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-white">Trusted Service</h4>
-                            <p class="text-xs text-white/70 mt-0.5">500+ happy explorers</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="relative z-10 mt-10 md:mt-0 pt-8 border-t border-white/10">
-                <p class="text-xs text-white/60 text-center md:text-left">By Indo Bali Tour</p>
-            </div>
-        </div>
-        
-        <!-- Right Side: Form -->
-        <div class="w-full md:w-3/5 bg-gray-50 relative">
-            <!-- Close Button (Desktop) -->
-            <button type="button" onclick="closeBookingModal()" class="hidden md:flex absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-800 bg-white shadow-sm hover:bg-gray-100 rounded-full w-8 h-8 items-center justify-center focus:outline-none transition-colors"><i class="fa-solid fa-xmark"></i></button>
+        <!-- Form Container -->
+        <div class="w-full bg-gray-50 relative">
+            <!-- Close Button -->
+            <button type="button" onclick="closeBookingModal()" class="flex absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-800 bg-white shadow-sm hover:bg-gray-100 rounded-full w-8 h-8 items-center justify-center focus:outline-none transition-colors"><i class="fa-solid fa-xmark"></i></button>
 
             <form action="{{ route('bookings.store') }}" method="POST" class="p-6 md:p-8 max-h-[85vh] overflow-y-auto space-y-6 text-left">
                 @csrf

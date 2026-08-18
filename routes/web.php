@@ -78,12 +78,12 @@ Route::get('/tour', function () {
 
 Route::get('/tour/car_rental', function () {
     $cars = \App\Models\Car::all();
-    return view('tour.car_rental', compact('cars'));
+    return view('tour.services.car_rental', compact('cars'));
 })->name('car_rental');
 
 Route::get('/tour/contact', function () {
     $pengaturan = \App\Models\Pengaturan::first();
-    return view('tour.contact', compact('pengaturan'));
+    return view('tour.pages.contact', compact('pengaturan'));
 })->name('contact');
 
 
@@ -91,30 +91,30 @@ Route::get('/tour/hotel_transfer', [HotelTransferController::class, 'index'])->n
 
 Route::get('/tour/airport_transfer',    function () {
     $airports = \App\Models\Airport::where('status', 'Show')->get();
-    return view('tour.airport_transfer', compact('airports'));
+    return view('tour.transfers.airport', compact('airports'));
 })->name('airport_transfer');
 
 Route::get('/tour/experience', function () {
     $testimonies = \App\Models\Testimony::where('is_approved', true)->latest()->get();
     $albums = \App\Models\Album::with('fotos')->where('status', 'Show')->orderBy('date', 'desc')->get();
     $videos = \App\Models\Video::where('status', 'Show')->orderBy('date', 'desc')->get();
-    return view('tour.experience', compact('testimonies', 'albums', 'videos'));
+    return view('tour.pages.experience', compact('testimonies', 'albums', 'videos'));
 })->name('experience');
 
 Route::get('/tour/detail/{slug}', function ($slug) {
     $tour = \App\Models\Tour::where('slug', $slug)->firstOrFail();
     $related_tours = \App\Models\Tour::where('slug', '!=', $slug)->take(3)->get();
-    return view('tour.detail', compact('tour', 'related_tours'));
+    return view('tour.packages.detail', compact('tour', 'related_tours'));
 })->name('detail');
 
 Route::get('/tour/package_tour', function () {
     $tours = \App\Models\Tour::all();
-    return view('tour.package_tour', compact('tours'));
+    return view('tour.packages.index', compact('tours'));
 })->name('package_tour');
 
 Route::get('/tour/fun_activity', function () {
     $activities = \App\Models\Funactivity::where('status', 'Show')->get();
-    return view('tour.fun_activity', compact('activities'));
+    return view('tour.activities.index', compact('activities'));
 })->name('fun_activity');
 
 Route::get('/tour/fun_activity/{id}', function ($id) {
@@ -125,7 +125,7 @@ Route::get('/tour/fun_activity/{id}', function ($id) {
     // Let's use where('id', $id) or where('slug', $id)
     $activity = \App\Models\Funactivity::where('id', $id)->orWhere('slug', $id)->firstOrFail();
     $related_activities = \App\Models\Funactivity::where('status', 'Show')->where('id', '!=', $activity->id)->take(3)->get();
-    return view('tour.fun_activity_show', compact('activity', 'related_activities'));
+    return view('tour.activities.show', compact('activity', 'related_activities'));
 })->name('fun_activity.show');
 
 use App\Http\Controllers\BlogController;

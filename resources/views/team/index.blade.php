@@ -57,15 +57,7 @@
                         @endif
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         
-                        <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex justify-center gap-3">
-                            <!-- Social links if needed in the future, placeholder for aesthetic -->
-                            <a href="#" class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-brand-red transition-colors">
-                                <i class="fa-brands fa-instagram text-sm"></i>
-                            </a>
-                            <a href="#" class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-brand-red transition-colors">
-                                <i class="fa-brands fa-linkedin-in text-sm"></i>
-                            </a>
-                        </div>
+
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-brand-red transition-colors">{{ $member->nama }}</h3>

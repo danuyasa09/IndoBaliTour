@@ -5,23 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <!-- Primary Meta Tags -->
-        <title>Indo Bali Tour | Airport Transfer</title>
-        <meta name="title" content="Indo Bali Tour | Airport Transfer">
-        <meta name="description" content="Start your journey in Bali comfortably. On-time airport transfer service with clean fleet and professional drivers.">
-        <meta name="keywords" content="Bali airport transfer, Ngurah Rai airport pickup, Bali driver, Bali airport taxi">
+        <title>Indo Bali Tour | Hotel Transfer</title>
+        <meta name="title" content="Indo Bali Tour | Hotel Transfer">
+        <meta name="description" content="Seamless and comfortable hotel transfer services in Bali. We offer reliable point-to-point transportation with professional drivers.">
+        <meta name="keywords" content="Bali hotel transfer, Bali transportation, private driver Bali, hotel pickup Bali">
         
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="og:title" content="Indo Bali Tour | Airport Transfer">
-        <meta property="og:description" content="Start your journey in Bali comfortably. On-time airport transfer service with clean fleet and professional drivers.">
+        <meta property="og:title" content="Indo Bali Tour | Hotel Transfer">
+        <meta property="og:description" content="Seamless and comfortable hotel transfer services in Bali. We offer reliable point-to-point transportation with professional drivers.">
         <meta property="og:image" content="{{ asset('images/logos/logo.png') }}">
         
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url()->current() }}">
-        <meta property="twitter:title" content="Indo Bali Tour | Airport Transfer">
-        <meta property="twitter:description" content="Start your journey in Bali comfortably. On-time airport transfer service with clean fleet and professional drivers.">
+        <meta property="twitter:title" content="Indo Bali Tour | Hotel Transfer">
+        <meta property="twitter:description" content="Seamless and comfortable hotel transfer services in Bali. We offer reliable point-to-point transportation with professional drivers.">
         <meta property="twitter:image" content="{{ asset('images/logos/logo.png') }}">
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -40,23 +40,23 @@
           <x-floating_contactUs />
 
     <x-page-hero 
-        badge="Airport Transfer"
-        badgeIcon="fa-plane-arrival"
-        title="Airport"
+        badge="Hotel Transfer"
+        badgeIcon="fa-hotel"
+        title="Hotel"
         highlight="Transfer"
-        subtitle="Start your journey in Bali comfortably. On-time airport transfer service with clean fleet and professional drivers."
-        bgImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1200&auto=format&fit=crop"
+        subtitle="Transfer between hotels or areas in Bali stress-free. We serve inter-destination transfers with maximum comfort."
+        bgImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop"
         ctaText="Book Transfer"
         ctaLink="#transfer"
-        floatingIcon="fa-plane"
-        floatingTitle="Reliable Transfer"
-        floatingPrice="On-Time"
-        floatingPriceUnit="Guarantee"
-        :floatingFeatures="['Meet & Greet Service', 'Flight Tracking', 'No Hidden Costs']"
+        floatingIcon="fa-map-pin"
+        floatingTitle="Anywhere in Bali"
+        floatingPrice="Door-to-Door"
+        floatingPriceUnit="Service"
+        :floatingFeatures="['Direct Hotel Transfer', 'Spacious Vehicles', 'Fixed Pricing']"
     />
 
     <div id="transfer" class="max-w-6xl mx-auto px-4 -mt-10 md:-mt-14 relative z-30 pb-20">
-        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200" x-data="{ activePage: 0, itemsPerPage: 10, totalItems: {{ $airports->count() }}, get totalPages() { return Math.ceil(this.totalItems / this.itemsPerPage) } }">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200" x-data="{ activePage: 0, itemsPerPage: 10, totalItems: {{ $transfers->count() }}, get totalPages() { return Math.ceil(this.totalItems / this.itemsPerPage) } }">
             
             <div class="overflow-x-auto hidden md:block">
                 <table class="w-full text-left border-collapse">
@@ -70,13 +70,13 @@
                     </thead>
                     
                     <tbody class="divide-y divide-gray-100 text-sm">
-                        @forelse($airports as $index => $airport)
+                        @forelse($transfers as $index => $transfer)
                         <tr class="hover:bg-gray-50/50 transition-colors" x-show="Math.floor({{ $index }} / itemsPerPage) === activePage">
-                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">{{ $airport->start }}</td>
-                            <td class="py-5 px-6 font-bold text-gray-900 text-base">{{ $airport->destination }}</td>
-                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]"><span x-data x-html="$store.currency.format({{ $airport->price }})">$ {{ number_format((float)$airport->price, 2) }}</span></td>
+                            <td class="py-5 px-6 md:px-10 text-gray-400 font-medium">{{ $transfer->start }}</td>
+                            <td class="py-5 px-6 font-bold text-gray-900 text-base">{{ $transfer->destination }}</td>
+                            <td class="py-5 px-6 text-center font-bold text-lg text-[#9B1C26]"><span x-html="$store.currency.format({{ $transfer->price ?: 0 }})">$ {{ number_format((float)$transfer->price, 2) }}</span></td>
                             <td class="py-5 px-6 md:px-10 text-center">
-                                <a href="#" @click.prevent="selectedStart = '{{ $airport->start }}'; selectedDest = '{{ $airport->destination }}'; isModalOpen = true" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
+                               <a href="#" @click.prevent="selectedStart = '{{ $transfer->start }}'; selectedDest = '{{ $transfer->destination }}'; isModalOpen = true" class="inline-block bg-[#9B1C26] hover:bg-[#7A151D] text-white text-xs font-semibold px-5 py-2.5 rounded transition-colors duration-200">Booking Form</a>
                             </td>
                         </tr>
                         @empty
@@ -90,25 +90,25 @@
 
             <!-- Mobile Card View -->
             <div class="grid grid-cols-1 gap-4 p-4 bg-gray-50 md:hidden">
-                @forelse($airports as $index => $airport)
+                @forelse($transfers as $index => $transfer)
                 <div class="bg-white border border-gray-100 rounded-xl shadow-sm p-5 flex flex-col gap-3 relative" x-show="Math.floor({{ $index }} / itemsPerPage) === activePage">
                     <div class="flex justify-between items-start gap-4">
                         <div class="flex-1">
                             <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">From</p>
-                            <p class="font-medium text-gray-600 text-sm">{{ $airport->start }}</p>
+                            <p class="font-medium text-gray-600 text-sm">{{ $transfer->start }}</p>
                         </div>
                         <div class="text-right shrink-0">
                             <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Price</p>
-                            <p class="font-bold text-lg text-[#9B1C26]"><span x-data x-html="$store.currency.format({{ $airport->price }})">$ {{ number_format((float)$airport->price, 2) }}</span></p>
+                            <p class="font-bold text-xl text-[#9B1C26]"><span x-html="$store.currency.format({{ $transfer->price ?: 0 }})">$ {{ number_format((float)$transfer->price, 2) }}</span></p>
                         </div>
                     </div>
                     <div>
                         <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">To Destination</p>
-                        <p class="font-bold text-gray-900 text-base">{{ $airport->destination }}</p>
+                        <p class="font-bold text-gray-900 text-base">{{ $transfer->destination }}</p>
                     </div>
                     <div class="mt-2 pt-4 border-t border-gray-100">
-                        <a href="#" @click.prevent="selectedStart = '{{ $airport->start }}'; selectedDest = '{{ $airport->destination }}'; isModalOpen = true" class="inline-flex items-center justify-center bg-[#9B1C26] hover:bg-[#7A151D] text-white text-sm font-semibold px-5 py-3 rounded-lg transition-colors duration-200 w-full shadow-sm shadow-red-900/20">
-                            <i class="fa-solid fa-plane-arrival mr-2"></i> Book This Transfer
+                        <a href="#" @click.prevent="selectedStart = '{{ $transfer->start }}'; selectedDest = '{{ $transfer->destination }}'; isModalOpen = true" class="inline-flex items-center justify-center bg-[#9B1C26] hover:bg-[#7A151D] text-white text-sm font-semibold px-5 py-3 rounded-lg transition-colors duration-200 w-full shadow-sm shadow-red-900/20">
+                            <i class="fa-solid fa-car-side mr-2"></i> Book This Transfer
                         </a>
                     </div>
                 </div>
@@ -146,9 +146,21 @@
                 </button>
             </div>
 
+            <!-- Custom Transfer Request -->
+            <div class="bg-[#Fdf5f6] px-6 py-6 md:px-10 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm text-gray-700">
+                <div>
+                    <h4 class="font-bold text-[#7A0C16] text-base">Tidak menemukan destinasi Anda?</h4>
+                    <p class="text-xs text-gray-500 mt-1">Kami menyediakan rute kustom. Ajukan form request untuk mengatur perjalanan Anda.</p>
+                </div>
+                <button @click.prevent="selectedStart = ''; selectedDest = ''; isModalOpen = true" class="bg-[#7A0C16] hover:bg-[#5A0810] text-white px-5 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2 shadow-sm text-sm whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-map-location-dot"></i> Request Custom Transfer
+                </button>
+            </div>
+
         </div>
     </div>
-    <div x-show="isModalOpen" style="display: none;" class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
+  <div x-show="isModalOpen" style="display: none;" class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     
     <div x-show="isModalOpen" 
          x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" 
@@ -161,60 +173,19 @@
             <div x-show="isModalOpen" @click.away="isModalOpen = false"
                  x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
                  x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-                 class="relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row text-left">
+                 class="relative bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col text-left">
                 
                 <!-- Close Button (Mobile) -->
-                <button type="button" @click="isModalOpen = false" class="md:hidden absolute top-4 right-4 z-20 text-white bg-black/20 hover:bg-black/40 rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transition-colors">&times;</button>
+                <button type="button" @click="isModalOpen = false" class="md:hidden absolute top-4 right-4 z-20 text-gray-400 bg-white/20 hover:bg-white/40 rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transition-colors">&times;</button>
                 
-                <!-- Left Side: Trust & Visual -->
-                <div class="w-full md:w-2/5 bg-gradient-to-br from-[#7A0C16] to-[#4A050A] text-white p-8 relative overflow-hidden flex flex-col justify-between">
-                    <div class="absolute -top-20 -left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-                    <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-black/20 rounded-full blur-3xl"></div>
-                    
-                    <div class="relative z-10">
-                        <h3 class="text-3xl font-extrabold mb-3">Airport<br>Transfer</h3>
-                        <p class="text-white/80 text-sm mb-8 leading-relaxed">Start or end your journey in Bali comfortably. On-time airport transfer service.</p>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-plane-arrival text-lg text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-sm text-white">Flight Tracking</h4>
-                                    <p class="text-xs text-white/70 mt-0.5">We track your flight time</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-user-tie text-lg text-yellow-400"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-sm text-white">Meet & Greet</h4>
-                                    <p class="text-xs text-white/70 mt-0.5">Driver waits at arrival</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-tag text-lg text-green-400"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-sm text-white">No Hidden Costs</h4>
-                                    <p class="text-xs text-white/70 mt-0.5">Fixed price guarantee</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Right Side: Form -->
-                <div class="w-full md:w-3/5 bg-gray-50 relative">
+                <!-- Form -->
+                <div class="w-full bg-gray-50 relative">
                     <!-- Close Button (Desktop) -->
                     <button type="button" @click="isModalOpen = false" class="hidden md:flex absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-800 bg-white shadow-sm hover:bg-gray-100 rounded-full w-8 h-8 items-center justify-center focus:outline-none transition-colors"><i class="fa-solid fa-xmark"></i></button>
 
                     <form action="{{ route('bookings.store') }}" method="POST" class="p-6 md:p-8 max-h-[85vh] overflow-y-auto space-y-6 text-left">
                         @csrf
-                        <input type="hidden" name="type" value="airport_transfer">
+                        <input type="hidden" name="type" value="hotel_transfer">
                         
                         @if(session('success'))
                             <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm mb-4">
@@ -249,28 +220,30 @@
 
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                             <div class="flex items-center gap-2 text-[#7A0C16] font-bold text-base mb-4 border-b border-gray-50 pb-3">
-                                <i class="fa-solid fa-plane"></i>
+                                <i class="fa-solid fa-car"></i>
                                 <h2>Transfer Details</h2>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="md:col-span-2">
                                     <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Pick-up Location</label>
-                                    <input type="text" name="current_hotel" x-model="selectedStart" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="https://maps.app.goo.gl/... or Airport/Hotel Name">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <input type="text" name="current_hotel" x-model="selectedStart" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="Airport/Hotel Name">
+                                        <input type="url" name="pickup_maps_link" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="Google Maps Link (Optional)">
+                                    </div>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Drop-off Location</label>
-                                    <input type="text" name="to_hotel" x-model="selectedDest" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="https://maps.app.goo.gl/... or Airport/Hotel Name">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <input type="text" name="to_hotel" x-model="selectedDest" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="Airport/Hotel Name">
+                                        <input type="url" name="dropoff_maps_link" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="Google Maps Link (Optional)">
+                                    </div>
                                 </div>
                                 <div>
                                     <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Date of Transfer</label>
                                     <input type="date" name="booking_date" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all">
                                 </div>
                                 <div>
-                                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Flight Number (If applicable)</label>
-                                    <input type="text" name="flight_number" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="e.g. GA-412">
-                                </div>
-                                <div>
-                                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Pick-up/Flight Time</label>
+                                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Pick-up Time</label>
                                     <input type="time" name="pickup_time" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all">
                                 </div>
                             </div>
@@ -284,11 +257,12 @@
                             <button type="submit" class="w-full bg-[#7A0C16] hover:bg-[#5A0810] text-white font-bold py-3.5 px-6 rounded-xl shadow-[0_8px_20px_-6px_rgba(122,12,22,0.5)] transform transition-all duration-300 hover:-translate-y-0.5 flex justify-center items-center gap-2">
                                 Confirm Booking <i class="fa-solid fa-arrow-right-long ml-2"></i>
                             </button>
-
-                            <button type="button" onclick="submitTransferToWhatsApp(event, 'Airport Transfer')" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3.5 px-6 rounded-xl shadow-[0_8px_20px_-6px_rgba(37,211,102,0.5)] transform transition-all duration-300 hover:-translate-y-0.5 flex justify-center items-center gap-2">
+                            
+                            <button type="button" onclick="submitTransferToWhatsApp(event, 'Hotel Transfer')" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3.5 px-6 rounded-xl shadow-[0_8px_20px_-6px_rgba(37,211,102,0.5)] transform transition-all duration-300 hover:-translate-y-0.5 flex justify-center items-center gap-2">
                                 <i class="fa-brands fa-whatsapp text-lg"></i> Book via WhatsApp
                             </button>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -329,8 +303,19 @@
                 const form = event.target.closest('form');
                 const formData = new FormData(form);
                 
-                let message = `Halo Admin, saya tertarik untuk memesan layanan Airport Transfer.\nBerikut detail pesanan saya:\n\n`;
-                message += `*Rute:* ${formData.get('current_hotel')} ➡️ ${formData.get('to_hotel')}\n`;
+                let message = `Halo Admin, saya tertarik untuk memesan layanan Hotel Transfer.\nBerikut detail pesanan saya:\n\n`;
+                
+                let pickupLocation = formData.get('current_hotel');
+                if (formData.get('pickup_maps_link')) {
+                    pickupLocation += ` (${formData.get('pickup_maps_link')})`;
+                }
+                
+                let dropoffLocation = formData.get('to_hotel');
+                if (formData.get('dropoff_maps_link')) {
+                    dropoffLocation += ` (${formData.get('dropoff_maps_link')})`;
+                }
+                
+                message += `*Rute:* ${pickupLocation} ➡️ ${dropoffLocation}\n`;
                 message += `*Nama:* ${formData.get('full_name')}\n`;
                 message += `*Email:* ${formData.get('email')}\n`;
                 message += `*Telepon/WA:* ${formData.get('phone')}\n`;
@@ -341,7 +326,7 @@
                     message += `*Nomor Penerbangan:* ${formData.get('flight_number')}\n`;
                 }
                 
-                message += `*Waktu Jemput/Tiba:* ${formData.get('pickup_time')}\n\n`;
+                message += `*Waktu Jemput:* ${formData.get('pickup_time')}\n\n`;
                 
                 // Get plain text from summernote
                 let specialReqHtml = formData.get('special_request') || '';
@@ -356,6 +341,5 @@
                 window.open(waUrl, '_blank');
             }
         </script>
-
     </body>
 </html>
