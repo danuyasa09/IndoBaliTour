@@ -212,8 +212,16 @@
                     <!-- Close Button (Desktop) -->
                     <button type="button" @click="isModalOpen = false" class="hidden md:flex absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-800 bg-white shadow-sm hover:bg-gray-100 rounded-full w-8 h-8 items-center justify-center focus:outline-none transition-colors"><i class="fa-solid fa-xmark"></i></button>
 
-                    <form action="#" method="POST" onsubmit="submitTransferToWhatsApp(event, 'Airport Transfer')" class="p-6 md:p-8 max-h-[85vh] overflow-y-auto space-y-6 text-left">
+                    <form action="{{ route('bookings.store') }}" method="POST" class="p-6 md:p-8 max-h-[85vh] overflow-y-auto space-y-6 text-left">
+                        @csrf
+                        <input type="hidden" name="type" value="airport_transfer">
                         
+                        @if(session('success'))
+                            <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm mb-4">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                             <div class="flex items-center gap-2 text-[#7A0C16] font-bold text-base mb-4 border-b border-gray-50 pb-3">
                                 <i class="fa-solid fa-user-circle"></i>
@@ -255,7 +263,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Date of Transfer</label>
-                                    <input type="date" name="transfer_date" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all">
+                                    <input type="date" name="booking_date" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all">
                                 </div>
                                 <div>
                                     <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Flight Number (If applicable)</label>
@@ -272,9 +280,15 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="w-full bg-[#7A0C16] hover:bg-[#5A0810] text-white font-bold py-3.5 px-6 rounded-xl shadow-[0_8px_20px_-6px_rgba(122,12,22,0.5)] transform transition-all duration-300 hover:-translate-y-0.5 flex justify-center items-center gap-2">
-                            Confirm Booking <i class="fa-solid fa-arrow-right-long ml-2"></i>
-                        </button>
+                        <div class="flex flex-col gap-3">
+                            <button type="submit" class="w-full bg-[#7A0C16] hover:bg-[#5A0810] text-white font-bold py-3.5 px-6 rounded-xl shadow-[0_8px_20px_-6px_rgba(122,12,22,0.5)] transform transition-all duration-300 hover:-translate-y-0.5 flex justify-center items-center gap-2">
+                                Confirm Booking <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                            </button>
+
+                            <button type="button" onclick="submitTransferToWhatsApp(event, 'Airport Transfer')" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3.5 px-6 rounded-xl shadow-[0_8px_20px_-6px_rgba(37,211,102,0.5)] transform transition-all duration-300 hover:-translate-y-0.5 flex justify-center items-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Book via WhatsApp
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -312,7 +326,7 @@
 
             function submitTransferToWhatsApp(event, type) {
                 event.preventDefault();
-                const form = event.target;
+                const form = event.target.closest('form');
                 const formData = new FormData(form);
                 
                 let message = `Halo Admin, saya tertarik untuk memesan layanan Airport Transfer.\nBerikut detail pesanan saya:\n\n`;
@@ -321,7 +335,7 @@
                 message += `*Email:* ${formData.get('email')}\n`;
                 message += `*Telepon/WA:* ${formData.get('phone')}\n`;
                 message += `*Jumlah Penumpang:* ${formData.get('total_person')}\n`;
-                message += `*Tanggal Transfer:* ${formData.get('transfer_date')}\n`;
+                message += `*Tanggal Transfer:* ${formData.get('booking_date')}\n`;
                 
                 if (formData.get('flight_number')) {
                     message += `*Nomor Penerbangan:* ${formData.get('flight_number')}\n`;

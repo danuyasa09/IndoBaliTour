@@ -23,6 +23,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 Route::post('/testimony', [TestimonyController::class, 'store'])->name('testimony.store');
 
+use App\Http\Controllers\BookingController;
+Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+
+use App\Http\Controllers\TeamController;
+Route::get('/our-team', [TeamController::class, 'index'])->name('team.index');
+Route::post('/our-team/apply', [TeamController::class, 'storeApplication'])->name('team.apply');
+
 // Custom Admin Panel Routes
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TourController as AdminTourController;
@@ -33,6 +40,7 @@ use App\Http\Controllers\Admin\VideoController as AdminVideoController;
 use App\Http\Controllers\Admin\AlbumController as AdminAlbumController;
 use App\Http\Controllers\Admin\AirportController as AdminAirportController;
 use App\Http\Controllers\Admin\HotelTransferController as AdminHotelTransferController;
+use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -52,6 +60,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::resource('airports', AdminAirportController::class);
     Route::resource('hotel_transfers', AdminHotelTransferController::class);
+
+    Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
+    Route::get('bookings/{booking}', [BookingController::class, 'show'])->name('bookings.show');
+    Route::delete('bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+
+    Route::get('job-applications', [AdminJobApplicationController::class, 'index'])->name('job_applications.index');
+    Route::get('job-applications/{application}', [AdminJobApplicationController::class, 'show'])->name('job_applications.show');
+    Route::patch('job-applications/{application}/status', [AdminJobApplicationController::class, 'updateStatus'])->name('job_applications.updateStatus');
+    Route::delete('job-applications/{application}', [AdminJobApplicationController::class, 'destroy'])->name('job_applications.destroy');
 });
 
 Route::get('/tour', function () {

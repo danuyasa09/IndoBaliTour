@@ -188,12 +188,27 @@
                         $displayPhone = $pengaturan->phone ?? '+6285858777754';
                         $emailAddress = $pengaturan->email ?? 'enjoy@indobalitour.com';
                     @endphp
-                    <form action="#" method="POST" onsubmit="submitInlineActivityToWhatsApp(event)" class="space-y-4 border-t border-gray-100 pt-5 mt-5">
+                    <form action="{{ route('bookings.store') }}" method="POST" class="space-y-4 border-t border-gray-100 pt-5 mt-5">
+                        @csrf
+                        <input type="hidden" name="type" value="fun_activity">
+                        <input type="hidden" name="item_title" value="{{ $activity->title }}">
+                        
                         <h4 class="text-sm font-bold text-gray-900 mb-3">Quick Booking</h4>
                         
+                        @if(session('success'))
+                            <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm mb-4">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
                         <div>
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Full Name</label>
                             <input type="text" name="full_name" required class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Phone / WhatsApp</label>
+                            <input type="text" name="phone" required class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
                         </div>
                         
                         <div class="grid grid-cols-2 gap-3">
@@ -217,10 +232,17 @@
                             <textarea id="summernote_activity" name="special_request"></textarea>
                         </div>
 
-                        <button type="submit" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition-colors mt-2">
-                            <i class="fa-brands fa-whatsapp text-base"></i>
-                            <span>Book via WhatsApp</span>
-                        </button>
+                        <div class="flex flex-col gap-2 mt-4">
+                            <button type="submit" class="w-full bg-[#7A0C16] hover:bg-[#5a0810] text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition-colors">
+                                <i class="fa-solid fa-paper-plane text-base"></i>
+                                <span>Submit Booking</span>
+                            </button>
+
+                            <button type="button" onclick="submitInlineActivityToWhatsApp(event)" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition-colors">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                                <span>Book via WhatsApp</span>
+                            </button>
+                        </div>
                     </form>
                 </div>
 
@@ -317,11 +339,12 @@
 
         function submitInlineActivityToWhatsApp(event) {
             event.preventDefault();
-            const form = event.target;
+            const form = event.target.closest('form');
             const formData = new FormData(form);
             
             let message = `Halo Admin, saya ingin memesan fun activity *{{ $activity->title }}*.\nBerikut detail pesanan saya:\n\n`;
             message += `*Nama:* ${formData.get('full_name')}\n`;
+            message += `*Phone:* ${formData.get('phone')}\n`;
             message += `*Tanggal:* ${formData.get('activity_date')}\n`;
             message += `*Jumlah Peserta:* ${formData.get('total_person')}\n`;
             message += `*Lokasi Jemput:* ${formData.get('pickup_location') || '-'}\n`;

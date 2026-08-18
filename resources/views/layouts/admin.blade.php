@@ -35,6 +35,10 @@
                 <!-- Future routes can be added here -->
                 <div class="pt-4 mt-4 border-t border-gray-800">
                     <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Manajemen Konten</p>
+                    <a href="{{ route('admin.bookings.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.bookings.*') ? 'bg-brand-red text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                        <i class="fa-solid fa-address-book w-5 text-center"></i>
+                        <span class="font-medium">Bookings</span>
+                    </a>
                     <a href="{{ route('admin.tours.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.tours.*') ? 'bg-brand-red text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
                         <i class="fa-solid fa-map-location-dot w-5 text-center"></i>
                         <span class="font-medium">Paket Tour</span>
@@ -54,6 +58,10 @@
                     <a href="{{ route('admin.blogs.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.blogs.*') ? 'bg-brand-red text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
                         <i class="fa-solid fa-newspaper w-5 text-center"></i>
                         <span class="font-medium">Blog & News</span>
+                    </a>
+                    <a href="{{ route('admin.job_applications.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.job_applications.*') ? 'bg-brand-red text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                        <i class="fa-solid fa-briefcase w-5 text-center"></i>
+                        <span class="font-medium">Job Applications</span>
                     </a>
                 </div>
 

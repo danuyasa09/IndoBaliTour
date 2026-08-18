@@ -123,8 +123,15 @@
             <!-- Close Button (Desktop) -->
             <button type="button" onclick="closeBookingModal()" class="hidden md:flex absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-800 bg-white shadow-sm hover:bg-gray-100 rounded-full w-8 h-8 items-center justify-center focus:outline-none transition-colors"><i class="fa-solid fa-xmark"></i></button>
 
-            <form action="#" method="POST" onsubmit="submitTourToWhatsApp(event)" class="p-6 md:p-8 max-h-[85vh] overflow-y-auto space-y-6 text-left">
+            <form action="{{ route('bookings.store') }}" method="POST" class="p-6 md:p-8 max-h-[85vh] overflow-y-auto space-y-6 text-left">
                 @csrf
+                <input type="hidden" name="type" id="booking_type" value="tour">
+                
+                @if(session('success'))
+                    <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm mb-4">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 
                 <!-- Personal Info -->
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
@@ -160,13 +167,27 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="md:col-span-2">
-                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Tour Package</label>
-                            <select name="tour_package" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-gray-700 text-sm transition-shadow bg-white appearance-none">
-                                <option value="" disabled selected>Select a package</option>
-                                @php $all_tours = \App\Models\Tour::all(); @endphp
-                                @foreach($all_tours as $t)
-                                    <option value="{{ $t->title }}">{{ $t->title }}</option>
-                                @endforeach
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Package / Service</label>
+                            <select name="item_title" id="item_title_select" onchange="updateBookingType(this)" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-gray-700 text-sm transition-shadow bg-white appearance-none">
+                                <option value="" disabled selected>Select a package or service</option>
+                                <optgroup label="Tours">
+                                    @php $all_tours = \App\Models\Tour::all(); @endphp
+                                    @foreach($all_tours as $t)
+                                        <option value="{{ $t->title }}" data-type="tour">{{ $t->title }}</option>
+                                    @endforeach
+                                </optgroup>
+                                <optgroup label="Fun Activities">
+                                    @php $all_activities = \App\Models\Funactivity::all(); @endphp
+                                    @foreach($all_activities as $a)
+                                        <option value="{{ $a->title }}" data-type="fun_activity">{{ $a->title }}</option>
+                                    @endforeach
+                                </optgroup>
+                                <optgroup label="Car Rentals">
+                                    @php $all_cars = \App\Models\Car::all(); @endphp
+                                    @foreach($all_cars as $c)
+                                        <option value="{{ $c->title }}" data-type="car_rental">{{ $c->title }}</option>
+                                    @endforeach
+                                </optgroup>
                             </select>
                         </div>
                         <div class="md:col-span-2">
@@ -178,8 +199,8 @@
                             <input type="text" name="to_hotel" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="https://maps.app.goo.gl/... or Hotel Name">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Date of Tour</label>
-                            <input type="date" name="tour_date" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-gray-700 text-sm transition-shadow">
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Date</label>
+                            <input type="date" name="booking_date" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-gray-700 text-sm transition-shadow">
                         </div>
                         <div>
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Total Person</label>
@@ -193,9 +214,15 @@
                 </div>
 
                 <!-- Submit -->
-                <button type="submit" class="w-full bg-[#7A0C16] hover:bg-[#5A0810] text-white font-bold py-3.5 px-6 rounded-xl shadow-[0_8px_20px_-6px_rgba(122,12,22,0.5)] transform transition-all duration-300 hover:-translate-y-0.5 flex justify-center items-center gap-2">
-                    Submit Request <i class="fa-solid fa-paper-plane text-sm"></i>
-                </button>
+                <div class="flex flex-col gap-3">
+                    <button type="submit" class="w-full bg-[#7A0C16] hover:bg-[#5A0810] text-white font-bold py-3.5 px-6 rounded-xl shadow-[0_8px_20px_-6px_rgba(122,12,22,0.5)] transform transition-all duration-300 hover:-translate-y-0.5 flex justify-center items-center gap-2">
+                        Submit Booking <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                    
+                    <button type="button" onclick="submitTourToWhatsApp(event)" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3.5 px-6 rounded-xl shadow-[0_8px_20px_-6px_rgba(37,211,102,0.5)] transform transition-all duration-300 hover:-translate-y-0.5 flex justify-center items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Book via WhatsApp
+                    </button>
+                </div>
                 <p class="text-center text-[11px] text-gray-400 mt-2">
                     We will get back to you within 5-10 minutes.
                 </p>
@@ -313,17 +340,30 @@
         }
     });
 
+    function updateBookingType(selectElement) {
+        const selectedOption = selectElement.options[selectElement.selectedIndex];
+        const type = selectedOption.getAttribute('data-type');
+        if (type) {
+            document.getElementById('booking_type').value = type;
+        }
+    }
+
     function submitTourToWhatsApp(event) {
         event.preventDefault();
-        const form = event.target;
+        const form = event.target.closest('form');
         const formData = new FormData(form);
         
-        let message = `Halo Admin, saya ingin memesan paket tour *${formData.get('tour_package') || '-'}*.\nBerikut detail pesanan saya:\n\n`;
+        let typeStr = 'layanan';
+        if (formData.get('type') === 'tour') typeStr = 'paket tour';
+        if (formData.get('type') === 'fun_activity') typeStr = 'aktivitas';
+        if (formData.get('type') === 'car_rental') typeStr = 'sewa mobil';
+
+        let message = `Halo Admin, saya ingin memesan ${typeStr} *${formData.get('item_title') || '-'}*.\nBerikut detail pesanan saya:\n\n`;
         message += `*Nama:* ${formData.get('full_name')}\n`;
         message += `*Email:* ${formData.get('email')}\n`;
         message += `*Telepon/WA:* ${formData.get('phone')}\n`;
         message += `*Kewarganegaraan:* ${formData.get('nationality')}\n`;
-        message += `*Tanggal Tour:* ${formData.get('tour_date')}\n`;
+        message += `*Tanggal:* ${formData.get('booking_date')}\n`;
         message += `*Jumlah Peserta:* ${formData.get('total_person')}\n`;
         message += `*Lokasi Jemput:* ${formData.get('current_hotel') || '-'}\n`;
         message += `*Lokasi Antar:* ${formData.get('to_hotel') || '-'}\n`;

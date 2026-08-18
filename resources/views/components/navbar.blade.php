@@ -68,6 +68,12 @@
                     </div>
                 </div>
 
+                <a href="{{ route('team.index') }}" 
+                   :class="scrolled ? 'text-gray-800' : 'text-white'" 
+                   class="hover:text-brand-red text-sm font-medium transition-all duration-300 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
+                   {{ __('Our Team') }}
+                </a>
+                
                 <a href="{{ route('experience') }}" 
                    :class="scrolled ? 'text-gray-800' : 'text-white'" 
                    class="hover:text-brand-red text-sm font-medium transition-all duration-300 no-underline relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-red after:transition-all after:duration-300">
@@ -259,6 +265,7 @@
             </div>
         </div>
 
+        <a href="{{ route('team.index') }}" class="block text-gray-700 hover:text-brand-red font-medium text-base py-1 no-underline">{{ __('Our Team') }}</a>
         <a href="{{ route('experience') }}" class="block text-gray-700 hover:text-brand-red font-medium text-base py-1 no-underline">{{ __('Experiences') }}</a>
         <a href="{{ route('blog_event') }}" class="block text-gray-700 hover:text-brand-red font-medium text-base py-1 no-underline">{{ __('Blogs & News') }}</a>
         <a href="{{ route('contact') }}" class="block text-gray-700 hover:text-brand-red font-medium text-base py-1 no-underline">{{ __('Contact Us') }}</a>

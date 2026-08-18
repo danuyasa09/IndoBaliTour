@@ -32,6 +32,7 @@
             <div class="flex flex-col items-center lg:items-start text-center lg:text-left col-span-1 lg:col-span-1 order-2 lg:order-2">
                 <h4 class="text-white font-bold text-sm uppercase tracking-[0.15em] mb-6">Our Services</h4>
                 <ul class="space-y-4 text-sm font-medium">
+                    <li><a href="{{ route('team.index') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Our Team & Career</a></li>
                     <li><a href="{{ route('package_tour') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Tour Packages</a></li>
                     <li><a href="{{ route('car_rental') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Car Rental</a></li>
                     <li><a href="{{ route('fun_activity') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Fun Activities</a></li>
