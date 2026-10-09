@@ -54,7 +54,7 @@
             <!-- Content -->
             <div class="md:col-span-2">
                 <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Konten Lengkap (HTML allowed)</label>
-                <textarea name="content" id="content" rows="6" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content') }}</textarea>
+                <textarea name="content" id="content" rows="6" class="summernote w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-red focus:ring-brand-red" required>{{ old('content', "[map lat=\"-8.409\" lng=\"115.188\"]\nPASTE_LINK_IFRAME_DI_SINI\n[/map]") }}</textarea>
                 <div class="mt-2 p-3 bg-blue-50 text-blue-800 text-xs rounded-lg border border-blue-200 leading-relaxed">
                     <div class="font-bold mb-1"><i class="fa-solid fa-map-location-dot mr-1"></i> Fitur Peta Interaktif (Opsional)</div>
                     Anda dapat menyisipkan peta langsung ke dalam tulisan. Fitur ini <b>opsional</b> (tidak wajib). Jika ingin menggunakannya, pilih salah satu format kode berikut:<br>

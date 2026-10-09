@@ -39,6 +39,22 @@ class BookingController extends Controller
         return view('admin.bookings.show', compact('booking'));
     }
 
+    public function print(\App\Models\Booking $booking)
+    {
+        return view('admin.bookings.print', compact('booking'));
+    }
+
+    public function updateStatus(Request $request, \App\Models\Booking $booking)
+    {
+        $request->validate([
+            'status' => 'required|in:Pending,Confirmed,Cancelled',
+        ]);
+
+        $booking->update(['status' => $request->status]);
+
+        return back()->with('success', "Status booking #{$booking->id} berhasil diubah ke '{$request->status}'.");
+    }
+
     public function destroy(\App\Models\Booking $booking)
     {
         $booking->delete();

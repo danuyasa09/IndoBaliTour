@@ -143,11 +143,17 @@
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Pick-up Location</label>
-                            <input type="text" name="current_hotel" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="https://maps.app.goo.gl/... or Hotel Name">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="text" name="current_hotel" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="Hotel Name / Area">
+                                <input type="url" name="pickup_maps_link" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="Google Maps Link (Optional)">
+                            </div>
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Drop-off Location</label>
-                            <input type="text" name="to_hotel" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="https://maps.app.goo.gl/... or Hotel Name">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="text" name="to_hotel" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="Destination Name / Area">
+                                <input type="url" name="dropoff_maps_link" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-sm text-gray-900 transition-all" placeholder="Google Maps Link (Optional)">
+                            </div>
                         </div>
                         <div>
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Date</label>
@@ -316,8 +322,18 @@
         message += `*Kewarganegaraan:* ${formData.get('nationality')}\n`;
         message += `*Tanggal:* ${formData.get('booking_date')}\n`;
         message += `*Jumlah Peserta:* ${formData.get('total_person')}\n`;
-        message += `*Lokasi Jemput:* ${formData.get('current_hotel') || '-'}\n`;
-        message += `*Lokasi Antar:* ${formData.get('to_hotel') || '-'}\n`;
+        let pickupLocation = formData.get('current_hotel') || '-';
+        if (formData.get('pickup_maps_link')) {
+            pickupLocation += ` (${formData.get('pickup_maps_link')})`;
+        }
+        
+        let dropoffLocation = formData.get('to_hotel') || '-';
+        if (formData.get('dropoff_maps_link')) {
+            dropoffLocation += ` (${formData.get('dropoff_maps_link')})`;
+        }
+
+        message += `*Lokasi Jemput:* ${pickupLocation}\n`;
+        message += `*Lokasi Antar:* ${dropoffLocation}\n`;
         
         let specialReqHtml = formData.get('special_request') || '';
         let tempDiv = document.createElement("div");

@@ -22,6 +22,10 @@
                     <span class="block mt-1 text-sm font-medium text-gray-900">{{ $application->name }}</span>
                 </div>
                 <div>
+                    <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Nama Panggilan</span>
+                    <span class="block mt-1 text-sm font-medium text-gray-900">{{ $application->nickname ?? '-' }}</span>
+                </div>
+                <div>
                     <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Posisi Dilamar</span>
                     <span class="block mt-1 text-sm font-bold text-brand-red">{{ $application->position }}</span>
                 </div>
@@ -40,6 +44,16 @@
                     <span class="block mt-1 text-sm text-gray-900">{{ $application->created_at->format('l, d F Y - H:i:s') }}</span>
                 </div>
                 <div>
+                    <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Sosial Media</span>
+                    @if($application->social_media)
+                        <a href="{{ $application->social_media }}" target="_blank" class="inline-flex items-center gap-1 mt-1 text-sm text-blue-600 hover:underline">
+                            Kunjungi <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    @else
+                        <span class="block mt-1 text-sm italic text-gray-400">Tidak ada</span>
+                    @endif
+                </div>
+                <div>
                     <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Link CV / Resume</span>
                     @if($application->cv_link)
                         <a href="{{ asset('storage/' . $application->cv_link) }}" target="_blank" class="inline-flex items-center gap-1 mt-1 text-sm text-blue-600 hover:underline">
@@ -51,15 +65,9 @@
                 </div>
                 <div>
                     <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Foto Profil</span>
-                    @php
-                        $fotoUrl = null;
-                        if (preg_match('/Foto Profil:\s*(http[s]?:\/\/[^\s]+)/', $application->message, $matches)) {
-                            $fotoUrl = $matches[1];
-                        }
-                    @endphp
-                    @if($fotoUrl)
-                        <a href="{{ $fotoUrl }}" target="_blank" class="block mt-2">
-                            <img src="{{ $fotoUrl }}" alt="Foto Profil" class="h-20 w-20 object-cover rounded-lg border border-gray-200 hover:opacity-80 transition-opacity">
+                    @if($application->profile_photo_path)
+                        <a href="{{ asset('storage/' . $application->profile_photo_path) }}" target="_blank" class="block mt-2">
+                            <img src="{{ asset('storage/' . $application->profile_photo_path) }}" alt="Foto Profil" class="h-20 w-20 object-cover rounded-lg border border-gray-200 hover:opacity-80 transition-opacity">
                         </a>
                     @else
                         <span class="block mt-1 text-sm italic text-gray-400">Tidak ada foto</span>
@@ -70,9 +78,9 @@
 
         <!-- Message / Cover Letter -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h2 class="text-lg font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Cover Letter / Pesan</h2>
+            <h2 class="text-lg font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Profil Singkat / Pesan</h2>
             <div class="bg-gray-50 rounded-lg p-4 text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">
-@if($application->message){{ preg_replace('/Foto Profil:\s*(http[s]?:\/\/[^\s]+)\n?/', '', $application->message) }}@else<span class="italic text-gray-400">Tidak ada pesan tambahan.</span>@endif
+@if($application->message){{ $application->message }}@else<span class="italic text-gray-400">Tidak ada pesan tambahan.</span>@endif
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@
     <!-- Alpine JS for light interactivity like mobile menu and dropdowns -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- AOS CSS -->
-    <link href="https://unpkg.fcom/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
@@ -45,12 +45,7 @@
     <section class="relative min-h-[100vh] overflow-hidden bg-black flex flex-col"
         x-data="{ 
                      activeSlide: 0, 
-                     slides: [
-                         'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=80',
-                         'https://inivie.com/_next/image?url=https%3A%2F%2Fblog.inivie.com%2Fwp-content%2Fuploads%2F2025%2F04%2F4._Pantai-Berawa-1024x683.jpg&w=1920&q=75',
-                         'https://www.water-sport-bali.com/wp-content/uploads/2024/10/gunung-batur-kintamani-bali.webp',
-                         'https://inivie.com/_next/image?url=https%3A%2F%2Fblog.inivie.com%2Fwp-content%2Fuploads%2F2025%2F04%2F11._Ubud-Art-Market-1024x683.jpg&w=1920&q=75'
-                     ],
+                     slides: {{ Js::from($heroSlides) }},
                      init() {
                          setInterval(() => {
                              this.activeSlide = (this.activeSlide === this.slides.length - 1) ? 0 : this.activeSlide + 1;

@@ -4,10 +4,16 @@
 @section('subtitle', 'Informasi lengkap pemesanan')
 
 @section('actions')
-<a href="{{ route('admin.bookings.index') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium text-sm flex items-center gap-2">
-    <i class="fa-solid fa-arrow-left"></i>
-    Kembali
-</a>
+<div class="flex items-center gap-3">
+    <a href="{{ route('admin.bookings.print', $booking->id) }}" target="_blank" class="px-4 py-2 bg-brand-red text-white rounded-lg hover:bg-red-700 transition-colors font-medium text-sm flex items-center gap-2 shadow-sm">
+        <i class="fa-solid fa-print"></i>
+        Cetak (PDF)
+    </a>
+    <a href="{{ route('admin.bookings.index') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium text-sm flex items-center gap-2">
+        <i class="fa-solid fa-arrow-left"></i>
+        Kembali
+    </a>
+</div>
 @endsection
 
 @section('content')
@@ -38,7 +44,7 @@
                     @foreach($booking->details as $key => $value)
                         <div>
                             <p class="text-sm text-gray-500 font-medium capitalize">{{ str_replace('_', ' ', $key) }}</p>
-                            <p class="text-base text-gray-900 break-words">{{ $value ?? '-' }}</p>
+                            <div class="text-base text-gray-900 break-words prose-sm prose">{!! $value ?? '-' !!}</div>
                         </div>
                     @endforeach
                 </div>
@@ -76,10 +82,24 @@
                 </div>
 
                 <div>
-                    <p class="text-sm text-gray-500 font-medium mb-1">Status</p>
-                    <span class="px-3 py-1 text-sm font-medium rounded-full bg-yellow-100 text-yellow-800 inline-block">
-                        {{ $booking->status }}
-                    </span>
+                    <p class="text-sm text-gray-500 font-medium mb-2">Status</p>
+                    @if(session('success'))
+                        <div class="mb-3 px-3 py-2 bg-green-50 border border-green-200 text-green-700 rounded-lg text-xs font-medium">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <form action="{{ route('admin.bookings.updateStatus', $booking->id) }}" method="POST" class="flex items-center gap-2">
+                        @csrf
+                        @method('PATCH')
+                        <select name="status" class="flex-1 text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red bg-white text-gray-700">
+                            <option value="Pending"   @selected($booking->status === 'Pending')>⏳ Pending</option>
+                            <option value="Confirmed" @selected($booking->status === 'Confirmed')>✅ Confirmed</option>
+                            <option value="Cancelled" @selected($booking->status === 'Cancelled')>❌ Cancelled</option>
+                        </select>
+                        <button type="submit" class="px-3 py-2 bg-brand-red text-white text-xs font-bold rounded-lg hover:bg-red-700 transition-colors shadow-sm whitespace-nowrap">
+                            Simpan
+                        </button>
+                    </form>
                 </div>
                 
                 <div class="pt-4 mt-2 border-t border-gray-100">

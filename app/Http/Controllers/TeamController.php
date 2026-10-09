@@ -21,12 +21,11 @@ class TeamController extends Controller
             $dummyTeam->nama = $app->name;
             $dummyTeam->posisi = $app->position;
             $dummyTeam->bahasa = null; // Atur default null atau ambil jika ada
-            
-            $fotoUrl = null;
-            if (preg_match('/Foto Profil:\s*(http[s]?:\/\/[^\s]+)/', $app->message, $matches)) {
-                $fotoUrl = $matches[1];
-            }
-            $dummyTeam->foto_url = $fotoUrl;
+            $dummyTeam->email = $app->email;
+            $dummyTeam->whatsapp = $app->phone;
+            $dummyTeam->sosial_media = $app->social_media;
+            $dummyTeam->profile = $app->message;
+            $dummyTeam->foto_url = $app->profile_photo_path ? asset('storage/' . $app->profile_photo_path) : null;
             
             // Kita biarkan img null agar menggunakan icon default, karena gambar disimpan dengan format berbeda
             $dummyTeam->img = null; 
@@ -60,18 +59,16 @@ class TeamController extends Controller
             $fotoPath = $request->file('foto_profil')->store('cvs/fotos', 'public');
         }
         
-        $message = "Nama Panggilan: " . $request->nama_panggilan . "\n";
-        $message .= "Sosmed: " . $request->sosial_media . "\n";
-        $message .= "Foto Profil: " . ($fotoPath ? asset('storage/' . $fotoPath) : 'Tidak ada') . "\n";
-        $message .= "Profil: " . $request->profil_singkat;
-
         JobApplication::create([
             'name' => $request->nama_lengkap,
             'email' => $request->email ?? 'no-email@example.com',
             'phone' => $request->nomor_telepon,
             'position' => $request->profesi,
             'cv_link' => $cvPath,
-            'message' => $message,
+            'message' => $request->profil_singkat,
+            'nickname' => $request->nama_panggilan,
+            'social_media' => $request->sosial_media,
+            'profile_photo_path' => $fotoPath,
             'status' => 'pending',
         ]);
 

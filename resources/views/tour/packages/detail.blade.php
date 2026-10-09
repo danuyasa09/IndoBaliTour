@@ -36,96 +36,8 @@
             <div class="lg:col-span-2 space-y-12">
                 <div class="bg-white p-6 md:p-10 rounded-2xl border border-gray-100 shadow-sm" data-aos="fade-up">
                     <div class="content-wrapper text-sm text-gray-600 leading-relaxed text-justify">
-                        @php
-                            $parsedContent = $tour->content;
-                            
-                            // 1. Dual Map Widget (2D + 360)
-                            $parsedContent = preg_replace_callback(
-                                '/(\[map\s+(?:(?!\[map).)*?\])((?:(?!\[map).)*?)\[\/map\]/is',
-                                function ($matches) {
-                                    $openTag = html_entity_decode(strip_tags($matches[1]), ENT_QUOTES);
-                                    $innerHtml = $matches[2];
-                                    
-                                    preg_match('/lat="([^"]+)"/', $openTag, $latM);
-                                    preg_match('/lng="([^"]+)"/', $openTag, $lngM);
-                                    
-                                    $lat = $latM[1] ?? '';
-                                    $lng = $lngM[1] ?? '';
-                                    
-                                    if (preg_match('/(https:\/\/www\.google\.com\/maps\/embed\?[^"\'>\s&]+)/i', $innerHtml, $srcM)) {
-                                        $embedUrl = html_entity_decode($srcM[1], ENT_QUOTES);
-                                    } else {
-                                        $embedUrl = trim(html_entity_decode(strip_tags($innerHtml), ENT_QUOTES));
-                                    }
-
-                                    if ($lat && $lng && $embedUrl) {
-                                        $map2d = '<iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q='.$lat.','.$lng.'&t=&z=14&ie=UTF8&iwloc=&output=embed" class="w-full"></iframe>';
-                                        $map360 = '<iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.$embedUrl.'" class="w-full"></iframe>';
-                                        
-                                        return '
-                                        <div x-data="{ view: \'2d\' }" class="my-8" data-aos="fade-up">
-                                            <div class="flex justify-center mb-5">
-                                                <div class="inline-flex bg-gray-100/80 backdrop-blur-sm p-1 rounded-full">
-                                                    <button @click="view = \'2d\'" :class="view === \'2d\' ? \'bg-white shadow-sm text-gray-900 font-medium\' : \'text-gray-500 hover:text-gray-700\'" class="px-5 py-2 text-sm rounded-full transition-all duration-300 flex items-center gap-2">
-                                                        <i class="fa-solid fa-map-location-dot"></i> Peta Lokasi
-                                                    </button>
-                                                    <button @click="view = \'360\'" :class="view === \'360\' ? \'bg-white shadow-sm text-gray-900 font-medium\' : \'text-gray-500 hover:text-gray-700\'" class="px-5 py-2 text-sm rounded-full transition-all duration-300 flex items-center gap-2">
-                                                        <i class="fa-solid fa-street-view"></i> 360 View
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="relative rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50 bg-gray-50">
-                                                <div x-show="view === \'2d\'" x-transition.opacity.duration.400ms>
-                                                    '.$map2d.'
-                                                </div>
-                                                <div x-show="view === \'360\'" x-transition.opacity.duration.400ms style="display: none;">
-                                                    '.$map360.'
-                                                </div>
-                                            </div>
-                                        </div>';
-                                    }
-                                    return $matches[0];
-                                },
-                                $parsedContent
-                            );
-
-                            // 2. Standalone 2D Map
-                            $parsedContent = preg_replace_callback(
-                                '/\[map\s+.*?\]/is',
-                                function ($matches) {
-                                    $clean = html_entity_decode(strip_tags($matches[0]), ENT_QUOTES);
-                                    preg_match('/lat="([^"]+)"/', $clean, $latM);
-                                    preg_match('/lng="([^"]+)"/', $clean, $lngM);
-                                    $is360 = strpos($clean, 'type="360"') !== false;
-                                    
-                                    if (!empty($latM[1]) && !empty($lngM[1])) {
-                                        if ($is360) {
-                                            return '<div class="my-8 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50" data-aos="fade-up"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?layer=c&cbll='.$latM[1].','.$lngM[1].'&output=svembed" class="w-full"></iframe></div>';
-                                        } else {
-                                            return '<div class="my-8 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50" data-aos="fade-up"><iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q='.$latM[1].','.$lngM[1].'&t=&z=14&ie=UTF8&iwloc=&output=embed" class="w-full"></iframe></div>';
-                                        }
-                                    }
-                                    return $matches[0];
-                                },
-                                $parsedContent
-                            );
-
-                            // 3. Standalone 360 Embed
-                            $parsedContent = preg_replace_callback(
-                                '/\[map_embed\](.*?)\[\/map_embed\]/is',
-                                function ($matches) {
-                                    if (preg_match('/(https:\/\/www\.google\.com\/maps\/embed\?[^"\'>\s&]+)/i', $matches[1], $srcM)) {
-                                        $url = html_entity_decode($srcM[1], ENT_QUOTES);
-                                    } else {
-                                        $url = trim(html_entity_decode(strip_tags($matches[1]), ENT_QUOTES));
-                                    }
-                                    return '<div class="my-8 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50" data-aos="fade-up"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.$url.'" class="w-full"></iframe></div>';
-                                },
-                                $parsedContent
-                            );
-                            $parsedContent = \App\Helpers\CurrencyHelper::formatHtml($parsedContent);
-                        @endphp
-                        {!! $parsedContent !!}
+                        {{-- Parsing shortcodes (map, currency) dilakukan oleh TourContentParser service --}}
+                        {!! \App\Services\TourContentParser::parse($tour->content) !!}
                     </div>
                     
                     @if($tour->harga_detail)
@@ -182,7 +94,7 @@
                         <div class="grid grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Date</label>
-                                <input type="date" name="tour_date" required class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
+                                <input type="date" name="booking_date" required class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7A0C16]/20 focus:border-[#7A0C16] text-xs text-gray-700">
                             </div>
                             <div>
                                 <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">Total Pax</label>
@@ -312,7 +224,7 @@
             let message = `Halo Admin, saya ingin memesan paket tour *{{ $tour->title }}*.\nBerikut detail pesanan saya:\n\n`;
             message += `*Nama:* ${formData.get('full_name')}\n`;
             message += `*Phone:* ${formData.get('phone')}\n`;
-            message += `*Tanggal:* ${formData.get('tour_date')}\n`;
+            message += `*Tanggal:* ${formData.get('booking_date')}\n`;
             message += `*Jumlah Peserta:* ${formData.get('total_person')}\n`;
             message += `*Lokasi Jemput:* ${formData.get('pickup_location') || '-'}\n`;
             if (formData.get('pickup_maps_link')) {

@@ -36,6 +36,9 @@ class Team extends Model
 		'profile',
 		'img',
 		'status',
-		'slug'
+		'slug',
+		'email',
+		'whatsapp',
+		'sosial_media'
 	];
 }

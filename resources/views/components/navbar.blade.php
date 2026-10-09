@@ -3,14 +3,14 @@
 <header x-data="{ scrolled: false, mobileMenuOpen: false }" 
         @scroll.window="scrolled = (window.scrollY > 50)" 
         :class="(scrolled || mobileMenuOpen) ? 'bg-white border-b border-gray-100 shadow-sm text-gray-900' : 'bg-transparent border-b border-white/10 text-white pt-2'" 
-        class="fixed w-full top-0 z-50 transition-all duration-300 skiptranslate">
+        class="fixed w-full top-0 z-50 transition-all duration-300 skiptranslate bg-transparent text-white pt-2">
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center transition-all duration-300" :class="(scrolled || mobileMenuOpen) ? 'h-16' : 'h-20'">
             
-            <div class="flex-shrink-0 flex items-center">
-                <a href="{{ url('/') }}" class="flex items-center space-x-3 group">
-                    <img src="{{ asset('images/logos/logo.png') }}" alt="Logo" class="w-auto group-hover:scale-105 transition-all duration-500" :class="scrolled ? 'h-10' : 'h-12 brightness-0 invert drop-shadow-md'" />
+            <div class="flex-shrink flex items-center">
+                <a href="{{ url('/') }}" class="flex items-center space-x-3 group w-full max-w-[65vw]">
+                    <img src="{{ asset('images/logos/logo.png') }}" alt="Logo" class="w-auto max-w-full object-contain group-hover:scale-105 transition-all duration-500" :class="scrolled ? 'h-10' : 'h-12 brightness-0 invert drop-shadow-md'" />
                 </a>
             </div>
 
@@ -93,7 +93,7 @@
                 </a>
             </nav>
 
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center gap-3 md:gap-4">
                 @auth
                     <div class="relative hidden md:block" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                         <button class="flex items-center space-x-2 font-medium text-sm focus:outline-none py-2">
@@ -189,12 +189,12 @@
                 </div>
 
 
-                <div class="md:hidden">
+                <div class="block md:hidden">
                     <button @click="mobileMenuOpen = !mobileMenuOpen" 
                             :class="(scrolled || mobileMenuOpen) ? 'text-gray-800 hover:bg-gray-100' : 'text-white hover:bg-white/20'" 
-                            class="p-2 rounded-md focus:outline-none transition-colors duration-300">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            class="p-2 rounded-md focus:outline-none transition-colors duration-300 flex items-center justify-center">
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>

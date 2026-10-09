@@ -43,6 +43,10 @@
                         <i class="fa-solid fa-map-location-dot w-5 text-center"></i>
                         <span class="font-medium">Paket Tour</span>
                     </a>
+                    <a href="{{ route('admin.hero_slides.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.hero_slides.*') ? 'bg-brand-red text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                        <i class="fa-solid fa-images w-5 text-center"></i>
+                        <span class="font-medium">Hero Slider</span>
+                    </a>
                     <a href="{{ route('admin.cars.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.cars.*') ? 'bg-brand-red text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
                         <i class="fa-solid fa-car w-5 text-center"></i>
                         <span class="font-medium">Kendaraan</span>

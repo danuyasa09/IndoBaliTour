@@ -8,11 +8,34 @@ use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
-    $tours = \App\Models\Tour::take(3)->get();
+    $tours       = \App\Models\Tour::take(3)->get();
     $testimonies = \App\Models\Testimony::where('is_approved', true)->latest()->take(3)->get();
-    $albums = \App\Models\Album::with('fotos')->where('status', 'Show')->orderBy('date', 'desc')->get();
-    $videos = \App\Models\Video::where('status', 'Show')->orderBy('date', 'desc')->take(3)->get();
-    return view('welcome', compact('tours', 'testimonies', 'albums', 'videos'));
+    $albums      = \App\Models\Album::with('fotos')->where('status', 'Show')->orderBy('date', 'desc')->get();
+    $videos      = \App\Models\Video::where('status', 'Show')->orderBy('date', 'desc')->take(3)->get();
+
+    // --- Hero Slides Logic ---
+    // Priority 1: Admin-configured hero_slides (active, ordered)
+    $heroSlides = \App\Models\HeroSlide::with('tour')
+        ->active()
+        ->get()
+        ->map(fn($slide) => $slide->image_url)
+        ->toArray();
+
+    // Priority 2 (fallback): Auto from Tour images + static Unsplash
+    if (empty($heroSlides)) {
+        $staticFallbacks = [
+            'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1920&q=80',
+        ];
+        $tourSlides = \App\Models\Tour::whereNotNull('img')->where('img', '!=', '')->take(4)->pluck('img')
+            ->map(fn($img) => asset('images/tours/' . $img))
+            ->toArray();
+        $heroSlides = array_slice(array_merge($tourSlides, $staticFallbacks), 0, 4);
+    }
+
+    return view('welcome', compact('tours', 'testimonies', 'albums', 'videos', 'heroSlides'));
 })->name('tour.index');
 
 Route::middleware('guest')->group(function () {
@@ -21,14 +44,14 @@ Route::middleware('guest')->group(function () {
 });
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::post('/testimony', [TestimonyController::class, 'store'])->name('testimony.store');
+Route::post('/testimony', [TestimonyController::class, 'store'])->name('testimony.store')->middleware('throttle:5,1');
 
 use App\Http\Controllers\BookingController;
-Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store')->middleware('throttle:10,1');
 
 use App\Http\Controllers\TeamController;
 Route::get('/our-team', [TeamController::class, 'index'])->name('team.index');
-Route::post('/our-team/apply', [TeamController::class, 'storeApplication'])->name('team.apply');
+Route::post('/our-team/apply', [TeamController::class, 'storeApplication'])->name('team.apply')->middleware('throttle:5,1');
 
 // Custom Admin Panel Routes
 use App\Http\Controllers\Admin\DashboardController;
@@ -41,6 +64,7 @@ use App\Http\Controllers\Admin\AlbumController as AdminAlbumController;
 use App\Http\Controllers\Admin\AirportController as AdminAirportController;
 use App\Http\Controllers\Admin\HotelTransferController as AdminHotelTransferController;
 use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
+use App\Http\Controllers\Admin\HeroSlideController as AdminHeroSlideController;
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -63,12 +87,21 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
     Route::get('bookings/{booking}', [BookingController::class, 'show'])->name('bookings.show');
+    Route::get('bookings/{booking}/print', [BookingController::class, 'print'])->name('bookings.print');
+    Route::patch('bookings/{booking}/status', [BookingController::class, 'updateStatus'])->name('bookings.updateStatus');
     Route::delete('bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
 
     Route::get('job-applications', [AdminJobApplicationController::class, 'index'])->name('job_applications.index');
     Route::get('job-applications/{application}', [AdminJobApplicationController::class, 'show'])->name('job_applications.show');
     Route::patch('job-applications/{application}/status', [AdminJobApplicationController::class, 'updateStatus'])->name('job_applications.updateStatus');
     Route::delete('job-applications/{application}', [AdminJobApplicationController::class, 'destroy'])->name('job_applications.destroy');
+
+    // Hero Slider Manager
+    Route::get('hero-slides', [AdminHeroSlideController::class, 'index'])->name('hero_slides.index');
+    Route::post('hero-slides', [AdminHeroSlideController::class, 'store'])->name('hero_slides.store');
+    Route::patch('hero-slides/{heroSlide}/toggle', [AdminHeroSlideController::class, 'toggleActive'])->name('hero_slides.toggle');
+    Route::post('hero-slides/order', [AdminHeroSlideController::class, 'updateOrder'])->name('hero_slides.order');
+    Route::delete('hero-slides/{heroSlide}', [AdminHeroSlideController::class, 'destroy'])->name('hero_slides.destroy');
 });
 
 Route::get('/tour', function () {

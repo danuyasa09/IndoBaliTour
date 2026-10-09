@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-900 antialiased font-sans flex flex-col min-h-screen" x-data="{ showForm: {{ ($errors->any() || session('success')) ? 'true' : 'false' }} }">
+<body class="bg-gray-50 text-gray-900 antialiased font-sans flex flex-col min-h-screen" x-data="{ showForm: {{ ($errors->any() || session('success')) ? 'true' : 'false' }}, showBiodata: false, selectedMember: null }">
 
     <x-navbar />
 
@@ -44,27 +44,28 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 @forelse($teams as $index => $member)
-                <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                    <div class="relative aspect-square overflow-hidden bg-gray-100">
+                <div class="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 flex flex-row sm:flex-col items-center sm:items-stretch p-4 sm:p-0" 
+                     data-aos="fade-up" 
+                     data-aos-delay="{{ $index * 100 }}"
+                     @click='selectedMember = @json($member); showBiodata = true;'>
+                    <div class="relative w-20 h-20 sm:w-full sm:h-auto sm:aspect-square flex-shrink-0 rounded-full sm:rounded-none overflow-hidden bg-gray-100 border sm:border-0 border-gray-200">
                         @if(isset($member->foto_url) && $member->foto_url)
-                            <img src="{{ $member->foto_url }}" alt="{{ $member->nama }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <img src="{{ $member->foto_url }}" alt="{{ $member->nama }}" class="w-full h-full object-cover transition-transform duration-500 sm:group-hover:scale-110">
                         @elseif($member->img && file_exists(public_path('images/teams/' . $member->img)))
-                            <img src="{{ asset('images/teams/' . $member->img) }}" alt="{{ $member->nama }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <img src="{{ asset('images/teams/' . $member->img) }}" alt="{{ $member->nama }}" class="w-full h-full object-cover transition-transform duration-500 sm:group-hover:scale-110">
                         @else
                             <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
-                                <i class="fa-solid fa-user text-5xl"></i>
+                                <i class="fa-solid fa-user text-3xl sm:text-5xl"></i>
                             </div>
                         @endif
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-
+                        <div class="hidden sm:block absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-brand-red transition-colors">{{ $member->nama }}</h3>
-                        <p class="text-sm font-medium text-brand-red mb-3 uppercase tracking-wider">{{ $member->posisi }}</p>
+                    <div class="ml-4 sm:ml-0 p-0 sm:p-6 flex-1 text-left sm:text-center">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-0.5 sm:mb-1 group-hover:text-brand-red transition-colors line-clamp-1">{{ $member->nama }}</h3>
+                        <p class="text-sm font-medium text-gray-600 sm:text-brand-red mb-1 sm:mb-3 sm:uppercase sm:tracking-wider line-clamp-1">{{ $member->posisi }}</p>
                         @if($member->bahasa)
-                        <div class="flex items-center justify-center gap-2 text-xs text-gray-500 bg-gray-50 py-1.5 px-3 rounded-full inline-flex">
-                            <i class="fa-solid fa-language"></i> {{ $member->bahasa }}
+                        <div class="inline-flex items-center justify-center gap-1.5 text-xs text-white bg-[#00d2ff] sm:bg-gray-50 sm:text-gray-500 py-1 px-3 rounded-full font-medium">
+                            <span class="hidden sm:inline"><i class="fa-solid fa-language"></i></span> {{ $member->bahasa }}
                         </div>
                         @endif
                     </div>
@@ -77,6 +78,110 @@
             </div>
         </div>
     </section>
+
+    <!-- BIODATA MODAL -->
+    <div x-show="showBiodata" 
+         style="display: none;"
+         class="fixed inset-0 z-50 overflow-y-auto" 
+         aria-labelledby="biodata-title" role="dialog" aria-modal="true">
+        
+        <div x-show="showBiodata" 
+             x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" 
+             x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+             class="fixed inset-0 bg-black/40 transition-opacity backdrop-blur-sm"></div>
+
+        <div class="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">
+            <div x-show="showBiodata" @click.away="showBiodata = false"
+                 x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+                 x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                 class="relative transform overflow-hidden rounded-3xl bg-white text-left shadow-xl transition-all sm:my-8 w-full max-w-md border border-gray-100 p-6 sm:p-8">
+                
+                <button @click="showBiodata = false" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none z-10 bg-gray-50 hover:bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+
+                <div class="text-center">
+                    <div class="w-24 h-24 rounded-full mx-auto overflow-hidden bg-gray-100 border-4 border-gray-50 shadow-sm mb-4">
+                        <template x-if="selectedMember && selectedMember.foto_url">
+                            <img :src="selectedMember.foto_url" :alt="selectedMember.nama" class="w-full h-full object-cover">
+                        </template>
+                        <template x-if="selectedMember && !selectedMember.foto_url && selectedMember.img">
+                            <img :src="'{{ asset('images/teams') }}/' + selectedMember.img" :alt="selectedMember.nama" class="w-full h-full object-cover">
+                        </template>
+                        <template x-if="selectedMember && !selectedMember.foto_url && !selectedMember.img">
+                            <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+                                <i class="fa-solid fa-user text-4xl"></i>
+                            </div>
+                        </template>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-gray-900 mb-1" x-text="selectedMember ? selectedMember.nama : ''"></h3>
+                    <p class="text-brand-red font-medium mb-4 uppercase tracking-wide text-sm" x-text="selectedMember ? selectedMember.posisi : ''"></p>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 text-left space-y-3 mb-6">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-language text-gray-400 mt-1 w-5 text-center"></i>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Bahasa</p>
+                                <p class="text-gray-800 text-sm font-medium" x-text="selectedMember && selectedMember.bahasa ? selectedMember.bahasa : '-'"></p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-gray-400 mt-1 w-5 text-center"></i>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Asal</p>
+                                <p class="text-gray-800 text-sm font-medium" x-text="selectedMember && selectedMember.asal ? selectedMember.asal : '-'"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope text-gray-400 mt-1 w-5 text-center"></i>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Email</p>
+                                <template x-if="selectedMember && selectedMember.email">
+                                    <a :href="'mailto:' + selectedMember.email" class="text-brand-red hover:underline text-sm font-medium" x-text="selectedMember.email"></a>
+                                </template>
+                                <template x-if="!selectedMember || !selectedMember.email">
+                                    <p class="text-gray-800 text-sm font-medium">-</p>
+                                </template>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <i class="fa-brands fa-whatsapp text-gray-400 mt-1 w-5 text-center text-lg"></i>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">WhatsApp</p>
+                                <template x-if="selectedMember && selectedMember.whatsapp">
+                                    <a :href="'https://wa.me/' + selectedMember.whatsapp.replace(/[^0-9]/g, '')" target="_blank" class="text-green-600 hover:underline text-sm font-medium" x-text="selectedMember.whatsapp"></a>
+                                </template>
+                                <template x-if="!selectedMember || !selectedMember.whatsapp">
+                                    <p class="text-gray-800 text-sm font-medium">-</p>
+                                </template>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-link text-gray-400 mt-1 w-5 text-center"></i>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Sosial Media</p>
+                                <template x-if="selectedMember && selectedMember.sosial_media">
+                                    <a :href="selectedMember.sosial_media" target="_blank" class="text-blue-600 hover:underline text-sm font-medium truncate inline-block max-w-[200px]" x-text="selectedMember.sosial_media"></a>
+                                </template>
+                                <template x-if="!selectedMember || !selectedMember.sosial_media">
+                                    <p class="text-gray-800 text-sm font-medium">-</p>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div x-show="selectedMember && selectedMember.profile" class="text-left text-sm text-gray-600 border-t border-gray-100 pt-4 mt-2">
+                        <p class="text-xs text-gray-500 uppercase font-semibold mb-2">Profil Singkat</p>
+                        <p x-html="selectedMember ? selectedMember.profile : ''" class="leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- CAREER FORM MODAL -->
     <div x-show="showForm" 

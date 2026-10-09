@@ -17,5 +17,8 @@ class JobApplication extends Model
         'cv_link',
         'message',
         'status',
+        'nickname',
+        'social_media',
+        'profile_photo_path',
     ];
 }

@@ -53,22 +53,35 @@
             <p class="text-sm text-gray-500 max-w-xl">See the visual side of our colorful, cultural, and adventurous experiences.</p>
         </div>
 
-        <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+        <div class="columns-2 sm:columns-3 md:columns-4 gap-3 sm:gap-4">
+            @php 
+                $counter = 0; 
+                // Pattern tinggi variatif (h-40, h-64, dll)
+                $heights = ['h-48', 'h-72', 'h-56', 'h-80', 'h-64'];
+            @endphp
             @forelse($albums as $album)
                 @if($album->img && file_exists(public_path('images/albums/' . $album->img)))
-                    <div class="overflow-hidden rounded-2xl shadow-sm break-inside-avoid">
-                        <img src="{{ asset('images/albums/' . $album->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
+                    @php 
+                        $hClass = $heights[$counter % count($heights)];
+                        $counter++; 
+                    @endphp
+                    <div class="{{ $hClass }} overflow-hidden rounded-2xl shadow-sm group break-inside-avoid mb-3 sm:mb-4">
+                        <img src="{{ asset('images/albums/' . $album->img) }}" alt="{{ $album->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     </div>
                 @endif
                 @foreach($album->fotos as $foto)
                     @if($foto->img && file_exists(public_path('images/albums/' . $foto->img)))
-                        <div class="overflow-hidden rounded-2xl shadow-sm break-inside-avoid">
-                            <img src="{{ asset('images/albums/' . $foto->img) }}" alt="{{ $album->title }}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300">
+                        @php 
+                            $hClass = $heights[$counter % count($heights)];
+                            $counter++; 
+                        @endphp
+                        <div class="{{ $hClass }} overflow-hidden rounded-2xl shadow-sm group break-inside-avoid mb-3 sm:mb-4">
+                            <img src="{{ asset('images/albums/' . $foto->img) }}" alt="{{ $album->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
                     @endif
                 @endforeach
             @empty
-                <div class="text-center py-10 text-gray-500 col-span-full">
+                <div class="text-center py-10 text-gray-500 w-full col-span-full">
                     Belum ada foto yang ditambahkan.
                 </div>
             @endforelse
