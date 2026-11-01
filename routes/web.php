@@ -12,30 +12,7 @@ Route::get('/', function () {
     $testimonies = \App\Models\Testimony::where('is_approved', true)->latest()->take(3)->get();
     $albums      = \App\Models\Album::with('fotos')->where('status', 'Show')->orderBy('date', 'desc')->get();
     $videos      = \App\Models\Video::where('status', 'Show')->orderBy('date', 'desc')->take(3)->get();
-
-    // --- Hero Slides Logic ---
-    // Priority 1: Admin-configured hero_slides (active, ordered)
-    $heroSlides = \App\Models\HeroSlide::with('tour')
-        ->active()
-        ->get()
-        ->map(fn($slide) => $slide->image_url)
-        ->toArray();
-
-    // Priority 2 (fallback): Auto from Tour images + static Unsplash
-    if (empty($heroSlides)) {
-        $staticFallbacks = [
-            'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=80',
-            'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1920&q=80',
-            'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=1920&q=80',
-            'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1920&q=80',
-        ];
-        $tourSlides = \App\Models\Tour::whereNotNull('img')->where('img', '!=', '')->take(4)->pluck('img')
-            ->map(fn($img) => asset('images/tours/' . $img))
-            ->toArray();
-        $heroSlides = array_slice(array_merge($tourSlides, $staticFallbacks), 0, 4);
-    }
-
-    return view('welcome', compact('tours', 'testimonies', 'albums', 'videos', 'heroSlides'));
+    return view('welcome', compact('tours', 'testimonies', 'albums', 'videos'));
 })->name('tour.index');
 
 Route::middleware('guest')->group(function () {
@@ -64,26 +41,38 @@ use App\Http\Controllers\Admin\AlbumController as AdminAlbumController;
 use App\Http\Controllers\Admin\AirportController as AdminAirportController;
 use App\Http\Controllers\Admin\HotelTransferController as AdminHotelTransferController;
 use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
-use App\Http\Controllers\Admin\HeroSlideController as AdminHeroSlideController;
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::resource('tours', AdminTourController::class);
+    Route::patch('tours/{tour}/status', [AdminTourController::class, 'toggleStatus'])->name('tours.toggleStatus');
+
     Route::resource('cars', AdminCarController::class);
+    Route::patch('cars/{car}/status', [AdminCarController::class, 'toggleStatus'])->name('cars.toggleStatus');
+
     Route::resource('fun_activities', \App\Http\Controllers\Admin\FunActivityController::class);
+    Route::patch('fun_activities/{fun_activity}/status', [\App\Http\Controllers\Admin\FunActivityController::class, 'toggleStatus'])->name('fun_activities.toggleStatus');
     
     Route::resource('testimonies', AdminTestimonyController::class)->except(['create', 'store']);
     Route::patch('testimonies/{testimony}/approve', [AdminTestimonyController::class, 'approve'])->name('testimonies.approve');
 
     Route::resource('blogs', AdminBlogController::class);
+    Route::patch('blogs/{blog}/status', [AdminBlogController::class, 'toggleStatus'])->name('blogs.toggleStatus');
+
     Route::resource('videos', AdminVideoController::class);
+    Route::patch('videos/{video}/status', [AdminVideoController::class, 'toggleStatus'])->name('videos.toggleStatus');
+
     Route::resource('albums', AdminAlbumController::class);
+    Route::patch('albums/{album}/status', [AdminAlbumController::class, 'toggleStatus'])->name('albums.toggleStatus');
     Route::post('albums/{album}/photos', [AdminAlbumController::class, 'storePhoto'])->name('albums.photos.store');
     Route::delete('albums/{album}/photos/{photo}', [AdminAlbumController::class, 'destroyPhoto'])->name('albums.photos.destroy');
 
     Route::resource('airports', AdminAirportController::class);
+    Route::patch('airports/{airport}/status', [AdminAirportController::class, 'toggleStatus'])->name('airports.toggleStatus');
+
     Route::resource('hotel_transfers', AdminHotelTransferController::class);
+    Route::patch('hotel_transfers/{hotel_transfer}/status', [AdminHotelTransferController::class, 'toggleStatus'])->name('hotel_transfers.toggleStatus');
 
     Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
     Route::get('bookings/{booking}', [BookingController::class, 'show'])->name('bookings.show');
@@ -95,13 +84,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('job-applications/{application}', [AdminJobApplicationController::class, 'show'])->name('job_applications.show');
     Route::patch('job-applications/{application}/status', [AdminJobApplicationController::class, 'updateStatus'])->name('job_applications.updateStatus');
     Route::delete('job-applications/{application}', [AdminJobApplicationController::class, 'destroy'])->name('job_applications.destroy');
-
-    // Hero Slider Manager
-    Route::get('hero-slides', [AdminHeroSlideController::class, 'index'])->name('hero_slides.index');
-    Route::post('hero-slides', [AdminHeroSlideController::class, 'store'])->name('hero_slides.store');
-    Route::patch('hero-slides/{heroSlide}/toggle', [AdminHeroSlideController::class, 'toggleActive'])->name('hero_slides.toggle');
-    Route::post('hero-slides/order', [AdminHeroSlideController::class, 'updateOrder'])->name('hero_slides.order');
-    Route::delete('hero-slides/{heroSlide}', [AdminHeroSlideController::class, 'destroy'])->name('hero_slides.destroy');
 });
 
 Route::get('/tour', function () {

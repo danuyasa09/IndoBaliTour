@@ -46,15 +46,17 @@
                             $ {{ number_format((float)$tour->harga, 2, '.', ',') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            @if($tour->status === 'Show')
-                                <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Show
-                                </span>
-                            @else
-                                <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                                    Hide
-                                </span>
-                            @endif
+                            <form action="{{ route('admin.tours.toggleStatus', $tour->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('PATCH')
+                                <button type="button"
+                                        onclick="toggleItemStatus(this, '{{ route('admin.tours.toggleStatus', $tour->id) }}')"
+                                        data-status="{{ $tour->status }}"
+                                        class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full transition-colors cursor-pointer {{ $tour->status === 'Show' ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-gray-100 text-gray-800 hover:bg-gray-200' }}"
+                                        title="Klik untuk ubah status">
+                                    {{ $tour->status }}
+                                </button>
+                            </form>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ number_format($tour->hit) }} x

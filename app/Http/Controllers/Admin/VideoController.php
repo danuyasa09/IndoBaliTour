@@ -66,4 +66,21 @@ class VideoController extends Controller
         $video->delete();
         return redirect()->route('admin.videos.index')->with('success', 'Video berhasil dihapus.');
     }
+
+    public function toggleStatus(Request $request, $id)
+    {
+        $video = Video::findOrFail($id);
+        $newStatus = $request->input('status') ?: ($video->status === 'Show' ? 'Hide' : 'Show');
+        $video->update(['status' => $newStatus]);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Status video '{$video->title}' berhasil diubah menjadi {$newStatus}.",
+                'status' => $newStatus,
+            ]);
+        }
+
+        return back()->with('success', "Status video '{$video->title}' berhasil diubah menjadi {$newStatus}.");
+    }
 }

@@ -20,7 +20,12 @@
     <x-navbar />
     <x-floating_contactUs />
 
-    <div class="relative h-[400px] md:h-[500px] w-full bg-cover bg-center" style="background-image: url('{{ asset('images/tours/' . $tour->img) }}');">
+    @php
+        $bgImage = $tour->img && file_exists(public_path('images/tours/' . $tour->img))
+            ? asset('images/tours/' . $tour->img)
+            : 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1920&auto=format&fit=crop';
+    @endphp
+    <div class="relative h-[400px] md:h-[500px] w-full bg-cover bg-center" style="background-image: url('{{ $bgImage }}');">
         <div class="absolute inset-0 bg-black/40 flex items-center pl-6 md:pl-24">
             <div class="max-w-4xl">
                 <h1 class="text-white text-3xl md:text-5xl font-bold tracking-tight leading-tight" data-aos="fade-up">

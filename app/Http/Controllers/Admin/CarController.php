@@ -81,4 +81,21 @@ class CarController extends Controller
         $car->delete();
         return redirect()->route('admin.cars.index')->with('success', 'Mobil berhasil dihapus.');
     }
+
+    public function toggleStatus(Request $request, $id)
+    {
+        $car = Car::findOrFail($id);
+        $newStatus = $request->input('status') ?: ($car->status === 'Show' ? 'Hide' : 'Show');
+        $car->update(['status' => $newStatus]);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Status mobil '{$car->title}' berhasil diubah menjadi {$newStatus}.",
+                'status' => $newStatus,
+            ]);
+        }
+
+        return back()->with('success', "Status mobil '{$car->title}' berhasil diubah menjadi {$newStatus}.");
+    }
 }

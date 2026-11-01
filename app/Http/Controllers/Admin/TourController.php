@@ -95,4 +95,21 @@ class TourController extends Controller
         $tour->delete();
         return redirect()->route('admin.tours.index')->with('success', 'Paket tour berhasil dihapus.');
     }
+
+    public function toggleStatus(Request $request, $id)
+    {
+        $tour = Tour::findOrFail($id);
+        $newStatus = $request->input('status') ?: ($tour->status === 'Show' ? 'Hide' : 'Show');
+        $tour->update(['status' => $newStatus]);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Status paket '{$tour->title}' berhasil diubah menjadi {$newStatus}.",
+                'status' => $newStatus,
+            ]);
+        }
+
+        return back()->with('success', "Status paket '{$tour->title}' berhasil diubah menjadi {$newStatus}.");
+    }
 }

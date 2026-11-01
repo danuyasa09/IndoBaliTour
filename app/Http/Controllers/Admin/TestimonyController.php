@@ -48,8 +48,19 @@ class TestimonyController extends Controller
     public function approve(Testimony $testimony)
     {
         $testimony->update(['is_approved' => !$testimony->is_approved]);
-        $status = $testimony->is_approved ? 'disetujui' : 'dibatalkan persetujuannya';
-        return redirect()->route('admin.testimonies.index')->with('success', "Testimoni berhasil {$status}.");
+        $status = $testimony->is_approved ? 'Approved' : 'Pending';
+        $statusDesc = $testimony->is_approved ? 'disetujui' : 'dijadikan pending';
+
+        if (request()->wantsJson() || request()->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Testimoni dari {$testimony->name} berhasil {$statusDesc}.",
+                'is_approved' => $testimony->is_approved,
+                'status' => $status,
+            ]);
+        }
+
+        return redirect()->route('admin.testimonies.index')->with('success', "Testimoni berhasil {$statusDesc}.");
     }
 
     public function destroy(Testimony $testimony)

@@ -52,6 +52,14 @@ class BookingController extends Controller
 
         $booking->update(['status' => $request->status]);
 
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Status booking #{$booking->id} ({$booking->full_name}) berhasil diubah menjadi {$request->status}.",
+                'status' => $booking->status,
+            ]);
+        }
+
         return back()->with('success', "Status booking #{$booking->id} berhasil diubah ke '{$request->status}'.");
     }
 

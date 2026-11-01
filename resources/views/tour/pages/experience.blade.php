@@ -205,9 +205,23 @@
                         <!-- Loop dua kali agar scroll terlihat tanpa batas (seamless) -->
                         @for($j = 0; $j < 2; $j++)
                             @foreach($testimonies as $testimony)
-                            <div class="w-[320px] sm:w-[400px] whitespace-normal flex-shrink-0 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow select-none">
-                                <div class="space-y-4">
-                                    <div class="flex space-x-1 text-amber-400 mb-4 text-lg">
+                            <div class="w-[320px] sm:w-[400px] whitespace-normal flex-shrink-0 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow select-none">
+                                <!-- Header: Commenter Info & Rating -->
+                                <div class="flex items-center justify-between gap-3 pb-4 border-b border-gray-100 pointer-events-none">
+                                    <div class="flex items-center space-x-3 min-w-0">
+                                        @if($testimony->photo)
+                                            <img src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}" class="h-11 w-11 rounded-full object-cover shrink-0 ring-1 ring-gray-200">
+                                        @else
+                                            <div class="h-11 w-11 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-xs uppercase shrink-0">
+                                                {{ substr($testimony->name, 0, 2) }}
+                                            </div>
+                                        @endif
+                                        <div class="min-w-0">
+                                            <h4 class="font-bold text-sm sm:text-base text-gray-900 truncate">{{ $testimony->name }}</h4>
+                                            <p class="text-xs text-gray-400 truncate">{{ $testimony->nationality }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-amber-400 text-sm sm:text-base shrink-0">
                                         @for($i = 0; $i < $testimony->rating; $i++)
                                             <span>★</span>
                                         @endfor
@@ -215,22 +229,13 @@
                                             <span class="text-gray-300">★</span>
                                         @endfor
                                     </div>
-                                    <p class="text-gray-600 text-sm italic leading-relaxed line-clamp-4 pointer-events-none">
+                                </div>
+
+                                <!-- Review Message -->
+                                <div class="pt-4 pointer-events-none flex-grow">
+                                    <p class="text-gray-600 text-sm italic leading-relaxed line-clamp-4">
                                         "{{ $testimony->message }}"
                                     </p>
-                                </div>
-                                <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-gray-50 pointer-events-none">
-                                    @if($testimony->photo)
-                                        <img src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}" class="h-10 w-10 rounded-full object-cover">
-                                    @else
-                                        <div class="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-sm uppercase flex-shrink-0">
-                                            {{ substr($testimony->name, 0, 2) }}
-                                        </div>
-                                    @endif
-                                    <div>
-                                        <h4 class="font-bold text-sm text-gray-900 line-clamp-1">{{ $testimony->name }}</h4>
-                                        <p class="text-xs text-gray-400 line-clamp-1">{{ $testimony->nationality }}</p>
-                                    </div>
                                 </div>
                             </div>
                             @endforeach

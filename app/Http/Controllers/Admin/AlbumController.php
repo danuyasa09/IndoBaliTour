@@ -119,4 +119,21 @@ class AlbumController extends Controller
         
         return redirect()->route('admin.albums.show', $albumId)->with('success', 'Foto berhasil dihapus.');
     }
+
+    public function toggleStatus(Request $request, $id)
+    {
+        $album = Album::findOrFail($id);
+        $newStatus = $request->input('status') ?: ($album->status === 'Show' ? 'Hide' : 'Show');
+        $album->update(['status' => $newStatus]);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Status album '{$album->title}' berhasil diubah menjadi {$newStatus}.",
+                'status' => $newStatus,
+            ]);
+        }
+
+        return back()->with('success', "Status album '{$album->title}' berhasil diubah menjadi {$newStatus}.");
+    }
 }

@@ -34,47 +34,71 @@
         </div>
     </section>
 
-    <!-- TEAM GRID SECTION -->
-    <section class="py-20 bg-white relative">
+    <!-- TEAM GRID SECTION (Slider 3x3 Desktop & 1x9 Mobile) -->
+    <section class="py-16 sm:py-20 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+            <div class="text-center max-w-3xl mx-auto mb-10" data-aos="fade-up">
                 <h2 class="text-3xl font-extrabold text-gray-900">Our Professional Team</h2>
                 <div class="w-20 h-1 bg-brand-red mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-500 text-sm mt-3">Kenali tim profesional kami yang berdedikasi menemani setiap momen petualangan Anda di Bali.</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                @forelse($teams as $index => $member)
-                <div class="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 flex flex-row sm:flex-col items-center sm:items-stretch p-4 sm:p-0" 
-                     data-aos="fade-up" 
-                     data-aos-delay="{{ $index * 100 }}"
-                     @click='selectedMember = @json($member); showBiodata = true;'>
-                    <div class="relative w-20 h-20 sm:w-full sm:h-auto sm:aspect-square flex-shrink-0 rounded-full sm:rounded-none overflow-hidden bg-gray-100 border sm:border-0 border-gray-200">
-                        @if(isset($member->foto_url) && $member->foto_url)
-                            <img src="{{ $member->foto_url }}" alt="{{ $member->nama }}" class="w-full h-full object-cover transition-transform duration-500 sm:group-hover:scale-110">
-                        @elseif($member->img && file_exists(public_path('images/teams/' . $member->img)))
-                            <img src="{{ asset('images/teams/' . $member->img) }}" alt="{{ $member->nama }}" class="w-full h-full object-cover transition-transform duration-500 sm:group-hover:scale-110">
-                        @else
-                            <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
-                                <i class="fa-solid fa-user text-3xl sm:text-5xl"></i>
+            <!-- Team Slider (Sama Persis Seperti Halaman Transfer) -->
+            <div x-data="{ activePage: 0, totalPages: {{ isset($teamChunks) ? $teamChunks->count() : 1 }} }" class="relative overflow-hidden w-full">
+                <div class="flex transition-transform duration-500 ease-in-out w-full" :style="'transform: translateX(-' + (activePage * 100) + '%)'">
+                    @forelse($teamChunks as $chunkIndex => $chunk)
+                    <div class="w-full flex-shrink-0 px-1 pb-4">
+                        <!-- Desktop: 3x3 | Mobile: 1x9 -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            @foreach($chunk as $memberIndex => $member)
+                            <div class="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 flex flex-row sm:flex-col items-center sm:items-stretch p-4 sm:p-0" 
+                                 @click='selectedMember = @json($member); showBiodata = true;'>
+                                <div class="relative w-20 h-20 sm:w-full sm:h-auto sm:aspect-square flex-shrink-0 rounded-full sm:rounded-none overflow-hidden bg-gray-100 border sm:border-0 border-gray-200">
+                                    @if(isset($member->foto_url) && $member->foto_url)
+                                        <img src="{{ $member->foto_url }}" alt="{{ $member->nama }}" class="w-full h-full object-cover transition-transform duration-500 sm:group-hover:scale-110">
+                                    @elseif($member->img && file_exists(public_path('images/teams/' . $member->img)))
+                                        <img src="{{ asset('images/teams/' . $member->img) }}" alt="{{ $member->nama }}" class="w-full h-full object-cover transition-transform duration-500 sm:group-hover:scale-110">
+                                    @else
+                                        <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+                                            <i class="fa-solid fa-user text-3xl sm:text-5xl"></i>
+                                        </div>
+                                    @endif
+                                    <div class="hidden sm:block absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+                                <div class="ml-4 sm:ml-0 p-0 sm:p-6 flex-1 text-left sm:text-center">
+                                    <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-0.5 sm:mb-1 group-hover:text-brand-red transition-colors line-clamp-1">{{ $member->nama }}</h3>
+                                    <p class="text-xs sm:text-sm font-medium text-gray-600 sm:text-brand-red mb-1 sm:mb-3 sm:uppercase sm:tracking-wider line-clamp-1">{{ $member->posisi }}</p>
+                                    @if($member->bahasa)
+                                    <div class="inline-flex items-center justify-center gap-1.5 text-xs text-white bg-[#00d2ff] sm:bg-gray-50 sm:text-gray-500 py-1 px-3 rounded-full font-medium">
+                                        <span class="hidden sm:inline"><i class="fa-solid fa-language"></i></span> {{ $member->bahasa }}
+                                    </div>
+                                    @endif
+                                </div>
                             </div>
-                        @endif
-                        <div class="hidden sm:block absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="ml-4 sm:ml-0 p-0 sm:p-6 flex-1 text-left sm:text-center">
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-0.5 sm:mb-1 group-hover:text-brand-red transition-colors line-clamp-1">{{ $member->nama }}</h3>
-                        <p class="text-sm font-medium text-gray-600 sm:text-brand-red mb-1 sm:mb-3 sm:uppercase sm:tracking-wider line-clamp-1">{{ $member->posisi }}</p>
-                        @if($member->bahasa)
-                        <div class="inline-flex items-center justify-center gap-1.5 text-xs text-white bg-[#00d2ff] sm:bg-gray-50 sm:text-gray-500 py-1 px-3 rounded-full font-medium">
-                            <span class="hidden sm:inline"><i class="fa-solid fa-language"></i></span> {{ $member->bahasa }}
+                            @endforeach
                         </div>
-                        @endif
                     </div>
+                    @empty
+                    <div class="w-full text-center py-10 text-gray-500">
+                        Tim kami sedang dalam proses pembaruan.
+                    </div>
+                    @endforelse
                 </div>
-                @empty
-                <div class="col-span-full text-center py-10 text-gray-500">
-                    Tim kami sedang dalam proses pembaruan.
+
+                <!-- Slider Controls Persis Seperti Halaman Transfer -->
+                <div class="mt-10 flex justify-center items-center gap-2">
+                    <button @click="activePage = Math.max(0, activePage - 1)" :disabled="activePage === 0" class="w-8 h-8 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Previous Page">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+                    
+                    <template x-for="i in Math.max(1, totalPages)" :key="i">
+                        <button @click="activePage = i - 1" :class="activePage === (i - 1) ? 'bg-[#7A0C16] text-white border-[#7A0C16]' : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'" class="w-8 h-8 rounded-full flex items-center justify-center border text-xs font-medium transition-colors" x-text="i"></button>
+                    </template>
+
+                    <button @click="activePage = Math.min(Math.max(0, totalPages - 1), activePage + 1)" :disabled="activePage >= Math.max(0, totalPages - 1)" class="w-8 h-8 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Next Page">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
                 </div>
-                @endforelse
             </div>
         </div>
     </section>
@@ -269,6 +293,17 @@
                             <div>
                                 <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Link Sosial Media (Opsional)</label>
                                 <input type="url" name="sosial_media" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all bg-gray-50 focus:bg-white" placeholder="Link Sosmed">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Bahasa yang Dikuasai <span class="text-red-500">*</span></label>
+                                <input type="text" name="bahasa" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all bg-gray-50 focus:bg-white" placeholder="Contoh: English, Indonesian">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Alamat / Asal <span class="text-red-500">*</span></label>
+                                <input type="text" name="alamat" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all bg-gray-50 focus:bg-white" placeholder="Contoh: Gianyar, Bali">
                             </div>
                         </div>
 

@@ -50,7 +50,11 @@
                             <form action="{{ route('admin.testimonies.approve', $testimony->id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 {{ $testimony->is_approved ? 'bg-green-100 text-green-800 hover:bg-green-200 focus:ring-green-500' : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 focus:ring-yellow-500' }}">
+                                <button type="button"
+                                        onclick="toggleTestimonyStatus(this, '{{ route('admin.testimonies.approve', $testimony->id) }}')"
+                                        data-approved="{{ $testimony->is_approved ? '1' : '0' }}"
+                                        class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full transition-colors cursor-pointer {{ $testimony->is_approved ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-amber-100 text-amber-800 hover:bg-amber-200' }}"
+                                        title="Klik untuk ubah status">
                                     {{ $testimony->is_approved ? 'Approved' : 'Pending' }}
                                 </button>
                             </form>
@@ -90,3 +94,47 @@
     @endif
 </div>
 @endsection
+
+@push('scripts')
+<script>
+async function toggleTestimonyStatus(btn, url) {
+    if (!btn || btn.disabled) return;
+    const form = btn.closest('form');
+    const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+    btn.disabled = true;
+
+    try {
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': csrf
+            },
+            body: JSON.stringify({ _method: 'PATCH' })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+            const isApproved = data.is_approved;
+            btn.setAttribute('data-approved', isApproved ? '1' : '0');
+            btn.textContent = isApproved ? 'Approved' : 'Pending';
+            btn.className = `px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full transition-colors cursor-pointer ${isApproved ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-amber-100 text-amber-800 hover:bg-amber-200'}`;
+            if (window.showToast) {
+                window.showToast(data.message || 'Status testimoni berhasil diubah', 'success');
+            }
+        } else {
+            if (window.showToast) {
+                window.showToast(data.message || 'Gagal mengubah status', 'error');
+            } else {
+                alert(data.message || 'Gagal mengubah status');
+            }
+        }
+    } catch (e) {
+        if (form) form.submit();
+    } finally {
+        btn.disabled = false;
+    }
+}
+</script>
+@endpush

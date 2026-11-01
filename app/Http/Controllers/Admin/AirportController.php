@@ -57,4 +57,21 @@ class AirportController extends Controller
         $airport->delete();
         return redirect()->route('admin.airports.index')->with('success', 'Data Airport Transfer berhasil dihapus.');
     }
+
+    public function toggleStatus(Request $request, $id)
+    {
+        $airport = Airport::findOrFail($id);
+        $newStatus = $request->input('status') ?: ($airport->status === 'Show' ? 'Hide' : 'Show');
+        $airport->update(['status' => $newStatus]);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Status airport transfer '{$airport->start} -> {$airport->destination}' berhasil diubah menjadi {$newStatus}.",
+                'status' => $newStatus,
+            ]);
+        }
+
+        return back()->with('success', "Status airport transfer '{$airport->start} -> {$airport->destination}' berhasil diubah menjadi {$newStatus}.");
+    }
 }

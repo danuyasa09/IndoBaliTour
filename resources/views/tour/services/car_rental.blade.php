@@ -77,21 +77,19 @@
                 </div>
                 
                 <!-- Pagination Controls -->
-                @if($carChunks->count() > 1)
                 <div class="flex justify-center items-center mt-10 gap-2">
-                    <button @click="activePage = Math.max(0, activePage - 1)" :disabled="activePage === 0" class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    <button @click="activePage = Math.max(0, activePage - 1)" :disabled="activePage === 0" class="w-8 h-8 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Previous Page">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
                     </button>
                     
-                    <template x-for="i in totalPages" :key="i">
-                        <button @click="activePage = i - 1" :class="activePage === (i - 1) ? 'bg-[#7A0C16] text-white border-[#7A0C16]' : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'" class="w-10 h-10 rounded-full flex items-center justify-center border text-sm font-medium transition-colors" x-text="i"></button>
+                    <template x-for="i in Math.max(1, totalPages)" :key="i">
+                        <button @click="activePage = i - 1" :class="activePage === (i - 1) ? 'bg-[#7A0C16] text-white border-[#7A0C16]' : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'" class="w-8 h-8 rounded-full flex items-center justify-center border text-xs font-medium transition-colors" x-text="i"></button>
                     </template>
 
-                    <button @click="activePage = Math.min(totalPages - 1, activePage + 1)" :disabled="activePage === totalPages - 1" class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    <button @click="activePage = Math.min(Math.max(0, totalPages - 1), activePage + 1)" :disabled="activePage >= Math.max(0, totalPages - 1)" class="w-8 h-8 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:bg-[#7A0C16] hover:text-white hover:border-[#7A0C16] transition-colors disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Next Page">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
                     </button>
                 </div>
-                @endif
             </div>
         @else
             <div class="text-center text-gray-500 py-10 w-full">

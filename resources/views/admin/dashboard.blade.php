@@ -141,8 +141,11 @@
             </div>
             <ul class="divide-y divide-gray-100">
                 @forelse($recent_job_applications as $application)
-                    <li class="py-3 flex justify-between items-center">
-                        <span class="text-gray-700 text-sm font-medium">{{ $application->name }} - {{ $application->position }}</span>
+                    <li class="py-3 flex justify-between items-center hover:bg-gray-50/50 px-2 rounded-lg transition-colors">
+                        <a href="{{ route('admin.job_applications.show', $application->id) }}" class="text-gray-700 text-sm font-medium hover:text-brand-red transition-colors flex items-center gap-1.5">
+                            <span>{{ $application->name }}</span>
+                            <span class="text-gray-400 text-xs font-normal">({{ $application->position }})</span>
+                        </a>
                         @if($application->status == 'pending')
                             <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
                         @elseif($application->status == 'approved' || $application->status == 'accepted')

@@ -94,4 +94,21 @@ class BlogController extends Controller
         $blog->delete();
         return redirect()->route('admin.blogs.index')->with('success', 'Blog berhasil dihapus.');
     }
+
+    public function toggleStatus(Request $request, $id)
+    {
+        $blog = Beritum::findOrFail($id);
+        $newStatus = $request->input('status') ?: ($blog->status === 'Show' ? 'Hide' : 'Show');
+        $blog->update(['status' => $newStatus]);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Status blog '{$blog->title}' berhasil diubah menjadi {$newStatus}.",
+                'status' => $newStatus,
+            ]);
+        }
+
+        return back()->with('success', "Status blog '{$blog->title}' berhasil diubah menjadi {$newStatus}.");
+    }
 }

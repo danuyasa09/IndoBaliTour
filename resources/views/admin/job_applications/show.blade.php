@@ -30,6 +30,14 @@
                     <span class="block mt-1 text-sm font-bold text-brand-red">{{ $application->position }}</span>
                 </div>
                 <div>
+                    <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Bahasa yang Dikuasai</span>
+                    <span class="block mt-1 text-sm font-medium text-gray-900">{{ $application->bahasa ?? '-' }}</span>
+                </div>
+                <div>
+                    <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Alamat / Asal</span>
+                    <span class="block mt-1 text-sm font-medium text-gray-900">{{ $application->alamat ?? '-' }}</span>
+                </div>
+                <div>
                     <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Email</span>
                     <a href="mailto:{{ $application->email }}" class="block mt-1 text-sm text-blue-600 hover:underline">{{ $application->email }}</a>
                 </div>

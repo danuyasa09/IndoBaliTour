@@ -20,5 +20,7 @@ class JobApplication extends Model
         'nickname',
         'social_media',
         'profile_photo_path',
+        'bahasa',
+        'alamat',
     ];
 }

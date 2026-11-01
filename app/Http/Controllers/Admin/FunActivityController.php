@@ -89,4 +89,21 @@ class FunActivityController extends Controller
         $activity->delete();
         return redirect()->route('admin.fun_activities.index')->with('success', 'Fun Activity berhasil dihapus.');
     }
+
+    public function toggleStatus(Request $request, $id)
+    {
+        $activity = Funactivity::findOrFail($id);
+        $newStatus = $request->input('status') ?: ($activity->status === 'Show' ? 'Hide' : 'Show');
+        $activity->update(['status' => $newStatus]);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Status aktivitas '{$activity->title}' berhasil diubah menjadi {$newStatus}.",
+                'status' => $newStatus,
+            ]);
+        }
+
+        return back()->with('success', "Status aktivitas '{$activity->title}' berhasil diubah menjadi {$newStatus}.");
+    }
 }

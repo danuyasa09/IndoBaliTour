@@ -34,9 +34,73 @@
                             {{ $booking->booking_date ? $booking->booking_date->format('d M Y') : '-' }}
                         </td>
                         <td class="px-6 py-4">
-                            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">
-                                {{ $booking->status }}
-                            </span>
+                            <div x-data="{
+                                currentStatus: '{{ $booking->status }}',
+                                isLoading: false,
+                                getClasses(status) {
+                                    switch(status) {
+                                        case 'Pending':
+                                            return 'bg-amber-50 text-amber-800 border-amber-300 hover:bg-amber-100 focus:ring-amber-400';
+                                        case 'Confirmed':
+                                            return 'bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100 focus:ring-emerald-400';
+                                        case 'Cancelled':
+                                            return 'bg-rose-50 text-rose-800 border-rose-300 hover:bg-rose-100 focus:ring-rose-400';
+                                        default:
+                                            return 'bg-gray-50 text-gray-700 border-gray-200';
+                                    }
+                                },
+                                async updateStatus(e) {
+                                    const newStatus = e.target.value;
+                                    const prev = this.currentStatus;
+                                    if (newStatus === prev) return;
+                                    this.isLoading = true;
+                                    try {
+                                        const res = await fetch('{{ route('admin.bookings.updateStatus', $booking->id) }}', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'Accept': 'application/json',
+                                                'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]')?.getAttribute('content') || '{{ csrf_token() }}'
+                                            },
+                                            body: JSON.stringify({ _method: 'PATCH', status: newStatus })
+                                        });
+                                        const data = await res.json();
+                                        if (res.ok && data.success) {
+                                            this.currentStatus = newStatus;
+                                            if (window.showToast) window.showToast(data.message || 'Status booking berhasil diubah', 'success');
+                                        } else {
+                                            e.target.value = prev;
+                                            if (window.showToast) window.showToast(data.message || 'Gagal mengubah status', 'error');
+                                        }
+                                    } catch (err) {
+                                        e.target.value = prev;
+                                        if (window.showToast) window.showToast('Terjadi kesalahan jaringan', 'error');
+                                    } finally {
+                                        this.isLoading = false;
+                                    }
+                                }
+                            }">
+                                <form action="{{ route('admin.bookings.updateStatus', $booking->id) }}" method="POST" class="inline-block relative">
+                                    @csrf
+                                    @method('PATCH')
+                                    <div class="relative inline-flex items-center">
+                                        <select name="status"
+                                                :value="currentStatus"
+                                                :disabled="isLoading"
+                                                @change="updateStatus($event)"
+                                                :class="getClasses(currentStatus)"
+                                                class="appearance-none cursor-pointer text-xs font-semibold pl-3 pr-7 py-1 rounded-full border transition-colors focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed"
+                                                title="Klik untuk ubah status booking">
+                                            <option value="Pending" @selected($booking->status === 'Pending') class="bg-white text-gray-800">Pending</option>
+                                            <option value="Confirmed" @selected($booking->status === 'Confirmed') class="bg-white text-gray-800">Confirmed</option>
+                                            <option value="Cancelled" @selected($booking->status === 'Cancelled') class="bg-white text-gray-800">Cancelled</option>
+                                        </select>
+                                        <div class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-current opacity-70">
+                                            <i class="fa-solid fa-chevron-down text-[9px]"></i>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </td>
                         <td class="px-6 py-4 text-right">
                             <div class="flex items-center justify-end gap-2">

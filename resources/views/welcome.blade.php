@@ -45,7 +45,12 @@
     <section class="relative min-h-[100vh] overflow-hidden bg-black flex flex-col"
         x-data="{ 
                      activeSlide: 0, 
-                     slides: {{ Js::from($heroSlides) }},
+                     slides: [
+                         'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=80',
+                         'https://inivie.com/_next/image?url=https%3A%2F%2Fblog.inivie.com%2Fwp-content%2Fuploads%2F2025%2F04%2F4._Pantai-Berawa-1024x683.jpg&w=1920&q=75',
+                         'https://www.water-sport-bali.com/wp-content/uploads/2024/10/gunung-batur-kintamani-bali.webp',
+                         'https://inivie.com/_next/image?url=https%3A%2F%2Fblog.inivie.com%2Fwp-content%2Fuploads%2F2025%2F04%2F11._Ubud-Art-Market-1024x683.jpg&w=1920&q=75'
+                     ],
                      init() {
                          setInterval(() => {
                              this.activeSlide = (this.activeSlide === this.slides.length - 1) ? 0 : this.activeSlide + 1;
@@ -509,32 +514,37 @@
                 <div class="swiper testimonial-swiper w-full px-4 sm:px-0 !overflow-visible">
                     <div class="swiper-wrapper">
                         @foreach($testimonies as $testimony)
-                        <div class="swiper-slide bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow select-none" style="width: 320px; height: 220px; max-width: 90vw;">
-                            <div class="space-y-4">
-                                <div class="flex text-yellow-500 text-lg">
+                        <div class="swiper-slide bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow select-none" style="width: 320px; height: 220px; max-width: 90vw;">
+                            <!-- Header: Commenter Info & Rating -->
+                            <div class="flex items-center justify-between gap-3 pb-3 border-b border-gray-100 pointer-events-none">
+                                <div class="flex items-center space-x-3 min-w-0">
+                                    @if($testimony->photo)
+                                    <img src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}" loading="lazy" class="h-10 w-10 rounded-full object-cover shrink-0 ring-1 ring-gray-200">
+                                    @else
+                                    <div class="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-xs uppercase shrink-0">
+                                        {{ substr($testimony->name, 0, 2) }}
+                                    </div>
+                                    @endif
+                                    <div class="min-w-0">
+                                        <h4 class="font-bold text-sm text-gray-900 truncate">{{ $testimony->name }}</h4>
+                                        <p class="text-xs text-gray-400 truncate">{{ $testimony->nationality }}</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-amber-400 text-sm shrink-0">
                                     @for($i = 0; $i < $testimony->rating; $i++)
                                         <span>★</span>
-                                        @endfor
-                                        @for($i = $testimony->rating; $i < 5; $i++)
-                                            <span class="text-gray-300">★</span>
-                                            @endfor
+                                    @endfor
+                                    @for($i = $testimony->rating; $i < 5; $i++)
+                                        <span class="text-gray-300">★</span>
+                                    @endfor
                                 </div>
-                                <p class="text-gray-600 text-sm leading-relaxed italic line-clamp-3 pointer-events-none">
+                            </div>
+
+                            <!-- Review Message -->
+                            <div class="pt-3 pointer-events-none flex-grow">
+                                <p class="text-gray-600 text-sm leading-relaxed italic line-clamp-4">
                                     "{{ $testimony->message }}"
                                 </p>
-                            </div>
-                            <div class="flex items-center space-x-3 pt-5 mt-5 border-t border-gray-50 pointer-events-none">
-                                @if($testimony->photo)
-                                <img src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}" loading="lazy" class="h-10 w-10 rounded-full object-cover">
-                                @else
-                                <div class="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-sm uppercase">
-                                    {{ substr($testimony->name, 0, 2) }}
-                                </div>
-                                @endif
-                                <div>
-                                    <h4 class="font-bold text-sm text-gray-900 line-clamp-1">{{ $testimony->name }}</h4>
-                                    <p class="text-xs text-gray-400 line-clamp-1">{{ $testimony->nationality }}</p>
-                                </div>
                             </div>
                         </div>
                         @endforeach

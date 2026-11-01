@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Admin Panel') - Indo Bali Tour</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -42,10 +43,6 @@
                     <a href="{{ route('admin.tours.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.tours.*') ? 'bg-brand-red text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
                         <i class="fa-solid fa-map-location-dot w-5 text-center"></i>
                         <span class="font-medium">Paket Tour</span>
-                    </a>
-                    <a href="{{ route('admin.hero_slides.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.hero_slides.*') ? 'bg-brand-red text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
-                        <i class="fa-solid fa-images w-5 text-center"></i>
-                        <span class="font-medium">Hero Slider</span>
                     </a>
                     <a href="{{ route('admin.cars.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.cars.*') ? 'bg-brand-red text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
                         <i class="fa-solid fa-car w-5 text-center"></i>
@@ -168,6 +165,7 @@
 
     </div>
 
+
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -186,6 +184,45 @@
                 ]
             });
         });
+
+        // Global status toggle for Show/Hide items
+        async function toggleItemStatus(btn, url) {
+            if (!btn || btn.disabled) return;
+            const form = btn.closest('form');
+            const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': csrf
+                    },
+                    body: JSON.stringify({ _method: 'PATCH' })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    const isShow = data.status === 'Show';
+                    btn.setAttribute('data-status', data.status);
+                    btn.textContent = data.status;
+                    btn.className = `px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full transition-colors cursor-pointer ${isShow ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`;
+                    if (window.showToast) {
+                        window.showToast(data.message || 'Status berhasil diubah', 'success');
+                    }
+                } else {
+                    if (window.showToast) {
+                        window.showToast(data.message || 'Gagal mengubah status', 'error');
+                    }
+                }
+            } catch (e) {
+                if (form) form.submit();
+            } finally {
+                btn.disabled = false;
+            }
+        }
     </script>
     @stack('scripts')
 </body>

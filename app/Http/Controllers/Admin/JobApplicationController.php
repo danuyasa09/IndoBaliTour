@@ -29,7 +29,15 @@ class JobApplicationController extends Controller
         $application = JobApplication::findOrFail($id);
         $application->update(['status' => $request->status]);
 
-        return redirect()->route('admin.job_applications.index')->with('success', 'Application status updated successfully');
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Status lamaran {$application->name} berhasil diubah menjadi " . ucfirst($application->status) . ".",
+                'status' => $application->status,
+            ]);
+        }
+
+        return back()->with('success', "Status lamaran {$application->name} berhasil diubah menjadi " . ucfirst($application->status) . ".");
     }
 
     public function destroy($id)

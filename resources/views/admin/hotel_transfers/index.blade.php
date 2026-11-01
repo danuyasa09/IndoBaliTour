@@ -35,15 +35,17 @@
                             $ {{ number_format((float)$transfer->price, 2, '.', ',') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            @if($transfer->status === 'Show')
-                                <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Show
-                                </span>
-                            @else
-                                <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                                    Hide
-                                </span>
-                            @endif
+                            <form action="{{ route('admin.hotel_transfers.toggleStatus', $transfer->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('PATCH')
+                                <button type="button"
+                                        onclick="toggleItemStatus(this, '{{ route('admin.hotel_transfers.toggleStatus', $transfer->id) }}')"
+                                        data-status="{{ $transfer->status }}"
+                                        class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full transition-colors cursor-pointer {{ $transfer->status === 'Show' ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-gray-100 text-gray-800 hover:bg-gray-200' }}"
+                                        title="Klik untuk ubah status">
+                                    {{ $transfer->status }}
+                                </button>
+                            </form>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <div class="flex justify-end gap-3">
