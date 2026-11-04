@@ -181,35 +181,18 @@
                     </div>
                 </div>
 
-            <div class="mt-16 overflow-hidden rounded-[2rem] border border-gray-200 shadow-sm bg-white" x-data="{ activeMap: '2d' }">
-                <!-- Map Toggle Header -->
-                <div class="px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-[#7A0C16]/10 flex items-center justify-center text-[#7A0C16]">
-                            <i class="fa-solid fa-map-location-dot text-sm" x-show="activeMap === '2d'"></i>
-                            <i class="fa-solid fa-street-view text-sm" x-show="activeMap === '360'" style="display: none;"></i>
-                        </div>
-                        <h3 class="text-sm font-bold text-slate-800">Our Location</h3>
+            <div class="mt-16 overflow-hidden rounded-[2rem] border border-gray-200 shadow-sm bg-white">
+                <!-- Map Header -->
+                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-[#7A0C16]/10 flex items-center justify-center text-[#7A0C16]">
+                        <i class="fa-solid fa-map-location-dot text-sm"></i>
                     </div>
-                    
-                    <div class="flex bg-gray-100 rounded-lg p-1 text-sm font-medium">
-                        <button @click="activeMap = '2d'" :class="activeMap === '2d' ? 'bg-white shadow-sm text-[#7A0C16]' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-1.5 rounded-md transition-all flex items-center gap-2">
-                            <i class="fa-solid fa-map"></i> 2D Map
-                        </button>
-                        <button @click="activeMap = '360'" :class="activeMap === '360' ? 'bg-white shadow-sm text-[#7A0C16]' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-1.5 rounded-md transition-all flex items-center gap-2">
-                            <i class="fa-solid fa-street-view"></i> 360° View
-                        </button>
-                    </div>
+                    <h3 class="text-sm font-bold text-slate-800">Our Location</h3>
                 </div>
 
-                <!-- Peta Biasa (2D) -->
-                <div x-show="activeMap === '2d'" class="[&>iframe]:w-full [&>iframe]:h-[420px] [&>iframe]:border-0 transition-opacity duration-300">
+                <!-- Map -->
+                <div class="[&>iframe]:w-full [&>iframe]:h-[420px] [&>iframe]:border-0">
                     {!! $pengaturan->map !!}
-                </div>
-
-                <!-- Peta 360 (Street View) -->
-                <div x-show="activeMap === '360'" style="display: none;" class="[&>iframe]:w-full [&>iframe]:h-[420px] [&>iframe]:border-0 relative transition-opacity duration-300">
-                    <iframe src="https://www.google.com/maps/embed?pb=!4v1787037583770!6m8!1m7!1siUK6M_nzdTEcrUw7D_wOVg!2m2!1d-8.638893755777369!2d115.2326144373915!3f131.3889022134742!4f-10.15022620201053!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
             </div>
             </div>

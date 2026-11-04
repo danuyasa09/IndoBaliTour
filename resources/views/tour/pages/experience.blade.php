@@ -210,9 +210,9 @@
                                 <div class="flex items-center justify-between gap-3 pb-4 border-b border-gray-100 pointer-events-none">
                                     <div class="flex items-center space-x-3 min-w-0">
                                         @if($testimony->photo)
-                                            <img src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}" class="h-11 w-11 rounded-full object-cover shrink-0 ring-1 ring-gray-200">
+                                            <img src="{{ asset('storage/' . $testimony->photo) }}" alt="{{ $testimony->name }}" class="h-10 w-10 rounded-full object-cover shrink-0 ring-1 ring-gray-200" style="min-width: 40px; min-height: 40px;">
                                         @else
-                                            <div class="h-11 w-11 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-xs uppercase shrink-0">
+                                            <div class="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-xs uppercase shrink-0" style="min-width: 40px; min-height: 40px;">
                                                 {{ substr($testimony->name, 0, 2) }}
                                             </div>
                                         @endif

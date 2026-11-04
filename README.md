@@ -12,6 +12,11 @@ Indo Bali Tour adalah platform web modern, responsif, dan dinamis yang dibangun 
 - **Floating Contact Action:** Tombol Aksi Melayang (FAB) yang sangat mudah diakses untuk panggilan langsung, email, dan obrolan WhatsApp.
 - **Panel Admin Komprehensif:** Dasbor *backend* yang aman untuk mengelola paket tur, armada kendaraan, galeri visual, dan testimoni pelanggan dengan mudah.
 
+## 📖 Panduan Penggunaan Lengkap
+
+Untuk panduan cara penggunaan website secara lengkap (baik untuk wisatawan/pengunjung maupun administrator/tim pengelola), silakan baca file:
+👉 **[PANDUAN_PENGGUNAAN.md](PANDUAN_PENGGUNAAN.md)**
+
 ## 🛠️ Teknologi yang Digunakan
 
 - **Backend:** Laravel 11 (PHP)

@@ -69,9 +69,9 @@
                                     <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-0.5 sm:mb-1 group-hover:text-brand-red transition-colors line-clamp-1">{{ $member->nama }}</h3>
                                     <p class="text-xs sm:text-sm font-medium text-gray-600 sm:text-brand-red mb-1 sm:mb-3 sm:uppercase sm:tracking-wider line-clamp-1">{{ $member->posisi }}</p>
                                     @if($member->bahasa)
-                                    <div class="inline-flex items-center justify-center gap-1.5 text-xs text-white bg-[#00d2ff] sm:bg-gray-50 sm:text-gray-500 py-1 px-3 rounded-full font-medium">
-                                        <span class="hidden sm:inline"><i class="fa-solid fa-language"></i></span> {{ $member->bahasa }}
-                                    </div>
+                                    <p class="text-xs text-gray-400 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-language"></i> {{ $member->bahasa }}
+                                    </p>
                                     @endif
                                 </div>
                             </div>
