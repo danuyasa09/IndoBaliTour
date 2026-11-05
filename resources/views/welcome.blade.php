@@ -515,7 +515,7 @@
             <div class="w-full relative py-4">
                 @if($testimonies->count() > 0)
                 <div class="swiper testimonial-swiper w-full px-4 sm:px-0 !overflow-visible">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper {{ $testimonies->count() < 3 ? 'md:justify-center' : '' }}">
                         @foreach($testimonies as $testimony)
                         <div class="swiper-slide bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow select-none" style="width: 320px; height: 220px; max-width: 90vw;">
                             <!-- Header: Commenter Info & Rating -->
@@ -666,7 +666,7 @@
                 <div class="flex-shrink-0 w-[85%] md:w-auto snap-center overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100 group relative cursor-pointer flex flex-col" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     <div class="relative aspect-video overflow-hidden">
                         @if($ytId)
-                        <img src="https://img.youtube.com/vi/{{ $ytId }}/maxresdefault.jpg" alt="{{ $video->title }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="https://img.youtube.com/vi/{{ $ytId }}/hqdefault.jpg" alt="{{ $video->title }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         @else
                         <img src="{{ Str::startsWith($video->source, 'http') ? $video->source : asset('images/' . $video->source) }}" alt="{{ $video->title }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         @endif
@@ -682,7 +682,9 @@
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
                             <h3 class="font-bold text-xl text-gray-900 mb-2">{{ $video->title }}</h3>
-                            <p class="text-sm text-gray-500 mb-4 line-clamp-2">{{ Str::limit($video->content, 100) }}</p>
+                            @if(trim(strip_tags($video->content)))
+                                <p class="text-sm text-gray-500 mb-4 line-clamp-2">{{ Str::limit(strip_tags($video->content), 100) }}</p>
+                            @endif
                         </div>
                         <a href="{{ $ytId ? 'https://www.youtube.com/watch?v='.$ytId : $video->source }}" target="_blank" class="inline-flex items-center text-sm font-bold text-brand-red group-hover:text-red-700 mt-auto">
                             Watch Video
@@ -735,6 +737,7 @@
             const swiper = new Swiper('.testimonial-swiper', {
                 slidesPerView: 'auto',
                 spaceBetween: 32,
+                centerInsufficientSlides: true,
                 loop: slideCount > 3, // Hanya loop jika lebih dari 3 testimoni
                 grabCursor: slideCount > 1,
                 autoplay: slideCount > 1 ? {

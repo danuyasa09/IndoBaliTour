@@ -115,7 +115,9 @@
                     @endif
                     <div class="p-5">
                         <h3 class="font-semibold text-gray-900 mb-2">{{ $video->title }}</h3>
-                        <p class="text-sm text-gray-500 mb-4">{{ Str::limit($video->content, 100) }}</p>
+                        @if(trim(strip_tags($video->content)))
+                        <p class="text-sm text-gray-500 mb-4">{{ Str::limit(strip_tags($video->content), 100) }}</p>
+                        @endif
                         @if($ytId)
                             <a href="https://www.youtube.com/watch?v={{ $ytId }}" target="_blank" class="inline-flex items-center text-sm font-semibold text-[#9B1C26] hover:text-[#7A151D]">Watch on YouTube</a>
                         @else
@@ -154,10 +156,12 @@
                         if(this.autoScrollInterval) return;
                         this.autoScrollInterval = setInterval(() => {
                             if(!this.isDown && this.$refs.slider) {
-                                this.$refs.slider.scrollLeft += 1;
-                                // Seamless loop: if we scroll past half the width, reset to 0
-                                if (this.$refs.slider.scrollLeft >= this.$refs.slider.scrollWidth / 2) {
-                                    this.$refs.slider.scrollLeft = 0;
+                                const el = this.$refs.slider;
+                                if (el.scrollWidth > el.clientWidth) {
+                                    el.scrollLeft += 1;
+                                    if (el.scrollLeft >= el.scrollWidth - el.clientWidth) {
+                                        el.scrollLeft = 0;
+                                    }
                                 }
                             }
                         }, 25);
@@ -199,12 +203,10 @@
                          @mouseenter="mouseenter"
                          @mouseup="mouseup"
                          @mousemove="mousemove"
-                         class="flex gap-8 overflow-x-auto hide-scroll cursor-grab active:cursor-grabbing w-full px-4 sm:px-0"
+                         class="flex gap-8 overflow-x-auto hide-scroll cursor-grab active:cursor-grabbing w-full px-4 sm:px-0 {{ $testimonies->count() < 3 ? 'md:justify-center' : '' }}"
                          style="scrollbar-width: none; -ms-overflow-style: none;">
                         
-                        <!-- Loop dua kali agar scroll terlihat tanpa batas (seamless) -->
-                        @for($j = 0; $j < 2; $j++)
-                            @foreach($testimonies as $testimony)
+                        @foreach($testimonies as $testimony)
                             <div class="w-[320px] sm:w-[400px] whitespace-normal flex-shrink-0 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow select-none">
                                 <!-- Header: Commenter Info & Rating -->
                                 <div class="flex items-center justify-between gap-3 pb-4 border-b border-gray-100 pointer-events-none">
@@ -239,7 +241,6 @@
                                 </div>
                             </div>
                             @endforeach
-                        @endfor
                     </div>
                 @else
                     <div class="text-center py-10 text-gray-500 w-full">
